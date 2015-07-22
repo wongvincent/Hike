@@ -14,22 +14,39 @@ app.run(function($ionicPlatform) {
 });
 
 app.config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/trails')
 
   $stateProvider.state('trails', {
-    url: 'trails',
-    templateUrl: 'Trails/trails.html'
+    url: '/trails',
+    abstract: true,
+    templateUrl: 'trails/trails-template.html'
+  })
+  .state('trails.list', {
+    url: '/list',
+    views: {
+      'list-tab' : {
+        templateUrl: 'trails/list.html'
+      }
+    }
+  })
+  .state('trails.map', {
+    url: '/map',
+    views: {
+      'map-tab' : {
+        templateUrl: 'trails/map.html'
+      }
+    }
   })
 
-$stateProvider.state('log', {
+  .state('log', {
   url: '/log',
   templateUrl: 'logitems.html'
     })
-
-$stateProvider.state('stopwatch', {
+.state('stopwatch', {
   url: '/stopwatch',
   templateUrl: 'stopwatch.html'
-    })
+    });
+
+  $urlRouterProvider.otherwise('/trails/list');
 
 });
 
