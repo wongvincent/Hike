@@ -1,1 +1,8 @@
 /* Empty. Add your own CSS if you like */
+.left-menu-item {
+	font-size: 20px;
+}
+
+.icon-container {
+	margin: 0 10px;
+}

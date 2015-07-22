@@ -14,17 +14,23 @@ app.run(function($ionicPlatform) {
 });
 
 app.config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/')
+  $urlRouterProvider.otherwise('/trails')
 
   $stateProvider.state('trails', {
-    url: '/',
-    templateUrl: 'trails.html'
+    url: 'trails',
+    templateUrl: 'Trails/trails.html'
   })
 
 $stateProvider.state('log', {
   url: '/log',
   templateUrl: 'logitems.html'
     })
+
+$stateProvider.state('stopwatch', {
+  url: '/stopwatch',
+  templateUrl: 'stopwatch.html'
+    })
+
 });
 
 
