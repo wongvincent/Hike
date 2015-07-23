@@ -41,12 +41,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             .state('log', {
                 url: '/log',
                 templateUrl: 'logitems.html'
-            })
-            .state('stopwatch', {
-                url: '/stopwatch',
-                templateUrl: 'stopwatch.html'
             });
-
+            
     $urlRouterProvider.otherwise('/trails/list');
 });
 
