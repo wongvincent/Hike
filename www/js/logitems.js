@@ -25,10 +25,10 @@ app.factory('Projects', function () {
         setLastActiveIndex: function (index) {
             window.localStorage['lastActiveProject'] = index;
         }
-    }
-})
+    };
+});
 
-
+/*
         .controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate) {
 
         // A utility function for creating a new project
@@ -99,3 +99,5 @@ app.factory('Projects', function () {
                 }
                 }
                 });
+                
+                */

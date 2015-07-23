@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic']);
+var app = angular.module('app', ['ionic']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
