@@ -2,21 +2,21 @@
 <ion-view title="Log">
     <ion-content padding="true">
 
-  <ion-content scroll="false">
-      <ion-header-bar class="bar-dark">
-      <h1 class="title">Log</h1>
-      <button class="button button-icon ion-plus" ng-click="newProject()">
-      </button>
-    </ion-header-bar>
-    <ion-content scroll="false">
-      <ion-list>
-        <ion-item ng-repeat="project in projects" ng-click="selectProject(project, $index)" ng-class="{active: activeProject == project}">
-          {{project.title}}
-        </ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-content>
+        <ion-content scroll="false">
+            <ion-header-bar class="bar-dark">
+                <h1 class="title">Log</h1>
+                <button class="button button-icon ion-plus" ng-click="newProject()">
+                </button>
+            </ion-header-bar>
+            <ion-content scroll="false">
+                <ion-list>
+                    <ion-item ng-repeat="project in projects" ng-click="selectProject(project, $index)" ng-class="{active: activeProject == project}">
+                        {{project.title}}
+                    </ion-item>
+                </ion-list>
+            </ion-content>
+        </ion-content>
 
-</ion-content>
+    </ion-content>
 </ion-view>
 
