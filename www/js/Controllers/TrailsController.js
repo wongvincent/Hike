@@ -1,4 +1,4 @@
-var app = angular.module('app');
+var app = angular.module('Trails');
 
 app.controller('TrailsController', function ($scope) {
     // TODO: Store in some kind of DB later...

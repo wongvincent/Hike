@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ionic']);
+var app = angular.module('app', ['ionic', 'Trails']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
