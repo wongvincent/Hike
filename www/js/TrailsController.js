@@ -12,7 +12,7 @@ app.controller('TrailsController', function ($scope) {
                     time: 2.5,
                     distance: 7,
                     elevation: 350,
-                    location: 'West Vancouver',
+                    location: 'West Van',
                     difficulty: 'Easy',
                     images: [
                         {
@@ -43,7 +43,7 @@ app.controller('TrailsController', function ($scope) {
                     time: 2.5,
                     distance: 8,
                     elevation: 350,
-                    location: 'Cypress Mountain',
+                    location: 'West Van (Cypress Mountain)',
                     difficulty: 'Intermediate',
                     images: [
                         {
@@ -110,7 +110,7 @@ app.controller('TrailsController', function ($scope) {
                     time: 3.5,
                     distance: 18,
                     elevation: '~0',
-                    location: 'Lynn Canyon (North Vancouver)',
+                    location: 'North Van (Lynn Canyon)',
                     difficulty: 'Intermediate',
                     images: [
                         {
@@ -165,7 +165,7 @@ app.controller('TrailsController', function ($scope) {
                     time: 1.5,
                     distance: 3.8,
                     elevation: 100,
-                    location: 'North Vancouver',
+                    location: 'North Van',
                     difficulty: 'Easy',
                     images: [
                         {
@@ -190,7 +190,7 @@ app.controller('TrailsController', function ($scope) {
                     time: 3,
                     distance: 11,
                     elevation: 460,
-                    location: 'Cypress Mountain',
+                    location: 'West Van (Cypress Mountain)',
                     difficulty: 'Intermediate',
                     images: [
                         {
@@ -244,7 +244,7 @@ app.controller('TrailsController', function ($scope) {
                     time: 1,
                     distance: 2.6,
                     elevation: "100",
-                    location: 'North Vancouver',
+                    location: 'North Van',
                     difficulty: 'Easy',
                     images: [
                         {

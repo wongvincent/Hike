@@ -1,5 +1,39 @@
 <ion-view title="Trail List">
-    <ion-content padding="true">
-        traillist
+    <ion-content>
+        <div class="row" style="font-weight:bold;">
+            <div class="col">
+                Trail Name
+            </div>
+            <div class="col">
+                Region
+            </div>
+            <div class="col">
+                Time
+            </div>
+            <div class="col">
+                Distance
+            </div>
+            <div class="col">
+                Difficulty
+            </div>
+        </div>
+
+        <div class="row" ng-repeat="(key,value) in trails">
+            <div class="col">
+                {{::key}}
+            </div>
+            <div class="col">
+                {{::value.location}}
+            </div>
+            <div class="col">
+                {{::value.time}} hours
+            </div>
+            <div class="col">
+                {{::value.distance}}km
+            </div>
+            <div class="col">
+                {{::value.difficulty}}
+            </div>
+        </div>
     </ion-content>
 </ion-view>
