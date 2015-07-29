@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="row" ng-repeat="(key,value) in trails">
+        <div class="row" ng-repeat="(key,value) in trails | SearchTrails: searchtext || ''">
             <div class="col">
                 {{::key}}
             </div>

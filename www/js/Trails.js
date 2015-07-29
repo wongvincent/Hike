@@ -1,1 +1,1 @@
-var app = angular.module('Trails', []);
+var app = angular.module('trails', []);

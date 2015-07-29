@@ -1,4 +1,4 @@
-var app = angular.module('Trails');
+var app = angular.module('trails');
 
 app.controller('TrailsController', function ($scope) {
     // TODO: Store in some kind of DB later...
@@ -304,5 +304,18 @@ app.controller('TrailsController', function ($scope) {
                         }
                     ]
                 }
+    };
+});
+
+app.filter('SearchTrails', function () {
+    return function (trails, str) {
+        str = str.toLowerCase();
+        var filtered = {};
+        angular.forEach(trails, function (val, key) {
+            lowercaseKey = key.toLowerCase();
+            if (lowercaseKey.indexOf(str) !== -1)
+                filtered[key] = val;
+        });
+        return filtered;
     };
 });
