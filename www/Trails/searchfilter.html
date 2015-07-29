@@ -1,6 +1,16 @@
 <div class="list list-inset">
-  <label class="item item-input">
-    <i class="icon ion-search placeholder-icon"></i>
-    <input type="text" placeholder="Search by Name" ng-model="searchtext">
-  </label>
+    <label class="item item-input" style="display:inline-flex;min-width:105px;width:calc(100% - 175px);">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Trail name" ng-model="searchtext" style="padding-right:5px">
+    </label>
+    <div style="display:inline-block;float:right;">
+        <button class="button button-light">
+            <i class="icon ion-android-funnel"></i>
+            Sort
+        </button>
+        <button class="button button-light">
+            <i class="icon ion-android-options"></i>
+            Filter
+        </button>
+    </div>
 </div>
