@@ -46,10 +46,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/trails/list');
 });
 
+//For general app wide functionality
 app.controller('StartController', function ($scope, $ionicModal, $ionicSideMenuDelegate) {
 
     $scope.togglePancake = function () {
         $ionicSideMenuDelegate.toggleLeft();
     };
+});
 
+app.filter('range', function(){
+    return function(array, range){
+        range = parseInt(range);
+        for(i=0; i<range; i++)
+            array.push(i);
+        return array;
+    };
 });

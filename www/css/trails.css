@@ -1,0 +1,46 @@
+label#searchbox {
+    display:inline-flex;
+    min-width:105px;
+    width:calc(100% - 175px);
+}
+
+.small-icon:before {
+    font-size: 20px !important;
+    margin-top:2px;
+}
+
+#filter-difficulty-title{
+    font-weight:500;
+    margin-bottom:10px;
+}
+
+#filter-difficulty-check{
+    white-space: normal;
+}
+
+#filter-difficulty-check .item-checkbox{
+    display: inline-block;
+    white-space: normal!important;
+    padding-left: 50px;
+    padding-right: 10px;
+}
+
+button#filter-cancel {
+    width:50%;
+    float:left;
+}
+
+button#filter-ok {
+    width:50%;
+    float:right;
+}
+
+.item-checkbox-right .checkbox input,
+.item-checkbox-right .checkbox-icon {
+  float: right;
+}
+
+.item-checkbox.item-checkbox-right {
+  /*the default item padding*/
+  padding: 15px;
+}

@@ -14,19 +14,23 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                     ];
 
                     $scope.data = {
-                        sortoption: "1"
+                        sortoption: "1",
+                        filterTimeMin: "0",
+                        filterTimeMax: "999",
+                        filterDistanceMin: "0",
+                        filterDistanceMax: "999"
                     };
 
                     $scope.sortby = function () {
 
                         var sortByPopup = $ionicPopup.show({
-                            title: 'Sort Trails',
+                            title: 'Sort trails',
                             templateUrl: '/trails/sortby.html',
                             scope: $scope,
                             buttons: [
                                 {
-                                    text: '',
-                                    type: 'button-clear disabled',
+                                    text: '', //Sort button
+                                    type: 'button-clear button-small disabled',
                                     onTap: function (e) {
                                         if (!$scope.data.sortoption) {
                                             e.preventDefault();
@@ -35,7 +39,10 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                                         }
                                     }
                                 },
-                                {text: 'Cancel'}
+                                {
+                                    text: '', //Cancel button
+                                    type: 'button-clear button-small disabled'
+                                }
                             ]
                         });
                         sortByPopup.then(function (res) {
@@ -44,9 +51,23 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                             }
                         });
                     };
+                    
+                    
 
                     $scope.filterby = function () {
-                        //do some filtering stuff
+                        console.log('filter');
+                        //for the checkboxes: undefined = unchecked
+                        console.log($scope.data.sortoption);
+                        console.log($scope.data.filterTimeMin);
+                        console.log($scope.data.filterTimeMax);
+                        console.log($scope.data.filterDistanceMin);
+                        console.log($scope.data.filterDistanceMax);
+                        console.log($scope.data.filterDifficultyEasy);
+                        console.log($scope.data.filterDifficultyModerate);
+                        console.log($scope.data.filterDifficultyHard);
+                        console.log($scope.data.filterDogFriendly);
+                        console.log($scope.data.filterTransit);
+                        
                         $scope.closeFilterModal();
                     };
                     $ionicModal.fromTemplateUrl('/trails/filterby.html', {
