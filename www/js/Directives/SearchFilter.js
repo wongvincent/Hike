@@ -6,15 +6,16 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
             controller: ['$scope', function ($scope) {
 
                     $scope.sortOptions = [
-                        "Name (A-Z)",
-                        "Time: Lo to Hi",
-                        "Time: Hi to Lo",
-                        "Distance: Lo to Hi",
-                        "Distance: Hi to Lo"
+                        {text: "Name (A-Z)", sortby: "name"},
+                        {text: "Time: Lo to Hi", sortby: "time"},
+                        {text: "Time: Hi to Lo", sortby: "-time"},
+                        {text: "Distance: Lo to Hi", sortby: "distance"},
+                        {text: "Distance: Hi to Lo", sortby: "-distance"}
                     ];
 
                     $scope.data = {
-                        sortoption: "1",
+                        sortSelected: "name",
+                        sortSelectedIndex: "0",
                         filterTimeMin: "0",
                         filterTimeMax: "999",
                         filterDistanceMin: "0",
@@ -32,11 +33,8 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                                     text: '', //Sort button
                                     type: 'button-clear button-small disabled',
                                     onTap: function (e) {
-                                        if (!$scope.data.sortoption) {
-                                            e.preventDefault();
-                                        } else {
-                                            return $scope.data.sortoption;
-                                        }
+                                        $scope.data.sortSelected = $scope.sortOptions[$scope.data.sortSelectedIndex].sortby;
+                                        return $scope.data.sortSelectedIndex;
                                     }
                                 },
                                 {
@@ -46,18 +44,14 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                             ]
                         });
                         sortByPopup.then(function (res) {
-                            if (res) {
-                                console.log($scope.data.sortoption);
-                            }
                         });
                     };
-                    
-                    
+
+
 
                     $scope.filterby = function () {
                         console.log('filter');
                         //for the checkboxes: undefined = unchecked
-                        console.log($scope.data.sortoption);
                         console.log($scope.data.filterTimeMin);
                         console.log($scope.data.filterTimeMax);
                         console.log($scope.data.filterDistanceMin);
@@ -67,7 +61,7 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                         console.log($scope.data.filterDifficultyHard);
                         console.log($scope.data.filterDogFriendly);
                         console.log($scope.data.filterTransit);
-                        
+
                         $scope.closeFilterModal();
                     };
                     $ionicModal.fromTemplateUrl('/trails/filterby.html', {

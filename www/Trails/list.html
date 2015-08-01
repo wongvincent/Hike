@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="row" ng-repeat="trail in trails | filter:searchText">
+        <div class="row" ng-repeat="trail in trails | filter:searchText | orderBy: data.sortSelected">
             <div class="col">
                 {{::trail.name}}
             </div>

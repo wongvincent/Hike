@@ -1,5 +1,5 @@
 <div class="list">
 
-    <ion-radio ng-model="data.sortoption" ng-repeat="sortOption in sortOptions" ng-value="($index + 1)" ng-click="$buttonTapped(buttons[0], $event)">{{::sortOption}}</ion-radio>
+    <ion-radio ng-model="data.sortSelectedIndex" ng-repeat="sortOption in sortOptions" ng-value="($index)" ng-click="$buttonTapped(buttons[0], $event)">{{::sortOption.text}}</ion-radio>
 
 </div>
