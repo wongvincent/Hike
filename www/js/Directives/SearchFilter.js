@@ -13,15 +13,6 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                         {text: "Distance: Hi to Lo", sortby: "-distance"}
                     ];
 
-                    $scope.data = {
-                        sortSelected: "name",
-                        sortSelectedIndex: "0",
-                        filterTimeMin: "0",
-                        filterTimeMax: "999",
-                        filterDistanceMin: "0",
-                        filterDistanceMax: "999"
-                    };
-
                     $scope.sortby = function () {
 
                         var sortByPopup = $ionicPopup.show({
@@ -50,18 +41,6 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
 
 
                     $scope.filterby = function () {
-                        console.log('filter');
-                        //for the checkboxes: undefined = unchecked
-                        console.log($scope.data.filterTimeMin);
-                        console.log($scope.data.filterTimeMax);
-                        console.log($scope.data.filterDistanceMin);
-                        console.log($scope.data.filterDistanceMax);
-                        console.log($scope.data.filterDifficultyEasy);
-                        console.log($scope.data.filterDifficultyModerate);
-                        console.log($scope.data.filterDifficultyHard);
-                        console.log($scope.data.filterDogFriendly);
-                        console.log($scope.data.filterTransit);
-
                         $scope.closeFilterModal();
                     };
                     $ionicModal.fromTemplateUrl('/trails/filterby.html', {
