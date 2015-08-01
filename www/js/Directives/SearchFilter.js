@@ -43,12 +43,32 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                     $scope.filterby = function () {
                         $scope.closeFilterModal();
                     };
+
+                    $scope.resetFilters = function () {
+                        $scope.data = {
+                            sortSelected: "name",
+                            sortSelectedIndex: "0",
+                            filterTimeMin: "0",
+                            filterTimeMax: "999",
+                            filterDistanceMin: "0",
+                            filterDistanceMax: "999",
+                            filterDifficultyEasy: true,
+                            filterDifficultyModerate: true,
+                            filterDifficultyHard: true,
+                            filterDogFriendly: false,
+                            filterTransit: false
+                        };
+
+                        $scope.searchText = '';
+                    };
+
                     $ionicModal.fromTemplateUrl('/trails/filterby.html', {
                         scope: $scope,
                         animation: 'slide-in-up'
                     }).then(function (modal) {
                         $scope.modal = modal;
                     });
+
                     $scope.openFilterModal = function () {
                         $scope.modal.show();
                     };

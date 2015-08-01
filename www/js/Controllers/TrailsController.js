@@ -397,27 +397,27 @@ app.filter('trailFilter', function () {
 
 
         //Dog Accessible
-      /* if (data.filterDogFriendly !== undefined && data.filterDogFriendly) {
-            angular.forEach(temp1, function (trail) {
-                if (trail.dogFriendly !== undefined && trail.dogFriendly)
-                    temp2.push(trail);
-            });
-            temp1 = temp2;
-            temp2 = [];
-        }
-        */
+        /* if (data.filterDogFriendly !== undefined && data.filterDogFriendly) {
+         angular.forEach(temp1, function (trail) {
+         if (trail.dogFriendly !== undefined && trail.dogFriendly)
+         temp2.push(trail);
+         });
+         temp1 = temp2;
+         temp2 = [];
+         }
+         */
 
         //Transit Friendly
         /*
-        if (data.filterTransit !== undefined && data.filterTransit) {
-            angular.forEach(temp1, function (trail) {
-                if (trail.transit !== undefined && trail.transit)
-                    temp2.push(trail);
-            });
-            temp1 = temp2;
-            temp2 = [];
-        }
-        */
+         if (data.filterTransit !== undefined && data.filterTransit) {
+         angular.forEach(temp1, function (trail) {
+         if (trail.transit !== undefined && trail.transit)
+         temp2.push(trail);
+         });
+         temp1 = temp2;
+         temp2 = [];
+         }
+         */
 
         return temp1;
     };
