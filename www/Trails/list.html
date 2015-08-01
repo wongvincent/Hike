@@ -21,21 +21,21 @@
             </div>
         </div>
 
-        <div class="row" ng-repeat="(key,value) in trails | SearchTrails: searchtext || ''">
+        <div class="row" ng-repeat="trail in trails | filter:searchText">
             <div class="col">
-                {{::key}}
+                {{::trail.name}}
             </div>
             <div class="col">
-                {{::value.location}}
+                {{::trail.location}}
             </div>
             <div class="col">
-                {{::value.time}} hours
+                {{::trail.time}} hours
             </div>
             <div class="col">
-                {{::value.distance}}km
+                {{::trail.distance}}km
             </div>
             <div class="col">
-                {{::value.difficulty}}
+                {{::trail.difficulty}}
             </div>
         </div>
     </ion-content>
