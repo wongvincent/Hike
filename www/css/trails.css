@@ -1,5 +1,9 @@
 /* SEARCH, SORT BY, FILTER STUFF */
 
+#search-filter {
+    padding: 5px 3px;
+}
+
 label#searchbox {
     display:inline-flex;
     min-width:105px;
