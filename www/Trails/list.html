@@ -2,41 +2,38 @@
     <ion-content>
         
         <search-filter></search-filter>
-        
-        <div class="row" style="font-weight:bold;">
-            <div class="col">
-                Trail Name
-            </div>
-            <div class="col">
-                Region
-            </div>
-            <div class="col">
-                Time
-            </div>
-            <div class="col">
-                Distance
-            </div>
-            <div class="col">
-                Difficulty
-            </div>
-        </div>
 
-        <div class="row" ng-repeat="trail in trails | filter:searchText | trailFilter:data | orderBy: data.sortSelected">
-            <div class="col">
-                {{::trail.name}}
+        <div class="list-trail-card" class="card" ng-repeat="trail in trails| filter:searchText | trailFilter:data | orderBy: data.sortSelected">
+            <div class="item item-text-wrap">
+                <div class="row">
+                    {{::trail.name}}
+                </div>
+                <div class="row" ng-if="trail.location">
+                    <span>Location:</span>{{::trail.location}}
+                </div>
+                <div class="row" ng-if="trail.time">
+                    <span>Time:</span>{{::trail.time}} hours
+                </div>
+                <div class="row" ng-if="trail.distance">
+                    <span>Distance:</span>{{::trail.distance}}km
+                </div>
+                <div class="row" ng-if="trail.difficulty">
+                    <span>Difficutly:</span>{{::trail.difficulty}}
+                </div>
+                <div class="row" ng-if="trail.season">
+                    <span>Season:</span>{{::trail.season}}
+                </div>
+                <!--
+                <div class="row" ng-if="trail.dogFriendly">
+                    <span>Dog friendly:</span>{{::trail.dogFriendly}}
+                </div>      
+                <div class="row" ng-if="trail.transit">
+                    <span>Transit accessible:</span>{{::trail.transit}}
+                </div>
+                -->
             </div>
-            <div class="col">
-                {{::trail.location}}
-            </div>
-            <div class="col">
-                {{::trail.time}} hours
-            </div>
-            <div class="col">
-                {{::trail.distance}}km
-            </div>
-            <div class="col">
-                {{::trail.difficulty}}
-            </div>
-        </div>
+        </div> 
+        
     </ion-content>
 </ion-view>
+

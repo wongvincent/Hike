@@ -1,9 +1,33 @@
+/* SEARCH, SORT BY, FILTER STUFF */
+
 label#searchbox {
     display:inline-flex;
     min-width:105px;
     width:calc(100% - 175px);
 }
 
+/* TRAIL CARDS */
+.list-trail-card {
+}
+
+.list-trail-card .item{
+    padding: 10px 16px;
+}
+
+.list-trail-card .item .row:nth-child(1) {
+    font-weight:bold;
+    font-size: 1.2em;
+    padding-bottom:10px;
+}
+
+.list-trail-card .item .row span:nth-child(1){
+    font-weight:bold;
+    padding-right:5px;
+}
+
+
+
+/* FILTER POPUP MODAL */
 .small-icon:before {
     font-size: 20px !important;
     margin-top:2px;
