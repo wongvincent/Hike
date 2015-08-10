@@ -1,0 +1,14 @@
+<ion-content padding="true">
+</ion-content>
+
+<ion-tabs class="tabs-striped tabs-color-assertive">
+    <ion-tab title="Details" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" ui-sref='trail.list({name: params.name})'>
+        <ion-nav-view name="trail-list-tab"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="Map" icon-on="ion-ios-navigate" icon-off="ion-ios-navigate-outline" ui-sref='trail.map({name: params.name})'>
+        <ion-nav-view name="trail-map-tab"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="Gallery" icon="ion-images" ui-sref='trail.gallery({name: params.name})'>
+        <ion-nav-view name="trail-gallery-tab"></ion-nav-view>
+    </ion-tab>
+</ion-tabs>

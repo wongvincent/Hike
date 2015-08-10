@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ionic', 'trails']);
+var app = angular.module('app', ['ionic', 'trails', 'trail']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -15,16 +15,17 @@ app.run(function ($ionicPlatform) {
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
-    $stateProvider.state('trails', {
-        url: '/trails',
-        abstract: true,
-        templateUrl: 'trails/trails-template.html',
-        controller: 'TrailsController'
-    })
+    $stateProvider
+            .state('trails', {
+                url: '/trails',
+                abstract: true,
+                templateUrl: 'trails/index.html',
+                controller: 'TrailsController'
+            })
             .state('trails.list', {
                 url: '/list',
                 views: {
-                    'list-tab': {
+                    'trails-list-tab': {
                         templateUrl: 'trails/list.html'
                     }
                 }
@@ -32,8 +33,39 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             .state('trails.map', {
                 url: '/map',
                 views: {
-                    'map-tab': {
+                    'trails-map-tab': {
                         templateUrl: 'trails/map.html'
+                    }
+                }
+            })
+
+            .state('trail', {
+                url: '/trail/:name',
+                abstract: true,
+                templateUrl: 'trail/index.html',
+                controller: 'TrailController'
+            })
+            .state('trail.list', {
+                url: '/list',
+                views: {
+                    'trail-list-tab': {
+                        templateUrl: 'trail/list.html'
+                    }
+                }
+            })
+            .state('trail.map', {
+                url: '/map',
+                views: {
+                    'trail-map-tab': {
+                        templateUrl: 'trail/map.html'
+                    }
+                }
+            })
+            .state('trail.gallery', {
+                url: '/gallery',
+                views: {
+                    'trail-gallery-tab': {
+                        templateUrl: 'trail/gallery.html'
                     }
                 }
             })
@@ -42,7 +74,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 url: '/log',
                 templateUrl: 'logitems.html'
             });
-            
+
     $urlRouterProvider.otherwise('/trails/list');
 });
 
@@ -54,10 +86,10 @@ app.controller('StartController', function ($scope, $ionicModal, $ionicSideMenuD
     };
 });
 
-app.filter('range', function(){
-    return function(array, range){
+app.filter('range', function () {
+    return function (array, range) {
         range = parseInt(range);
-        for(i=0; i<range; i++)
+        for (i = 0; i < range; i++)
             array.push(i);
         return array;
     };

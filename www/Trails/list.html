@@ -3,8 +3,7 @@
         
         <search-filter></search-filter>
 
-        <div class="list-trail-card" class="card" ng-repeat="trail in trails| filter:searchText | trailFilter:data | orderBy: data.sortSelected">
-            <div class="item item-text-wrap">
+            <ion-item class="item-text-wrap list-trail-item" ng-repeat="trail in trails| filter:searchText | trailFilter:data | orderBy: data.sortSelected" ui-sref='trail.list({name: trail.href})'>
                 <div class="row">
                     {{::trail.name}}
                 </div>
@@ -31,8 +30,7 @@
                     <span>Transit accessible:</span>{{::trail.transit}}
                 </div>
                 -->
-            </div>
-        </div> 
+            </ion-item>
         
     </ion-content>
 </ion-view>
