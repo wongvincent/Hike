@@ -1,5 +1,20 @@
 <ion-view title="{{trail.name}}">
     <ion-content>
-        trail gallery
+        <div class="card" ng-if="!trail.images">
+            <div class="item item-text-wrap" style="font-weight:bold;">
+                No images found
+            </div>
+        </div>
+
+        <div ng-if="trail.images" ng-repeat="image in trail.images" class="list card">
+            <div class="item item-image">
+                <!-- a ng-href = opens up full size of image -->
+                <img ng-src="{{image.image}}">
+            </div>
+
+            <div class="item item-text-wrap">
+                {{::image.description}}
+            </div>
+        </div>
     </ion-content>
 </ion-view>
