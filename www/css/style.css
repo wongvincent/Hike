@@ -19,3 +19,14 @@
 .popup-head .popup-title {
     color:white;
 }
+
+.bar.bar-balanced {
+    border-color: #196730;
+    background-color: #28a54c;
+    background-image: linear-gradient(0deg, #196730, #196730 50%, transparent 50%);
+    color: #fff;
+}
+
+ol {
+    list-style-type: decimal;
+}

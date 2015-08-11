@@ -1,0 +1,51 @@
+<ion-view title="{{trail.name}}">
+    <ion-content>
+
+        <div id="trail-info" class="card">
+            <div class="item item-text-wrap">
+                <div class="row" ng-if="trail.location">
+                    <span>Location:</span>{{::trail.location}}
+                </div>
+                <div class="row" ng-if="trail.time">
+                    <span>Time:</span>{{::trail.time}} hours
+                </div>
+                <div class="row" ng-if="trail.distance">
+                    <span>Distance:</span>{{::trail.distance}}km
+                </div>
+                <div class="row" ng-if="trail.difficulty">
+                    <span>Difficulty:</span>{{::trail.difficulty}}
+                </div>
+                <div class="row" ng-if="trail.season">
+                    <span>Season:</span>{{::trail.season}}
+                </div>
+                <!--
+                <div class="row" ng-if="trail.dogFriendly">
+                    <span>Dog friendly:</span>{{::trail.dogFriendly}}
+                </div>      
+                <div class="row" ng-if="trail.transit">
+                    <span>Transit accessible:</span>{{::trail.transit}}
+                </div>
+                -->
+            </div>
+        </div>
+
+        <div id="trail-instructions" class="card">
+            <!-- <div id="trail-instructions" ng-if="trail.instructions" class="card"> -->
+            <ol>
+                <!-- <div class="item item-text-wrap" ng-repeat="instruction in trail.instructions"><li>{{::instruction}}</li></div> -->
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do t h a t 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+            </ol>
+        </div>
+
+    </ion-content>
+</ion-view>

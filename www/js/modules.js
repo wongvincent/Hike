@@ -1,2 +1,3 @@
-angular.module('trails', []);
-angular.module('trail', []);
+angular.module('services', []);
+angular.module('controllers', []);
+angular.module('directives', []);

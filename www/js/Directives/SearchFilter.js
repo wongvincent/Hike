@@ -1,4 +1,4 @@
-var app = angular.module('trails');
+var app = angular.module('directives');
 
 app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPopup, $ionicModal) {
         return {

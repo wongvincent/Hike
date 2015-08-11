@@ -1,37 +1,39 @@
+<ion-nav-back-button>
+</ion-nav-back-button>
 <ion-view title="Trail list">
     <ion-content>
-        
+
         <search-filter></search-filter>
 
-            <ion-item class="item-text-wrap list-trail-item" ng-repeat="trail in trails| filter:searchText | trailFilter:data | orderBy: data.sortSelected" ui-sref='trail.list({name: trail.href})'>
-                <div class="row">
-                    {{::trail.name}}
-                </div>
-                <div class="row" ng-if="trail.location">
-                    <span>Location:</span>{{::trail.location}}
-                </div>
-                <div class="row" ng-if="trail.time">
-                    <span>Time:</span>{{::trail.time}} hours
-                </div>
-                <div class="row" ng-if="trail.distance">
-                    <span>Distance:</span>{{::trail.distance}}km
-                </div>
-                <div class="row" ng-if="trail.difficulty">
-                    <span>Difficulty:</span>{{::trail.difficulty}}
-                </div>
-                <div class="row" ng-if="trail.season">
-                    <span>Season:</span>{{::trail.season}}
-                </div>
-                <!--
-                <div class="row" ng-if="trail.dogFriendly">
-                    <span>Dog friendly:</span>{{::trail.dogFriendly}}
-                </div>      
-                <div class="row" ng-if="trail.transit">
-                    <span>Transit accessible:</span>{{::trail.transit}}
-                </div>
-                -->
-            </ion-item>
-        
+        <ion-item class="item-text-wrap list-trail-item" ng-repeat="trail in trails| filter:searchText | trailFilter:data | orderBy: data.sortSelected" ui-sref='trail.details({name: trail.href})'>
+            <div class="row">
+                {{::trail.name}}
+            </div>
+            <div class="row" ng-if="trail.location">
+                <span>Location:</span>{{::trail.location}}
+            </div>
+            <div class="row" ng-if="trail.time">
+                <span>Time:</span>{{::trail.time}} hours
+            </div>
+            <div class="row" ng-if="trail.distance">
+                <span>Distance:</span>{{::trail.distance}}km
+            </div>
+            <div class="row" ng-if="trail.difficulty">
+                <span>Difficulty:</span>{{::trail.difficulty}}
+            </div>
+            <div class="row" ng-if="trail.season">
+                <span>Season:</span>{{::trail.season}}
+            </div>
+            <!--
+            <div class="row" ng-if="trail.dogFriendly">
+                <span>Dog friendly:</span>{{::trail.dogFriendly}}
+            </div>      
+            <div class="row" ng-if="trail.transit">
+                <span>Transit accessible:</span>{{::trail.transit}}
+            </div>
+            -->
+        </ion-item>
+
     </ion-content>
 </ion-view>
 

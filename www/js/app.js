@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ionic', 'trails', 'trail']);
+var app = angular.module('app', ['ionic', 'controllers', 'services', 'directives']);
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -42,14 +42,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             .state('trail', {
                 url: '/trail/:name',
                 abstract: true,
+                cache: false,
                 templateUrl: 'trail/index.html',
                 controller: 'TrailController'
             })
-            .state('trail.list', {
+            .state('trail.details', {
                 url: '/list',
                 views: {
-                    'trail-list-tab': {
-                        templateUrl: 'trail/list.html'
+                    'trail-details-tab': {
+                        templateUrl: 'trail/details.html'
                     }
                 }
             })
