@@ -1,13 +1,24 @@
 /* SEARCH, SORT BY, FILTER STUFF */
 
 #search-filter {
-    padding: 5px 3px;
+    padding: 0 3px;
 }
 
-label#searchbox {
+#search-filter > label {
+    height: 35px;
     display:inline-flex;
     min-width:105px;
-    width:calc(100% - 175px);
+    width:calc(100% - 172px);
+}
+
+#search-filter > div{
+    display: inline-block;
+    float:right;
+}
+
+#search-filter > div > button {
+    width: 80px;
+    min-width: 80px;
 }
 
 

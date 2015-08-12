@@ -1,7 +1,12 @@
-<ion-view title="Trail map">
+<ion-view title="Trails map">
     <ion-content>
+        <div class="card" ng-if="!trail.map">
+            <div class="item item-text-wrap" style="font-weight:bold;">
+                No map
+            </div>
+        </div>
 
-        <search-filter></search-filter>
-
+        <div ng-if="trail.map" class="card">
+        </div>
     </ion-content>
 </ion-view>

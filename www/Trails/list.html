@@ -1,10 +1,5 @@
-<ion-nav-back-button>
-</ion-nav-back-button>
-<ion-view title="Trail list">
+<ion-view title="Trails list"> 
     <ion-content>
-
-        <search-filter></search-filter>
-
         <ion-item class="item-text-wrap list-trail-item" ng-repeat="trail in trails| filter:searchText | trailFilter:data | orderBy: data.sortSelected" ui-sref='trail.details({name: trail.href})'>
             <div class="row">
                 {{::trail.name}}
@@ -33,7 +28,6 @@
             </div>
             -->
         </ion-item>
-
-    </ion-content>
+    </ion-content>     
 </ion-view>
 

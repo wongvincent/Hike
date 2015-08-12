@@ -2,7 +2,7 @@ var app = angular.module('directives');
 
 app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPopup, $ionicModal) {
         return {
-            templateUrl: '/trails/searchfilter.html',
+            templateUrl: 'trails/searchfilter.html',
             controller: ['$scope', function ($scope) {
 
                     $scope.sortOptions = [
@@ -17,7 +17,7 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
 
                         var sortByPopup = $ionicPopup.show({
                             title: 'Sort trails',
-                            templateUrl: '/trails/sortby.html',
+                            templateUrl: 'trails/sortby.html',
                             scope: $scope,
                             buttons: [
                                 {
@@ -62,7 +62,7 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                         $scope.searchText = '';
                     };
 
-                    $ionicModal.fromTemplateUrl('/trails/filterby.html', {
+                    $ionicModal.fromTemplateUrl('trails/filterby.html', {
                         scope: $scope,
                         animation: 'slide-in-up'
                     }).then(function (modal) {

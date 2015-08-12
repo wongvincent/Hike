@@ -13,7 +13,7 @@ app.run(function ($ionicPlatform) {
     });
 });
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     $stateProvider
             .state('trails', {
@@ -77,6 +77,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             });
 
     $urlRouterProvider.otherwise('/trails/list');
+    
+    
+    
+    //Tab style
+    $ionicConfigProvider.tabs.style("striped");
+    
+    // Tab position
+    $ionicConfigProvider.tabs.position("top");
 });
 
 //For general app wide functionality

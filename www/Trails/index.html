@@ -1,12 +1,25 @@
-<ion-content padding="true">
-</ion-content>
-
-<ion-tabs class="tabs-striped tabs-color-positive">
-    <ion-tab title="Trail List" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" ui-sref="trails.list">
+<ion-tabs class="tabs-color-assertive">
+    <ion-tab title="List" ui-sref="trails.list">
         <ion-nav-view name="trails-list-tab"></ion-nav-view>
     </ion-tab>
 
-    <ion-tab title="Trail Map" icon-on="ion-ios-navigate" icon-off="ion-ios-navigate-outline" ui-sref="trails.map">
+    <ion-tab title="Map" ui-sref="trails.map">
         <ion-nav-view name="trails-map-tab"></ion-nav-view>
     </ion-tab>
+    <!-- 
+    <ion-tab title="Trail List" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" ui-sref="trails.list">
+         <ion-nav-view name="trails-list-tab"></ion-nav-view>
+     </ion-tab>
+ 
+     <ion-tab title="Trail Map" icon-on="ion-ios-navigate" icon-off="ion-ios-navigate-outline" ui-sref="trails.map">
+         <ion-nav-view name="trails-map-tab"></ion-nav-view>
+     </ion-tab>
+    -->
 </ion-tabs>
+
+<ion-content padding="true">
+</ion-content>
+
+<ion-footer-bar class="bar-balanced">
+    <search-filter></search-filter>  
+</ion-footer-bar>
