@@ -27,6 +27,13 @@
     color: #fff;
 }
 
+
+
 ol {
     list-style-type: decimal;
+}
+
+.none-found {
+    font-weight:bold; 
+    text-align:center;
 }

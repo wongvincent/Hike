@@ -1,6 +1,13 @@
 <ion-view title="{{trail.name}}">
     <ion-content>
         <!-- use coordinates from trail data-->
-        trail map
+        <div class="card" ng-if="!trail.map">
+            <div class="item item-text-wrap none-found">
+                No map
+            </div>
+        </div>
+
+        <div ng-if="trail.map" class="card">
+        </div>
     </ion-content>
 </ion-view>
