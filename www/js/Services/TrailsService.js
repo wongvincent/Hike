@@ -28,7 +28,6 @@ app.factory('Database', ['$cordovaSQLite', '$q', '$ionicPlatform', function ($co
             for (var i = 0; i < result.rows.length; i++) {
                 output.push(result.rows.item(i));
             }
-            console.log("a" + JSON.stringify(output));
             return output;
         };
 
