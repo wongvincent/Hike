@@ -1,4 +1,5 @@
-var app = angular.module('app', ['ionic', 'controllers', 'services', 'directives']);
+var app = angular.module('app', ['ionic', 'ngCordova', 'controllers', 'services', 'directives']);
+var db = null;
 
 app.run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -16,6 +17,11 @@ app.run(function ($ionicPlatform) {
 app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     $stateProvider
+            .state('/start', {
+                url: '/',
+                templateUrl: 'start.html'
+            })
+
             .state('trails', {
                 url: '/trails',
                 abstract: true,
@@ -77,23 +83,22 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             });
 
     $urlRouterProvider.otherwise('/trails/list');
-    
-    
-    
+
+
+
     //Tab style
     $ionicConfigProvider.tabs.style("striped");
-    
+
     // Tab position
     $ionicConfigProvider.tabs.position("top");
 });
 
 //For general app wide functionality
-app.controller('StartController', function ($scope, $ionicModal, $ionicSideMenuDelegate) {
-
-    $scope.togglePancake = function () {
-        $ionicSideMenuDelegate.toggleLeft();
-    };
-});
+app.controller('StartController', ['$scope', '$ionicSideMenuDelegate', function ($scope, $ionicSideMenuDelegate) {
+        $scope.togglePancake = function () {
+            $ionicSideMenuDelegate.toggleLeft();
+        };
+    }]);
 
 app.filter('range', function () {
     return function (array, range) {

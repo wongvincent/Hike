@@ -1,6 +1,6 @@
 var app = angular.module('controllers');
 
-app.controller('TrailsController', ['$scope', 'TrailsService', function ($scope, TrailsService) {
+app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($scope, TrailsService, $ionicPlatform, $ionicLoading, $cordovaSQLite) {
 
         $scope.data = {
             sortSelected: "name",
@@ -13,8 +13,33 @@ app.controller('TrailsController', ['$scope', 'TrailsService', function ($scope,
             filterDifficultyModerate: true,
             filterDifficultyHard: true
         };
-        
-        $scope.trails = TrailsService.trails;
+
+        $ionicPlatform.ready(function () {
+            $ionicLoading.show({template: 'Loading...'});
+            if (window.cordova) {
+                window.plugins.sqlDB.copy("trails.db", 0, successfunc, failfunc);
+                function successfunc() {
+                    db = $cordovaSQLite.openDB("trails.db");
+                    $ionicLoading.hide();
+                    var promise = TrailsService.getAllTrails();
+                    promise.then(function (res) {
+                        $scope.trails = res;
+                    });
+                }
+                function failfunc(error) {
+                    console.error("There was an error copying the database: " + JSON.stringify(error));
+                    db = $cordovaSQLite.openDB("trails.db");
+                    $ionicLoading.hide();
+                    var promise = TrailsService.getAllTrails();
+                    promise.then(function (res) {
+                        $scope.trails = res;
+                    });
+                }
+            }
+            else {
+                $ionicLoading.hide();
+            }
+        });
     }]);
 
 app.filter('trailFilter', function () {
