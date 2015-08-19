@@ -87,8 +87,7 @@ app.filter('trailFilter', function () {
         //Difficulty
         if (data.filterDifficultyEasy === undefined || !data.filterDifficultyEasy) { //Easy is not checked
             angular.forEach(temp1, function (trail) {
-                var lowercaseDifficulty = trail.difficulty.toLowerCase();
-                if (lowercaseDifficulty.indexOf("easy") === -1)
+                if (trail.difficulty !== 0)
                     temp2.push(trail);
             });
             temp1 = temp2;
@@ -97,8 +96,7 @@ app.filter('trailFilter', function () {
 
         if (data.filterDifficultyModerate === undefined || !data.filterDifficultyModerate) { //Moderate is not checked
             angular.forEach(temp1, function (trail) {
-                var lowercaseDifficulty = trail.difficulty.toLowerCase();
-                if (lowercaseDifficulty.indexOf("moderate") === -1)
+                if (trail.difficulty !== 1)
                     temp2.push(trail);
             });
             temp1 = temp2;
@@ -107,38 +105,32 @@ app.filter('trailFilter', function () {
 
         if (data.filterDifficultyHard === undefined || !data.filterDifficultyHard) { //Hard is not checked
             angular.forEach(temp1, function (trail) {
-                var lowercaseDifficulty = trail.difficulty.toLowerCase();
-                if (lowercaseDifficulty.indexOf("hard") === -1)
+                if (trail.difficulty !== 2)
                     temp2.push(trail);
             });
             temp1 = temp2;
             temp2 = [];
         }
 
-
-
         //Dog Accessible
-        /* if (data.filterDogFriendly !== undefined && data.filterDogFriendly) {
-         angular.forEach(temp1, function (trail) {
-         if (trail.dogFriendly !== undefined && trail.dogFriendly)
-         temp2.push(trail);
-         });
-         temp1 = temp2;
-         temp2 = [];
-         }
-         */
+        if (data.filterDogFriendly !== undefined && data.filterDogFriendly) { //Dog accessible is checked
+            angular.forEach(temp1, function (trail) {
+                if (trail.dogFriendly)
+                    temp2.push(trail);
+            });
+            temp1 = temp2;
+            temp2 = [];
+        }
 
-        //Transit Friendly
-        /*
-         if (data.filterTransit !== undefined && data.filterTransit) {
-         angular.forEach(temp1, function (trail) {
-         if (trail.transit !== undefined && trail.transit)
-         temp2.push(trail);
-         });
-         temp1 = temp2;
-         temp2 = [];
-         }
-         */
+        //Transit Friendly       
+        if (data.filterTransit !== undefined && data.filterTransit) { //Transit Friendly is checked
+            angular.forEach(temp1, function (trail) {
+                if (trail.transit)
+                    temp2.push(trail);
+            });
+            temp1 = temp2;
+            temp2 = [];
+        }
 
         return temp1;
     };
