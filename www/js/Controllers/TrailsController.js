@@ -1,6 +1,6 @@
 var app = angular.module('controllers');
 
-app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($scope, TrailsService, $ionicPlatform, $ionicLoading, $cordovaSQLite) {
+app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$ionicPopup', function ($scope, TrailsService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $ionicPopup) {
 
         $scope.data = {
             sortSelected: "name",
@@ -17,8 +17,9 @@ app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform',
         $ionicPlatform.ready(function () {
             $ionicLoading.show({template: 'Loading...'});
             if (window.cordova) {
-                window.plugins.sqlDB.copy("trails.db", 0, successfunc, failfunc);
-                function successfunc() {
+                window.plugins.sqlDB.copy("trails.db", 0, copysuccess, copyerror);
+                
+                function copysuccess() {
                     db = $cordovaSQLite.openDB("trails.db");
                     $ionicLoading.hide();
                     var promise = TrailsService.getAllTrails();
@@ -26,8 +27,23 @@ app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform',
                         $scope.trails = res;
                     });
                 }
-                function failfunc(error) {
+                function copyerror(error) {
                     console.error("There was an error copying the database: " + JSON.stringify(error));
+                    window.plugins.sqlDB.remove("trails.db", 0, removedsuccess, removederror);
+                }
+
+                function removedsuccess() {
+                    window.plugins.sqlDB.copy("trails.db", 0, copysuccess, copyerror);
+                    db = $cordovaSQLite.openDB("trails.db");
+                    $ionicLoading.hide();
+                    var promise = TrailsService.getAllTrails();
+                    promise.then(function (res) {
+                        $scope.trails = res;
+                    });
+                }
+
+                function removederror(error) {
+                    console.error("There was an error removing the database: " + JSON.stringify(error));
                     db = $cordovaSQLite.openDB("trails.db");
                     $ionicLoading.hide();
                     var promise = TrailsService.getAllTrails();

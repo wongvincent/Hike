@@ -108,3 +108,27 @@ app.filter('range', function () {
         return array;
     };
 });
+
+app.filter('BoolToString', function () {
+    return function (bool) {
+        return bool ? "Yes" : "No";
+    };
+});
+
+app.filter('HumanizeDifficulty', function () {
+    return function (int) {
+        var difficultyScale = ["Easy", "Moderate", "Hard", "Very Hard"];
+        if (int < 0 || int >= difficultyScale.length)
+            return int;
+        return difficultyScale[int];
+    };
+});
+
+app.filter("HumanizeSeason", function () {
+    return function (input) {
+        var monthNameArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var parts = input.split('-', 2);
+
+        return monthNameArray[parts[0] - 1] + " - " + monthNameArray[parts[1] - 1];
+    };
+});
