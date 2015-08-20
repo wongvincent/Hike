@@ -129,6 +129,7 @@ app.filter("HumanizeSeason", function () {
         var monthNameArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var parts = input.split('-', 2);
 
-        return monthNameArray[parts[0] - 1] + " - " + monthNameArray[parts[1] - 1];
+        return (parts[0] === "1" && parts[1] === "12") ? "Year-round" :
+        monthNameArray[parts[0] - 1] + " - " + monthNameArray[parts[1] - 1];
     };
 });
