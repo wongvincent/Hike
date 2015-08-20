@@ -7,7 +7,7 @@
         </div>
         <h1 class="title">Filter trails</h1>
         <div class="buttons">
-           <button class="button icon ion-checkmark button-clear small-icon" ng-click="closeFilterModal()"></button> 
+            <button class="button icon ion-checkmark button-clear small-icon" ng-click="closeFilterModal()"></button> 
         </div>
     </ion-header-bar>
 
@@ -92,10 +92,15 @@
             </ion-checkbox>
 
 
-
             <ion-checkbox ng-model="data.filterTransit" class="item-checkbox-right">
                 <span style="font-weight:500;">Transit Accessible</span>
             </ion-checkbox>
+
+
+            <ion-checkbox ng-model="data.filterInSeason" class="item-checkbox-right">
+                <span style="font-weight:500;">In Season (currently accessible)</span>
+            </ion-checkbox>
+
 
         </div>
 

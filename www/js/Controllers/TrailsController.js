@@ -121,7 +121,7 @@ app.filter('trailFilter', function () {
 
         if (data.filterDifficultyHard === undefined || !data.filterDifficultyHard) { //Hard is not checked
             angular.forEach(temp1, function (trail) {
-                if (trail.difficulty !== 2)
+                if (trail.difficulty < 2)
                     temp2.push(trail);
             });
             temp1 = temp2;
@@ -143,6 +143,22 @@ app.filter('trailFilter', function () {
             angular.forEach(temp1, function (trail) {
                 if (trail.transit)
                     temp2.push(trail);
+            });
+            temp1 = temp2;
+            temp2 = [];
+        }
+        
+        // In Season
+        if(data.filterInSeason !== undefined && data.filterInSeason){ // In Season is checked
+            var currentMonth = new Date().getMonth();
+            angular.forEach(temp1, function(trail){
+                var parts = trail.season.split('-', 2);
+                var from = parseInt(parts[0]);
+                var to = parseInt(parts[1]);
+                if(from === 1 && to === 12) temp2.push(trail);
+                else if (from < to && from <= currentMonth && to >= currentMonth) temp2.push(trail);
+                else if (from > to && (from <= currentMonth || to >= currentMonth)) temp2.push(trail);
+                else if (from === to && from === currentMonth) temp2.push(trail);
             });
             temp1 = temp2;
             temp2 = [];

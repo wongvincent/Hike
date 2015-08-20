@@ -56,7 +56,8 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                             filterDifficultyModerate: true,
                             filterDifficultyHard: true,
                             filterDogFriendly: false,
-                            filterTransit: false
+                            filterTransit: false,
+                            filterInSeason: false
                         };
 
                         $scope.searchText = '';
