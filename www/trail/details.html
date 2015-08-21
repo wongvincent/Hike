@@ -13,23 +13,29 @@
                     <span>Distance:</span>{{::trail.distance}}km
                 </div>
                 <div class="row" ng-if="trail.difficulty != null">
-                    <span>Difficulty:</span>{{::trail.difficulty | HumanizeDifficulty}}
+                    <span>Difficulty:</span>{{::trail.difficulty| HumanizeDifficulty}}
                 </div>
                 <div class="row" ng-if="trail.season">
-                    <span>Season:</span>{{::trail.season | HumanizeSeason}}
+                    <span>Season:</span>{{::trail.season| HumanizeSeason}}
                 </div>
                 <div class="row" ng-if="trail.dogFriendly != null">
-                    <span>Dog friendly:</span>{{::trail.dogFriendly | BoolToString}}
+                    <span>Dog friendly:</span>{{::trail.dogFriendly| BoolToString}}
                 </div>                  
                 <div class="row" ng-if="trail.transit != null">
-                    <span>Transit accessible:</span>{{::trail.transit | BoolToString}}
+                    <span>Transit accessible:</span>{{::trail.transit| BoolToString}}
                 </div>
 
             </div>
         </div>
 
-        <div id="trail-instructions" class="card">
-            <!-- <div id="trail-instructions" ng-if="trail.instructions" class="card"> -->
+        <div id ="trail-hints" class="card" ng-if="trail.info">
+            <ul>
+                <li ng-repeat="info in trail.info">{{::info}}</li>
+            </ul>
+        </div>
+
+        <!-- <div id="trail-instructions" class="card"> -->
+        <div id="trail-instructions" ng-if="trail.instructions" class="card">
             <ol>
                 <!-- <div class="item item-text-wrap" ng-repeat="instruction in trail.instructions"><li>{{::instruction}}</li></div> -->
                 <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do t h a t 8</li></div>

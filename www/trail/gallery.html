@@ -6,14 +6,14 @@
             </div>
         </div>
 
-        <div ng-if="trail.images" ng-repeat="image in trail.images" class="list card">
+        <div ng-if="trail.images" ng-repeat="item in trail.images" class="list card">
             <div class="item item-image">
                 <!-- a ng-href = opens up full size of image -->
-                <img ng-src="{{image.image}}">
+                <img ng-src="{{::item.image}}">
             </div>
 
-            <div class="item item-text-wrap">
-                {{::image.description}}
+            <div class="item item-text-wrap" ng-if="item.description">
+                {{::item.description}}
             </div>
         </div>
     </ion-content>
