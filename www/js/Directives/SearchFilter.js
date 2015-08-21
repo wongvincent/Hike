@@ -24,6 +24,7 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                                     text: '', //Sort button
                                     type: 'button-clear button-small disabled',
                                     onTap: function (e) {
+                                        $scope.scrollToTop();
                                         $scope.data.sortSelected = $scope.sortOptions[$scope.data.sortSelectedIndex].sortby;
                                         return $scope.data.sortSelectedIndex;
                                     }
@@ -75,6 +76,7 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                     };
                     $scope.closeFilterModal = function () {
                         $scope.modal.hide();
+                        $scope.scrollToTop();
                     };
                     //Cleanup the modal when we're done with it!
                     $scope.$on('$destroy', function () {

@@ -94,9 +94,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$scope', '$ionicSideMenuDelegate', function ($scope, $ionicSideMenuDelegate) {
+app.controller('StartController', ['$scope', '$ionicSideMenuDelegate', '$ionicScrollDelegate', function ($scope, $ionicSideMenuDelegate, $ionicScrollDelegate) {
         $scope.togglePancake = function () {
             $ionicSideMenuDelegate.toggleLeft();
+        };
+        
+        $scope.scrollToTop = function(){
+          $ionicScrollDelegate.scrollTop(); 
         };
     }]);
 
