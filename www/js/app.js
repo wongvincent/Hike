@@ -94,13 +94,33 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$scope', '$ionicSideMenuDelegate', '$ionicScrollDelegate', function ($scope, $ionicSideMenuDelegate, $ionicScrollDelegate) {
+app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', function ($scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup) {
         $scope.togglePancake = function () {
             $ionicSideMenuDelegate.toggleLeft();
         };
-        
-        $scope.scrollToTop = function(){
-          $ionicScrollDelegate.scrollTop(); 
+
+        $scope.scrollToTop = function () {
+            $ionicScrollDelegate.scrollTop();
+        };
+
+        $scope.failedPopup = function () {
+            var failedPopup = $ionicPopup.alert({
+                title: 'An unexpected error occurred'
+                        //template: 
+            });
+            failedPopup.then(function (res) {
+                $state.go('trails.list');
+            });
+        };
+
+        $scope.failedPopupReload = function () {
+            var failedPopup = $ionicPopup.alert({
+                title: 'An unexpected error occurred'
+                        //template: 
+            });
+            failedPopup.then(function (res) {
+                window.location.reload(true);
+            });
         };
     }]);
 
@@ -134,6 +154,6 @@ app.filter("HumanizeSeason", function () {
         var parts = input.split('-', 2);
 
         return (parts[0] === "1" && parts[1] === "12") ? "Year-round" :
-        monthNameArray[parts[0] - 1] + " - " + monthNameArray[parts[1] - 1];
+                monthNameArray[parts[0] - 1] + " - " + monthNameArray[parts[1] - 1];
     };
 });
