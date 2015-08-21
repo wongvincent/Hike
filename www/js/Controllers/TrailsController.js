@@ -5,6 +5,7 @@ app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform',
         $scope.data = {
             sortSelected: "name",
             sortSelectedIndex: "0",
+            filterLocation: "",
             filterTimeMin: "0",
             filterTimeMax: "999",
             filterDistanceMin: "0",
@@ -58,6 +59,23 @@ app.filter('trailFilter', function () {
     return function (trails, data) {
         var temp1 = trails;
         var temp2 = [];
+
+        //Location
+        if (data.filterLocation !== "") {
+            var locationSelectedArray = data.filterLocation.toLowerCase().split(',');
+            angular.forEach(temp1, function (trail) {
+                var trailLocation = trail.location.toLowerCase();
+                for (var i = 0; i < locationSelectedArray.length; i++) {
+                    var indexOf = trailLocation.indexOf(locationSelectedArray[i]);
+                    if (indexOf > -1) {
+                        temp2.push(trail);
+                        break;
+                    }
+                }
+            });
+            temp1 = temp2;
+            temp2 = [];
+        }
 
         //Time Min
         angular.forEach(temp1, function (trail) {

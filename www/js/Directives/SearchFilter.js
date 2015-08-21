@@ -41,6 +41,15 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
 
 
 
+
+                    $scope.filterLocations = [
+                        {text: "North Shore", filterval: ["north van", "west van"]},
+                        {text: "Vancouver", filterval: ["vancouver"]},
+                        {text: "Whistler", filterval: ["whistler"]},
+                        {text: "Delta", filterval: ["delta"]},
+                        {text: "Howe Sound", filterval: ["howe sound"]}
+                    ];
+
                     $scope.filterby = function () {
                         $scope.closeFilterModal();
                     };
@@ -49,6 +58,7 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                         $scope.data = {
                             sortSelected: "name",
                             sortSelectedIndex: "0",
+                            filterLocation: "",
                             filterTimeMin: "0",
                             filterTimeMax: "999",
                             filterDistanceMin: "0",
