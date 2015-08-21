@@ -4,22 +4,40 @@
     padding: 0 3px;
 }
 
-#search-filter > label {
+#search-filter > div.item{
     height: 35px;
     display:inline-flex;
     min-width:105px;
     width:calc(100% - 172px);
+    padding-left: 0;
 }
 
-#search-filter > div{
+#search-filter > div.item > .icon-left {
+    padding-left: 8px;
+    padding-right: 12px;
+}
+
+#search-filter > div.item > input {
+    padding-right: 12px;
+}
+
+#search-filter > div.item > .icon-right {
+    top: 10px;
+    color: #bbb;
+    font-size: 20px;
+    padding-right:18px;
+}
+
+#search-filter > div.sort-and-filter{
     display: inline-block;
     float:right;
 }
 
-#search-filter > div > button {
+#search-filter > div.sort-and-filter > button {
     width: 80px;
     min-width: 80px;
 }
+
 
 
 /* TRAIL CARDS */
@@ -78,10 +96,10 @@ button#filter-ok {
 
 .item-checkbox-right .checkbox input,
 .item-checkbox-right .checkbox-icon {
-  float: right;
+    float: right;
 }
 
 .item-checkbox.item-checkbox-right {
-  /*the default item padding*/
-  padding: 15px;
+    /*the default item padding*/
+    padding: 15px;
 }
