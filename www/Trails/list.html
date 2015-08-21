@@ -7,6 +7,7 @@
                     Reset all filters
                 </button>
             </div>
+        </div>
             <ion-item class="item-text-wrap list-trail-item" ng-if="trails" ng-repeat="trail in trails| filter:searchText | trailFilter:data | orderBy: data.sortSelected" ui-sref='trail.details({name: trail.href})'>
                 <div class="row">
                     {{::trail.name}}
