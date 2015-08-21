@@ -60,10 +60,11 @@ app.factory('TrailsService', ['Database', function (Database) {
                         var single = Database.single(result);
                         var output = single;
 
-                        if(output.images !== null && output.images !== '') output.images = JSON.parse(output.images)["key"];
-                       /* 
-                        if(output.instructions !== null && output.images !== '') output.instructions = JSON.parse(output.instructions);
-                        if(output.info.length !== null && output.images !== '') output.info = JSON.parse(output.info); 
+                        if (output.images !== null && output.images !== '')
+                            output.images = JSON.parse(output.images)["key"];
+                        /* 
+                         if(output.instructions !== null && output.images !== '') output.instructions = JSON.parse(output.instructions);
+                         if(output.info.length !== null && output.images !== '') output.info = JSON.parse(output.info); 
                          */
                         return output;
                     });

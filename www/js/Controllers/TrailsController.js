@@ -18,7 +18,7 @@ app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform',
             $ionicLoading.show({template: 'Loading...'});
             if (window.cordova) {
                 window.plugins.sqlDB.copy("trails.db", 0, copysuccess, copyerror);
-                
+
                 function copysuccess() {
                     db = $cordovaSQLite.openDB("trails.db");
                     $ionicLoading.hide();
@@ -147,18 +147,22 @@ app.filter('trailFilter', function () {
             temp1 = temp2;
             temp2 = [];
         }
-        
+
         // In Season
-        if(data.filterInSeason !== undefined && data.filterInSeason){ // In Season is checked
+        if (data.filterInSeason !== undefined && data.filterInSeason) { // In Season is checked
             var currentMonth = new Date().getMonth();
-            angular.forEach(temp1, function(trail){
+            angular.forEach(temp1, function (trail) {
                 var parts = trail.season.split('-', 2);
                 var from = parseInt(parts[0]);
                 var to = parseInt(parts[1]);
-                if(from === 1 && to === 12) temp2.push(trail);
-                else if (from < to && from <= currentMonth && to >= currentMonth) temp2.push(trail);
-                else if (from > to && (from <= currentMonth || to >= currentMonth)) temp2.push(trail);
-                else if (from === to && from === currentMonth) temp2.push(trail);
+                if (from === 1 && to === 12)
+                    temp2.push(trail);
+                else if (from < to && from <= currentMonth && to >= currentMonth)
+                    temp2.push(trail);
+                else if (from > to && (from <= currentMonth || to >= currentMonth))
+                    temp2.push(trail);
+                else if (from === to && from === currentMonth)
+                    temp2.push(trail);
             });
             temp1 = temp2;
             temp2 = [];
