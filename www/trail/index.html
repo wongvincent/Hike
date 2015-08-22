@@ -1,14 +1,20 @@
+<ion-nav-bar class="bar-balanced">
+    <ion-nav-buttons side="left">
+        <buton class="button button-icon button-clear ion-arrow-left-c" ng-click="goState('trails.list')"></button>
+    </ion-nav-buttons>
+</ion-nav-bar>
+
 <ion-content padding="true">
 </ion-content>
 
-<ion-tabs class="tabs-striped tabs-color-assertive">
-    <ion-tab title="Details" icon-on="ion-ios-list" icon-off="ion-ios-list-outline" ui-sref='trail.details({name: params.name})'>
+<ion-tabs class="tabs-color-assertive">
+    <ion-tab title="Details" ui-sref='trail.details({name: params.name})'>
         <ion-nav-view name="trail-details-tab"></ion-nav-view>
     </ion-tab>
-    <ion-tab title="Map" icon-on="ion-ios-navigate" icon-off="ion-ios-navigate-outline" ui-sref='trail.map({name: params.name})'>
+    <ion-tab title="Map" ui-sref='trail.map({name: params.name})'>
         <ion-nav-view name="trail-map-tab"></ion-nav-view>
     </ion-tab>
-    <ion-tab title="Gallery" icon="ion-images" ui-sref='trail.gallery({name: params.name})'>
+    <ion-tab title="Gallery" ui-sref='trail.gallery({name: params.name})'>
         <ion-nav-view name="trail-gallery-tab"></ion-nav-view>
     </ion-tab>
 </ion-tabs>

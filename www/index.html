@@ -25,8 +25,8 @@
         <script src="js/logitems.js"></script>
         <!-- directives -->
         <script src="js/Directives/SearchFilter.js"></script>
-        
-        
+
+
         <!-- CSS -->
         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
@@ -36,16 +36,31 @@
         <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
         <link href="css/ionic.app.css" rel="stylesheet">
         -->
-        
+
     </head>
     <body ng-app="app" ng-controller="StartController">
-    <ion-side-menus>
+
+    <ion-side-menus enable-menu-with-back-views="false">
+
+        <!-- Center content -->
+        <ion-side-menu-content side="left" edge-drag-threshold="true">
+            <ion-nav-bar class="bar-balanced">
+                <ion-nav-back-button>
+                </ion-nav-back-button>
+                <ion-nav-buttons side="left">
+                    <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+                </ion-nav-buttons>
+            </ion-nav-bar>
+            <ion-nav-view></ion-nav-view>
+        </ion-side-menu-content>
+
 
         <!-- Left menu -->
         <ion-side-menu side="left">
             <ion-header-bar class="bar-dark">
                 <h1 class="title">Hike</h1>
             </ion-header-bar>
+
             <ion-content scroll="false">
                 <ion-list>
                     <ion-item nav-clear="" menu-close="" ui-sref="trails.list" class="left-menu-item">
@@ -87,17 +102,6 @@
             </ion-content>
         </ion-side-menu>
 
-        <!-- Center content -->
-        <ion-side-menu-content>
-            <ion-nav-bar class="bar-balanced">
-                <ion-nav-buttons side="left">
-                    <button class="button button-icon" ng-click="togglePancake()">
-                        <i class="icon ion-navicon"></i>
-                    </button>
-                </ion-nav-buttons>
-            </ion-nav-bar>
-            <ion-nav-view></ion-nav-view>
-        </ion-side-menu-content>
     </ion-side-menus>
 
 </body>
