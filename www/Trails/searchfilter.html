@@ -3,7 +3,7 @@
         <i class="icon ion-search placeholder-icon icon-left"></i>
         <input type="text" placeholder="Trail name" ng-model="searchText.name" ng-change="scrollToTop()">
         <i ng-if="searchText.name.length"
-           class="icon ion-android-close icon-right" ng-click="searchText.name = null"></i>
+           class="icon ion-android-close icon-right" ng-click="searchText.name = ''"></i>
     </div>
     <div class="sort-and-filter">
         <button class="button button-stable" ng-click="sortby()">
