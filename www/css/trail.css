@@ -2,11 +2,11 @@
     
 }
 
-#trail-info .item .row span:nth-child(1){
+#trail-details #trail-info .item .row span:nth-child(1){
     font-weight:bold;
     padding-right:5px;
 }
 
-#trail-instructions ol .item {
-    padding: 6px 10px 6px 35px;
+#trail-details ol .item,  #trail-details ul .item{
+    padding: 6px 10px 6px 35px !important;
 }

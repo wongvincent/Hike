@@ -28,9 +28,12 @@
 }
 
 
+ul {
+    list-style-type: initial !important;
+}
 
 ol {
-    list-style-type: decimal;
+    list-style-type: decimal !important;
 }
 
 .none-found {

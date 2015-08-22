@@ -1,5 +1,5 @@
 <ion-view title="{{trail.name}}">
-    <ion-content>
+    <ion-content id="trail-details">
 
         <div id="trail-info" class="card">
             <div class="item item-text-wrap">
@@ -28,17 +28,21 @@
             </div>
         </div>
 
-        <div id ="trail-hints" class="card" ng-if="trail.info">
+        <div ng-if="trail.info && trail.info" id="trail-hints" class="card">
             <ul>
-                <li ng-repeat="info in trail.info">{{::info}}</li>
+                <div class="item item-text-wrap">
+                    <li ng-repeat="info in trail.info">{{::info}}</li>
+                </div>
             </ul>
         </div>
 
         <!-- <div id="trail-instructions" class="card"> -->
-        <div id="trail-instructions" ng-if="trail.instructions" class="card">
+        <div ng-if="trail.instructions && trail.instructions" id="trail-instructions" class="card">
             <ol>
-                <!-- <div class="item item-text-wrap" ng-repeat="instruction in trail.instructions"><li>{{::instruction}}</li></div> -->
-                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do t h a t 8</li></div>
+                <div class="item item-text-wrap">
+                    <li ng-repeat="instruction in trail.instructions">{{::instruction}}</li>
+                </div>
+                <!-- <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do t h a t 8</li></div>
                 <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
                 <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
                 <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
@@ -48,7 +52,7 @@
                 <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
                 <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
                 <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
-                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div>
+                <div class="item item-text-wrap"><li>do that 8 do that 8do that t 8do that 8</li></div> -->
             </ol>
         </div>
 
