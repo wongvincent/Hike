@@ -78,19 +78,19 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                         scope: $scope,
                         animation: 'slide-in-up'
                     }).then(function (modal) {
-                        $scope.modal = modal;
+                        $scope.filterModal = modal;
                     });
 
                     $scope.openFilterModal = function () {
-                        $scope.modal.show();
+                        $scope.filterModal.show();
                     };
                     $scope.closeFilterModal = function () {
-                        $scope.modal.hide();
+                        $scope.filterModal.hide();
                         $scope.scrollToTop();
                     };
                     //Cleanup the modal when we're done with it!
                     $scope.$on('$destroy', function () {
-                        $scope.modal.remove();
+                        $scope.filterModal.remove();
                     });
                 }]
         };
