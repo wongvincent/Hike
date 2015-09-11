@@ -17,73 +17,78 @@ app.run(function ($ionicPlatform) {
 app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
     $stateProvider
-            .state('/start', {
-                url: '/',
-                templateUrl: 'start.html'
-            })
+        .state('/start', {
+            url: '/',
+            templateUrl: 'start.html'
+        })
 
-            .state('trails', {
-                url: '/trails',
-                abstract: true,
-                templateUrl: 'trails/index.html',
-                controller: 'TrailsController'
-            })
-            .state('trails.list', {
-                url: '/list',
-                views: {
-                    'trails-list-tab': {
-                        templateUrl: 'trails/list.html'
-                    }
+        .state('trails', {
+            url: '/trails',
+            abstract: true,
+            templateUrl: 'trails/index.html',
+            controller: 'TrailsController'
+        })
+        .state('trails.list', {
+            url: '/list',
+            views: {
+                'trails-list-tab': {
+                    templateUrl: 'trails/list.html'
                 }
-            })
-            .state('trails.map', {
-                url: '/map',
-                views: {
-                    'trails-map-tab': {
-                        templateUrl: 'trails/map.html'
-                    }
+            }
+        })
+        .state('trails.map', {
+            url: '/map',
+            views: {
+                'trails-map-tab': {
+                    templateUrl: 'trails/map.html'
                 }
-            })
+            }
+        })
 
-            .state('trail', {
-                url: '/trail/:name',
-                abstract: true,
-                cache: false,
-                templateUrl: 'trail/index.html',
-                controller: 'TrailController'
-            })
-            .state('trail.details', {
-                url: '/list',
-                views: {
-                    'trail-details-tab': {
-                        templateUrl: 'trail/details.html'
-                    }
+        .state('trail', {
+            url: '/trail/:name',
+            abstract: true,
+            cache: false,
+            templateUrl: 'trail/index.html',
+            controller: 'TrailController'
+        })
+        .state('trail.details', {
+            url: '/list',
+            views: {
+                'trail-details-tab': {
+                    templateUrl: 'trail/details.html'
                 }
-            })
-            .state('trail.map', {
-                url: '/map',
-                views: {
-                    'trail-map-tab': {
-                        templateUrl: 'trail/map.html'
-                    }
+            }
+        })
+        .state('trail.map', {
+            url: '/map',
+            views: {
+                'trail-map-tab': {
+                    templateUrl: 'trail/map.html'
                 }
-            })
-            .state('trail.gallery', {
-                url: '/gallery',
-                views: {
-                    'trail-gallery-tab': {
-                        templateUrl: 'trail/gallery.html'
-                    }
+            }
+        })
+        .state('trail.gallery', {
+            url: '/gallery',
+            views: {
+                'trail-gallery-tab': {
+                    templateUrl: 'trail/gallery.html'
                 }
-            })
+            }
+        })
 
-            .state('log', {
-                url: '/log',
-                templateUrl: 'logitems.html'
-            });
+        .state('favourites', {
+            url: '/favourites',
+            templateUrl: 'favourites/index.html',
+            controller: 'FavouritesController'
+        })
+
+        .state('log', {
+            url: '/log',
+            templateUrl: 'logitems.html'
+        });
 
     $urlRouterProvider.otherwise('/trails/list');
-
 
 
     //Tab style
@@ -95,34 +100,34 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
 //For general app wide functionality
 app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', function ($scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup) {
-        $scope.goState = function(state) {
-            $state.go(state);
-        };
-        
-        $scope.scrollToTop = function () {
-            $ionicScrollDelegate.scrollTop();
-        };
+    $scope.goState = function (state) {
+        $state.go(state);
+    };
 
-        $scope.failedPopup = function () {
-            var failedPopup = $ionicPopup.alert({
-                title: 'An unexpected error occurred'
-                        //template: 
-            });
-            failedPopup.then(function (res) {
-                $state.go('trails.list');
-            });
-        };
+    $scope.scrollToTop = function () {
+        $ionicScrollDelegate.scrollTop();
+    };
 
-        $scope.failedPopupReload = function () {
-            var failedPopup = $ionicPopup.alert({
-                title: 'An unexpected error occurred'
-                        //template: 
-            });
-            failedPopup.then(function (res) {
-                window.location.reload(true);
-            });
-        };
-    }]);
+    $scope.failedPopup = function () {
+        var failedPopup = $ionicPopup.alert({
+            title: 'An unexpected error occurred'
+            //template:
+        });
+        failedPopup.then(function (res) {
+            $state.go('trails.list');
+        });
+    };
+
+    $scope.failedPopupReload = function () {
+        var failedPopup = $ionicPopup.alert({
+            title: 'An unexpected error occurred'
+            //template:
+        });
+        failedPopup.then(function (res) {
+            window.location.reload(true);
+        });
+    };
+}]);
 
 app.filter('range', function () {
     return function (array, range) {
@@ -154,6 +159,6 @@ app.filter("HumanizeSeason", function () {
         var parts = input.split('-', 2);
 
         return (parts[0] === "1" && parts[1] === "12") ? "Year-round" :
-                monthNameArray[parts[0] - 1] + " - " + monthNameArray[parts[1] - 1];
+        monthNameArray[parts[0] - 1] + " - " + monthNameArray[parts[1] - 1];
     };
 });
