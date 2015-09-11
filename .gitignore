@@ -4,3 +4,9 @@
 node_modules/
 platforms/
 plugins/
+.idea/.name
+.idea/hike.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
