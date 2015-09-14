@@ -11,8 +11,7 @@
 
 .popup-head{
     border-color: #e42012;
-    background-color: #ef473a;
-    background-image: linear-gradient(0deg, #e42012, #e42012 50%, transparent 50%);
+    background: #ef473a linear-gradient(0deg, #e42012, #e42012 50%, transparent 50%);
     color: #fff;
 }
 

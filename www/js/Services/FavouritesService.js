@@ -1,5 +1,5 @@
 var app = angular.module('services');
 
-app.service('FavouritesService', ['', function(){
+app.service('FavouritesService', ['Database', function(Database){
 
 }]);
