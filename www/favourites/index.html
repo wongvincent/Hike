@@ -5,7 +5,7 @@
                 No favourite trails found
             </div>
         </div>
-        <ion-item class="item-text-wrap list-trail-item" ng-if="favourites" ng-repeat="favourite in favourites" ui-sref='trail.details({name: favourite.href})'>
+        <ion-item class="item-text-wrap list-trail-item" ng-if="favourites" ng-repeat="trail in favourites" ui-sref='trail.details({name: trail.href})'>
             <div class="row">
                 {{::trail.name}}
             </div>

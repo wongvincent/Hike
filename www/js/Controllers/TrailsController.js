@@ -1,6 +1,6 @@
 var app = angular.module('controllers');
 
-app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($scope, TrailsService, $ionicPlatform, $ionicLoading, $cordovaSQLite) {
+app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($scope) {
 
         $scope.data = {
             sortSelected: "name",
@@ -14,45 +14,6 @@ app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform',
             filterDifficultyModerate: true,
             filterDifficultyHard: true
         };
-
-        $ionicPlatform.ready(function () {
-            $ionicLoading.show({template: 'Loading...'});
-            if (window.cordova) {
-                window.plugins.sqlDB.copy("trails.db", 0, openDatabase, copyerror);
-
-                function copyerror(error) {
-                    console.error("There was an error copying the database: " + JSON.stringify(error));
-                    window.plugins.sqlDB.remove("trails.db", 0, removedsuccess, removederror);
-                }
-
-                function removedsuccess() {
-                    window.plugins.sqlDB.copy("trails.db", 0, openDatabase, openDatabase);
-                }
-
-                function removederror(error) {
-                    console.error("There was an error removing the database: " + JSON.stringify(error));
-                    openDatabase();
-                }
-
-                function openDatabase() {
-                    db = $cordovaSQLite.openDB("trails.db");
-                    $ionicLoading.hide();
-                    getAllTrails();
-                }
-
-                function getAllTrails() {
-                    var promise = TrailsService.getAllTrails();
-                    promise.then(function (res) {
-                        $scope.trails = res;
-                        if (!$scope.trails)
-                            $scope.failedPopupReload();
-                    });
-                }
-            }
-            else {
-                $ionicLoading.hide();
-            }
-        });
     }]);
 
 app.filter('trailsFilter', function () {

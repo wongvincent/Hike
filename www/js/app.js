@@ -99,7 +99,57 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', function ($scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup) {
+app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite) {
+    $ionicPlatform.ready(function () {
+        $ionicLoading.show({template: 'Loading...'});
+        if (window.cordova) {
+            window.plugins.sqlDB.copy("trails.db", 0, openDatabase, copyerror);
+
+            function copyerror(error) {
+                console.error("There was an error copying the database: " + JSON.stringify(error));
+                window.plugins.sqlDB.remove("trails.db", 0, removedsuccess, removederror);
+            }
+
+            function removedsuccess() {
+                window.plugins.sqlDB.copy("trails.db", 0, openDatabase, openDatabase);
+            }
+
+            function removederror(error) {
+                console.error("There was an error removing the database: " + JSON.stringify(error));
+                openDatabase();
+            }
+
+            function openDatabase() {
+                db = $cordovaSQLite.openDB("trails.db");
+                $ionicLoading.hide();
+                getAllTrails();
+                getFavourites();
+            }
+
+            function getAllTrails() {
+                var promise = TrailsService.getAllTrails();
+                promise.then(function (res) {
+                    $scope.trails = res;
+                    if (!$scope.trails)
+                        $scope.failedPopupReload();
+                });
+            }
+
+            function getFavourites() {
+                $scope.favouriteIds = [];
+                var promise = FavouritesService.getFavourites();
+                promise.then(function (res){
+                    angular.forEach(res, function(obj){
+                        $scope.favouriteIds.push(obj.trailId);
+                    });
+                });
+            }
+        }
+        else {
+            $ionicLoading.hide();
+        }
+    });
+
     $scope.goState = function (state) {
         $state.go(state);
     };
