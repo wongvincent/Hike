@@ -1,5 +1,5 @@
 <ion-view title="Favourite Trails">
-    <ion-content>
+    <ion-content ng-init="getFavouriteTrailsData()">
         <div class="card" ng-if="!favourites">
             <div class="item item-text-wrap none-found">
                 No favourite trails found

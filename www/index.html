@@ -18,7 +18,7 @@
     <script src="js/app.js"></script>
     <script src="js/modules.js"></script>
     <!-- services -->
-    <script src="js/Services/DatabaseService.js"></script>
+    <script src="js/Services/DatabaseService.js"> </script>
     <script src="js/Services/TrailsService.js"></script>
     <script src="js/Services/FavouritesService.js"></script>
     <!-- controllers -->
@@ -28,7 +28,8 @@
 
     <script src="js/logitems.js"></script>
     <!-- directives -->
-    <script src="js/Directives/SearchFilter.js"></script>
+    <script src="js/Directives/SearchFilterDirective.js"></script>
+    <script src="js/Directives/FavouriteStarDirective.js"></script>
 
 
     <!-- CSS -->
@@ -72,7 +73,7 @@
             <ion-list>
                 <ion-item nav-clear menu-close ui-sref="trails.list" class="left-menu-item">
                         <span class="icon-container">
-                            <i class="icon ion-map"></i>
+                            <i class="icon ion-map" style="color:#4F8EF7"></i>
                         </span>
                         <span> 
                             Trails
@@ -80,7 +81,7 @@
                 </ion-item>
                 <ion-item nav-clear menu-close ui-sref="favourites" class="left-menu-item">
                           <span class="icon-container">
-                              <i class="icon ion-android-favorite-outline"></i>
+                              <i class="icon ion-android-star" style="color:#FFCC00;"></i>
                           </span>
                           <span> 
                               Favourites

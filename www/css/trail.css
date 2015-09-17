@@ -1,6 +1,9 @@
 #trail-info {
     
 }
+#trail-info > .item {
+    padding: 5px 10px;
+}
 
 #trail-details #trail-info .item .row span:nth-child(1){
     font-weight:bold;
@@ -9,4 +12,11 @@
 
 #trail-details ol .item,  #trail-details ul .item{
     padding: 6px 10px 6px 35px !important;
+}
+
+.trail-favourite{
+    font-size:50px;
+    position:absolute;
+    right: 10px;
+    top: 5px;
 }

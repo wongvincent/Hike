@@ -79,6 +79,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
         .state('favourites', {
             url: '/favourites',
+            cache: false,
             templateUrl: 'favourites/index.html',
             controller: 'FavouritesController'
         })

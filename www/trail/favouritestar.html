@@ -1,0 +1,8 @@
+
+<span ng-if="favouriteStatus" ng-click="removeFavourite(trail.id);" class="trail-favourite is-favourite">
+    <i class="icon ion-android-star"></i>
+</span>
+
+<span ng-if="!favouriteStatus" ng-click="addFavourite(trail.id);" class="trail-favourite">
+    <i class="icon ion-android-star-outline"></i>
+</span>

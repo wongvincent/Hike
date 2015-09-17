@@ -10,22 +10,25 @@ app.service('FavouritesService', ['Database', function(Database){
         return Database.query(queryString)
             .then(function(result){
                 return Database.All(result);
-            })
+            });
     };
 
     self.isFavouriteTrail = function(trailId){
-        return Database.query("SELECT * FROM favourites WHERE trailId = (?)", trailId)
+        var parameters = [trailId];
+        return Database.query("SELECT 1 FROM favourites WHERE trailId = (?)", parameters)
         .then(function(result){
                 return result.rows.length > 0;
         });
     };
 
     self.addFavourite = function(trailId) {
-        return Database.query("INSERT INTO favourites (trailId) VALUES (?)", trailId);
+        var parameters = [trailId];
+        return Database.query("INSERT INTO favourites (trailId) VALUES (?)", parameters);
     }
 
     self.removeFavourite = function(trailId){
-        return Database.query("DELETE FROM favourites WHERE trailId = (?)", trailId);
+        var parameters = [trailId];
+        return Database.query("DELETE FROM favourites WHERE trailId = (?)", parameters);
     }
 
     return self;
