@@ -104,21 +104,7 @@ app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate',
     $ionicPlatform.ready(function () {
         $ionicLoading.show({template: 'Loading...'});
         if (window.cordova) {
-            window.plugins.sqlDB.copy("trails.db", 0, openDatabase, copyerror);
-
-            function copyerror(error) {
-                console.error("There was an error copying the database: " + JSON.stringify(error));
-                window.plugins.sqlDB.remove("trails.db", 0, removedsuccess, removederror);
-            }
-
-            function removedsuccess() {
-                window.plugins.sqlDB.copy("trails.db", 0, openDatabase, openDatabase);
-            }
-
-            function removederror(error) {
-                console.error("There was an error removing the database: " + JSON.stringify(error));
-                openDatabase();
-            }
+            window.plugins.sqlDB.copy("trails.db", 0, openDatabase, openDatabase);
 
             function openDatabase() {
                 db = $cordovaSQLite.openDB("trails.db");
