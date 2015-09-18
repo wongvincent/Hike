@@ -1,0 +1,39 @@
+/* SEARCH, SORT BY, FILTER STUFF */
+
+#search-filter {
+    padding: 0 3px;
+}
+
+#search-filter > div.item{
+    height: 35px;
+    display:inline-flex;
+    min-width:105px;
+    width:calc(100% - 172px);
+    padding-left: 0;
+}
+
+#search-filter > div.item > .icon-left {
+    padding-left: 8px;
+    padding-right: 12px;
+}
+
+#search-filter > div.item > input {
+    padding-right: 12px;
+}
+
+#search-filter > div.item > .icon-right {
+    top: 10px;
+    color: #bbb;
+    font-size: 20px;
+    padding-right:18px;
+}
+
+#search-filter > div.sort-and-filter{
+    display: inline-block;
+    float:right;
+}
+
+#search-filter > div.sort-and-filter > button {
+    width: 80px;
+    min-width: 80px;
+}

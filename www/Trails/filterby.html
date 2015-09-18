@@ -20,7 +20,6 @@
                     Location
                 </div>
                 <select ng-model="data.filterLocation">
-                    <option ng-value="">Any</option>
                     <option ng-repeat="location in filterLocations" ng-value="location.filterval">{{::location.text}}</option>
                 </select>
             </label>
@@ -98,17 +97,17 @@
 
 
             <ion-checkbox ng-model="data.filterDogFriendly" class="item-checkbox-right">
-                <span style="font-weight:500;">Must be Dog Friendly</span>
+                <span>Must be Dog Friendly</span>
             </ion-checkbox>
 
 
             <ion-checkbox ng-model="data.filterTransit" class="item-checkbox-right">
-                <span style="font-weight:500;">Transit Accessible</span>
+                <span>Transit Accessible</span>
             </ion-checkbox>
 
 
             <ion-checkbox ng-model="data.filterInSeason" class="item-checkbox-right">
-                <span style="font-weight:500;">In Season (currently accessible)</span>
+                <span>In Season (currently accessible)</span>
             </ion-checkbox>
 
 

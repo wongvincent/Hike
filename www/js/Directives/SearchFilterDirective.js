@@ -43,6 +43,7 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
 
 
                     $scope.filterLocations = [
+                        {text: "", filterval: [""]},
                         {text: "North Shore", filterval: ["north van", "west van"]},
                         {text: "Vancouver", filterval: ["vancouver"]},
                         {text: "Whistler", filterval: ["whistler"]},
