@@ -1,6 +1,10 @@
 /* TRAIL CARDS */
 
 .list-trail-item{
+
+}
+
+.list-trail-item.favourite-trail {
     border-right: 5px solid #FFDB4B;
 }
 

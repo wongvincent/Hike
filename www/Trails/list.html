@@ -8,7 +8,7 @@
                 </button>
             </div>
         </div>
-            <ion-item class="item-text-wrap list-trail-item" ng-if="trails" ng-repeat="trail in trails | filter:searchText | trailsFilter:data | orderBy: data.sortSelected" ui-sref='trail.details({name: trail.href})'>
+            <ion-item class="item-text-wrap list-trail-item" ng-if="trails" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in trails | filter:searchText | trailsFilter:data | orderBy: data.sortSelected" ui-sref='trail.details({name: trail.href})'>
                 <div class="row">
                     {{::trail.name}}
                 </div>

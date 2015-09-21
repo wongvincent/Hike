@@ -6,7 +6,8 @@ app.controller('FavouritesController', ['$scope', function($scope) {
         $scope.favourites = [];
         angular.forEach($scope.favouriteIds, function (trailId) {
             var trailIndex = getIndexOfTrail(trailId);
-            $scope.favourites.push($scope.trails[trailIndex]);
+            $scope.trails[trailIndex].favourite = true; //set favourite = true tag on trail in trails
+            $scope.favourites.push($scope.trails[trailIndex]); //get trail from $scope.trails and add to favourites
         });
         sortAlphabetically($scope.favourites);
     };
