@@ -79,7 +79,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
         .state('favourites', {
             url: '/favourites',
-            cache: false,
             templateUrl: 'favourites/index.html',
             controller: 'FavouritesController'
         })
@@ -100,7 +99,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite) {
+app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite) {
     $ionicPlatform.ready(function () {
         $ionicLoading.show({template: 'Loading...'});
         if (window.cordova) {
@@ -136,7 +135,7 @@ app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate',
                 $scope.favouriteIds.push(obj.trailId);
             });
 
-            if($scope.favouriteIds === undefined || $scope.favouriteIds.length == 0) {
+            if($scope.favouriteIds !== undefined && $scope.favouriteIds.length !== 0) {
                 //Sort the favouriteIds in ascending number order
                 $scope.favouriteIds.sort(function (a, b) {
                     return a - b
@@ -148,9 +147,9 @@ app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate',
             // This is an O(n) operation
             $scope.favourites = [];
             var favouriteIndex = 0;
+
             for(var i=0; i < $scope.trails.length ; i++){
                 var trail = $scope.trails[i];
-                console.log($scope.favouriteIds[favouriteIndex] == trail.id);
                 if($scope.favouriteIds[favouriteIndex] == trail.id){
                     $scope.trails[i].favourite = true;
                     $scope.favourites.push($scope.trails[i]);
@@ -160,6 +159,10 @@ app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate',
                     $scope.trails[i].favourite = false;
                 }
             }
+
+            // Order list of favourites alphabetically
+            $scope.sortAlphabetically($scope.favourites);
+
             $ionicLoading.hide();
         });
     }
@@ -191,12 +194,26 @@ app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate',
             window.location.reload(true);
         });
     };
+
+    $scope.sortAlphabetically = function(array){
+        function compare(a,b) {
+            if(a.name < b.name) return -1;
+            if(a.name > b.name) return 1;
+            return 0;
+        }
+
+        array.sort(compare);
+    }
+
+    $rootScope.$on('event:favourite-change', function() {
+        $scope.updateFavourites();
+    });
 }]);
 
 app.filter('range', function () {
     return function (array, range) {
         range = parseInt(range);
-        for (i = 0; i < range; i++)
+        for (var i = 0; i < range; i++)
             array.push(i);
         return array;
     };

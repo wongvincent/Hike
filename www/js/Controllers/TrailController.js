@@ -1,6 +1,6 @@
 var app = angular.module('controllers');
 
-app.controller('TrailController', ['$scope', '$state', '$stateParams', 'TrailsService', 'FavouritesService', function ($scope, $state, $stateParams, TrailsService, FavouritesService) {
+app.controller('TrailController', ['$scope', '$state', '$stateParams', '$ionicLoading', 'TrailsService', 'FavouritesService', function ($scope, $state, $stateParams, $ionicLoading, TrailsService, FavouritesService) {
     $scope.state = $state.current;
     $scope.params = $stateParams;
 
@@ -10,6 +10,8 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', 'TrailsSe
         $scope.failedPopup();
     }
     else {
+        $ionicLoading.show({template: 'Loading...'});
+
         // Get data of trail selected (based on href name param)
         var promise = TrailsService.getSingle(hrefSelected);
         promise.then(function (res) {
@@ -19,6 +21,8 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', 'TrailsSe
             promise.then(function (status) {
                 $scope.favouriteStatus = status;
             });
+
+            $ionicLoading.hide();
         });
     }
 

@@ -2,7 +2,7 @@ var app = angular.module('services');
 
 //TODO: WRITE TESTS for these queries
 
-app.service('FavouritesService', ['Database', function(Database){
+app.service('FavouritesService', ['$rootScope', 'Database', function($rootScope, Database){
     var self = this;
 
     self.getFavourites = function() {
@@ -23,12 +23,19 @@ app.service('FavouritesService', ['Database', function(Database){
 
     self.addFavourite = function(trailId) {
         var parameters = [trailId];
-        return Database.query("INSERT INTO favourites (trailId) VALUES (?)", parameters);
+        return Database.query("INSERT INTO favourites (trailId) VALUES (?)", parameters)
+            .then(function(){
+                $rootScope.$broadcast('event:favourite-change');
+            });
     }
 
     self.removeFavourite = function(trailId){
         var parameters = [trailId];
-        return Database.query("DELETE FROM favourites WHERE trailId = (?)", parameters);
+        $rootScope.$broadcast('event:favourite-change');
+        return Database.query("DELETE FROM favourites WHERE trailId = (?)", parameters)
+            .then(function(){
+                $rootScope.$broadcast('event:favourite-change');
+            });
     }
 
     return self;
