@@ -108,9 +108,7 @@ app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate',
 
             function openDatabase() {
                 db = $cordovaSQLite.openDB("trails.db");
-                $ionicLoading.hide();
                 getAllTrails();
-                getFavourites();
             }
 
             function getAllTrails() {
@@ -119,23 +117,52 @@ app.controller('StartController', ['$scope', '$state', '$ionicSideMenuDelegate',
                     $scope.trails = res;
                     if (!$scope.trails)
                         $scope.failedPopupReload();
+                    else $scope.updateFavourites();
+                });
+            }
+        }
+        $ionicLoading.hide();
+    });
+
+
+    $scope.updateFavourites = function(){
+        $ionicLoading.show({template: 'Loading...'});
+
+        // Get the favouriteIds
+        var promise = FavouritesService.getFavourites();
+        promise.then(function (res){
+            $scope.favouriteIds = [];
+            angular.forEach(res, function(obj){
+                $scope.favouriteIds.push(obj.trailId);
+            });
+
+            if($scope.favouriteIds === undefined || $scope.favouriteIds.length == 0) {
+                //Sort the favouriteIds in ascending number order
+                $scope.favouriteIds.sort(function (a, b) {
+                    return a - b
                 });
             }
 
-            function getFavourites() {
-                $scope.favouriteIds = [];
-                var promise = FavouritesService.getFavourites();
-                promise.then(function (res){
-                    angular.forEach(res, function(obj){
-                        $scope.favouriteIds.push(obj.trailId);
-                    });
-                });
+            // Assuming both Trails Ids and FavouriteIds are sorted in ascending number order
+            // We add the trail matching the favourite trailId to favourites list
+            // This is an O(n) operation
+            $scope.favourites = [];
+            var favouriteIndex = 0;
+            for(var i=0; i < $scope.trails.length ; i++){
+                var trail = $scope.trails[i];
+                console.log($scope.favouriteIds[favouriteIndex] == trail.id);
+                if($scope.favouriteIds[favouriteIndex] == trail.id){
+                    $scope.trails[i].favourite = true;
+                    $scope.favourites.push($scope.trails[i]);
+                    favouriteIndex++;
+                }
+                else {
+                    $scope.trails[i].favourite = false;
+                }
             }
-        }
-        else {
             $ionicLoading.hide();
-        }
-    });
+        });
+    }
 
     $scope.goState = function (state) {
         $state.go(state);
