@@ -39,3 +39,15 @@ ol {
     font-weight:bold; 
     text-align:center;
 }
+
+.platform-android .bar .title {
+    line-height: 55px !important;
+}
+
+.tabs{
+    height: 37px !important;
+}
+
+.tab-item{
+    font-size: 18px;
+}
