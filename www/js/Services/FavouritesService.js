@@ -27,7 +27,7 @@ app.service('FavouritesService', ['$rootScope', 'Database', function($rootScope,
             .then(function(){
                 $rootScope.$broadcast('event:favourite-change');
             });
-    }
+    };
 
     self.removeFavourite = function(trailId){
         var parameters = [trailId];
@@ -36,7 +36,7 @@ app.service('FavouritesService', ['$rootScope', 'Database', function($rootScope,
             .then(function(){
                 $rootScope.$broadcast('event:favourite-change');
             });
-    }
+    };
 
     return self;
 }]);

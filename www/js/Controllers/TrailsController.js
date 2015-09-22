@@ -1,25 +1,29 @@
 var app = angular.module('controllers');
 
-app.controller('TrailsController', ['$scope', 'TrailsService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($scope) {
+app.controller('TrailsController', ['$rootScope', '$scope', 'TrailsService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($rootScope, $scope) {
 
-        $scope.data = {
-            sortSelected: "name",
-            sortSelectedIndex: "0",
-            filterLocation: "",
-            filterTimeMin: "0",
-            filterTimeMax: "999",
-            filterDistanceMin: "0",
-            filterDistanceMax: "999",
-            filterDifficultyEasy: true,
-            filterDifficultyModerate: true,
-            filterDifficultyHard: true
-        };
-    }]);
+    $scope.data = {
+        sortSelected: "name",
+        sortSelectedIndex: "0",
+        filterLocation: "",
+        filterTimeMin: "0",
+        filterTimeMax: "999",
+        filterDistanceMin: "0",
+        filterDistanceMax: "999",
+        filterDifficultyEasy: true,
+        filterDifficultyModerate: true,
+        filterDifficultyHard: true
+    };
+
+    $scope.$on('$ionicView.enter', function(){
+        $rootScope.lastMainState = 'trails.list';
+    });
+}]);
 
 app.filter('trailsFilter', function () {
     return function (trails, data) {
         if(trails === undefined) return true;
-        
+
         locationFilter = function (trail) {
             if (data.filterLocation === "")
                 return true;
@@ -36,12 +40,12 @@ app.filter('trailsFilter', function () {
 
         timeFilter = function (trail) {
             return (Math.round(trail.time * 100) >= Math.round(data.filterTimeMin * 100) &&
-                    Math.round(trail.time * 100) <= Math.round(data.filterTimeMax * 100));
+            Math.round(trail.time * 100) <= Math.round(data.filterTimeMax * 100));
         };
 
         distanceFilter = function (trail) {
             return (Math.round(trail.distance * 100) >= Math.round(data.filterDistanceMin * 100) &&
-                    Math.round(trail.distance * 100) <= Math.round(data.filterDistanceMax * 100));
+            Math.round(trail.distance * 100) <= Math.round(data.filterDistanceMax * 100));
         };
 
         difficultyFilter = function (trail) {
@@ -76,26 +80,26 @@ app.filter('trailsFilter', function () {
             var from = parseInt(parts[0]);
             var to = parseInt(parts[1]);
             return ((from === 1 && to === 12) ||
-                    (from < to && from <= currentMonth && to >= currentMonth) ||
-                    (from > to && (from <= currentMonth || to >= currentMonth)) ||
-                    (from === to && from === currentMonth));
+            (from < to && from <= currentMonth && to >= currentMonth) ||
+            (from > to && (from <= currentMonth || to >= currentMonth)) ||
+            (from === to && from === currentMonth));
         };
 
 
         return trails.filter(function (trail) {
             return locationFilter(trail) &&
-                    timeFilter(trail) &&
-                    distanceFilter(trail) &&
-                    difficultyFilter(trail) &&
-                    dogAccessibleFilter(trail) &&
-                    transitFilter(trail) &&
-                    inSeasonFilter(trail);
+                timeFilter(trail) &&
+                distanceFilter(trail) &&
+                difficultyFilter(trail) &&
+                dogAccessibleFilter(trail) &&
+                transitFilter(trail) &&
+                inSeasonFilter(trail);
         });
 
         /*
          var temp1 = trails;
          var temp2 = [];
-         
+
          //Location
          if (data.filterLocation !== "") {
          var locationSelectedArray = data.filterLocation.toLowerCase().split(',');
@@ -112,17 +116,17 @@ app.filter('trailsFilter', function () {
          temp1 = temp2;
          temp2 = [];
          }
-         
+
          //Time Min
          angular.forEach(temp1, function (trail) {
          if (Math.round(trail.time * 100) >= Math.round(data.filterTimeMin * 100)) {
          temp2.push(trail);
          }
          });
-         
+
          temp1 = temp2;
          temp2 = [];
-         
+
          //Time Max
          angular.forEach(temp1, function (trail) {
          if (Math.round(trail.time * 100) <= Math.round(data.filterTimeMax * 100)) {
@@ -131,7 +135,7 @@ app.filter('trailsFilter', function () {
          });
          temp1 = temp2;
          temp2 = [];
-         
+
          //Distance Min
          angular.forEach(temp1, function (trail) {
          if (Math.round(trail.distance * 100) >= Math.round(data.filterDistanceMin * 100)) {
@@ -140,7 +144,7 @@ app.filter('trailsFilter', function () {
          });
          temp1 = temp2;
          temp2 = [];
-         
+
          //Distance Max
          angular.forEach(temp1, function (trail) {
          if (Math.round(trail.distance * 100) <= Math.round(data.filterDistanceMax * 100)) {
@@ -149,7 +153,7 @@ app.filter('trailsFilter', function () {
          });
          temp1 = temp2;
          temp2 = [];
-         
+
          //Difficulty
          if (data.filterDifficultyEasy === undefined || !data.filterDifficultyEasy) { //Easy is not checked
          angular.forEach(temp1, function (trail) {
@@ -159,7 +163,7 @@ app.filter('trailsFilter', function () {
          temp1 = temp2;
          temp2 = [];
          }
-         
+
          if (data.filterDifficultyModerate === undefined || !data.filterDifficultyModerate) { //Moderate is not checked
          angular.forEach(temp1, function (trail) {
          if (trail.difficulty !== 1)
@@ -168,7 +172,7 @@ app.filter('trailsFilter', function () {
          temp1 = temp2;
          temp2 = [];
          }
-         
+
          if (data.filterDifficultyHard === undefined || !data.filterDifficultyHard) { //Hard is not checked
          angular.forEach(temp1, function (trail) {
          if (trail.difficulty < 2)
@@ -177,7 +181,7 @@ app.filter('trailsFilter', function () {
          temp1 = temp2;
          temp2 = [];
          }
-         
+
          //Dog Accessible
          if (data.filterDogFriendly !== undefined && data.filterDogFriendly) { //Dog accessible is checked
          angular.forEach(temp1, function (trail) {
@@ -187,7 +191,7 @@ app.filter('trailsFilter', function () {
          temp1 = temp2;
          temp2 = [];
          }
-         
+
          //Transit Friendly       
          if (data.filterTransit !== undefined && data.filterTransit) { //Transit Friendly is checked
          angular.forEach(temp1, function (trail) {
@@ -197,7 +201,7 @@ app.filter('trailsFilter', function () {
          temp1 = temp2;
          temp2 = [];
          }
-         
+
          // In Season
          if (data.filterInSeason !== undefined && data.filterInSeason) { // In Season is checked
          var currentMonth = new Date().getMonth();
@@ -217,7 +221,7 @@ app.filter('trailsFilter', function () {
          temp1 = temp2;
          temp2 = [];
          }
-         
+
          return temp1;
          */
     };

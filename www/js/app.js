@@ -165,11 +165,15 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
 
             $ionicLoading.hide();
         });
-    }
+    };
 
     $scope.goState = function (state) {
         $state.go(state);
     };
+
+    $scope.goBackState = function(){
+        $scope.goState($rootScope.lastMainState);
+    }
 
     $scope.scrollToTop = function () {
         $ionicScrollDelegate.scrollTop();
@@ -203,7 +207,7 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
         }
 
         array.sort(compare);
-    }
+    };
 
     $rootScope.$on('event:favourite-change', function() {
         $scope.updateFavourites();
