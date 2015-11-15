@@ -3,8 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src *; style-src &apos;self&apos; &apos;unsafe-inline&apos;; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
     <title></title>
 
     <!-- ionic/angularjs js -->
@@ -90,26 +89,7 @@
                               Favourites
                           </span>
                 </ion-item>
-                <!--
-              <ion-item>
-                   make this ion-item unclickable (hover: cursor:default, pointer-events:none)
-              </ion-item>
-               <ion-item nav-clear menu-close ui-sref="addTrip" class="left-menu-item">
-                    <span class="icon-container">
-                        <i class="icon ion-ios-plus-outline"></i>
-                    </span>
-                    <span>
-                        Add Trip
-                    </span>
-                </ion-item>
-              <ion-item nav-clear="" menu-close="" ui-sref="log" class="left-menu-item">
-                  <span class="icon-container">
-                      <i class="icon ion-android-clipboard"></i>
-                  </span>
-                  <span>
-                      Log
-                  </span>
-              </ion-item> -->
+
             </ion-list>
         </ion-content>
     </ion-side-menu>

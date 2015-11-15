@@ -1,6 +1,6 @@
 var app = angular.module('controllers');
 
-app.controller('MapController', ['$scope', '$state', '$cordovaGeolocation', function ($scope, $state, $cordovaGeolocation) {
+app.controller('MapController', ['$scope', function ($scope) {
 
     var trail = $scope.trail;
     console.log($scope.trail.lat + ' ' + $scope.trail.long);

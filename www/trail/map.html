@@ -10,7 +10,7 @@
         <div ng-if="trail.map">
         </div>
 
-        <div id="trailmap" class="hike-map" data-tap-disabled="true" ng-if="!trail.map && trail.lat && trail.long">
+        <div ng-controller="MapController" id="trailmap" class="hike-map" data-tap-disabled="true" ng-if="!trail.map && trail.lat && trail.long">
 
         </div>
     </ion-content>
