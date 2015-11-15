@@ -1,3 +1,5 @@
+/* NOT BEING USED, OLD CODE TO ADD TRAIL LOGS. DOESN'T WORK
+
 var app = angular.module('app');
 
 app.factory('Projects', function () {
@@ -101,3 +103,4 @@ app.factory('Projects', function () {
                 });
                 
                 */
+

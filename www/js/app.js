@@ -83,11 +83,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             controller: 'FavouritesController'
         })
 
-        .state('log', {
-            url: '/log',
-            templateUrl: 'logitems.html'
-        });
-
     $urlRouterProvider.otherwise('/trails/list');
 
 
