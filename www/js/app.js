@@ -64,7 +64,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/map',
             views: {
                 'trail-map-tab': {
-                    templateUrl: 'trail/map.html'
+                    templateUrl: 'trail/map.html',
+                    controller: 'MapController'
                 }
             }
         })

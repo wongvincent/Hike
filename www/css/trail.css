@@ -20,3 +20,13 @@
     right: 10px;
     top: 5px;
 }
+
+
+.scroll {
+    height: 100%;
+}
+
+.hike-map{
+    width: 100%;
+    height: 100%;
+}
