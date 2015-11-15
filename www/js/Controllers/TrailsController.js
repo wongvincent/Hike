@@ -2,7 +2,7 @@ var app = angular.module('controllers');
 
 app.controller('TrailsController', ['$rootScope', '$scope', 'TrailsService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($rootScope, $scope) {
 
-    $scope.data = {
+    var defaultFilters = {
         sortSelected: "name",
         sortSelectedIndex: "0",
         filterLocation: "",
@@ -12,17 +12,28 @@ app.controller('TrailsController', ['$rootScope', '$scope', 'TrailsService', '$i
         filterDistanceMax: "999",
         filterDifficultyEasy: true,
         filterDifficultyModerate: true,
-        filterDifficultyHard: true
+        filterDifficultyHard: true,
+        filterDogFriendly: false,
+        filterTransit: false,
+        filterInSeason: false
     };
 
-    $scope.$on('$ionicView.enter', function(){
+    $scope.data = defaultFilters;
+
+    $scope.$on('$ionicView.enter', function () {
         $rootScope.lastMainState = 'trails.list';
     });
+
+    $scope.resetFilters = function () {
+        $scope.searchText = '';
+        $scope.data = defaultFilters;
+    };
+
 }]);
 
 app.filter('trailsFilter', function () {
     return function (trails, data) {
-        if(trails === undefined) return true;
+        if (trails === undefined) return true;
 
         locationFilter = function (trail) {
             if (data.filterLocation === "")
