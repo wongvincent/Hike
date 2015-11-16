@@ -1,5 +1,5 @@
 <ion-view title="{{trail.name}}">
-    <ion-content >
+    <ion-content>
         <!-- use coordinates from trail data-->
         <div class="card" ng-if="!trail.map && !(trail.lat && trail.long)">
             <div class="item item-text-wrap none-found">
@@ -10,8 +10,16 @@
         <div ng-if="trail.map">
         </div>
 
-        <div ng-controller="TrailMapController" id="trailmap" class="hike-map" data-tap-disabled="true" ng-if="!trail.map && trail.lat && trail.long">
+        <div ng-controller="TrailMapController" ng-if="!trail.map && trail.lat && trail.long" id="trailmap"
+             class="hike-map"
+             data-tap-disabled="true">
 
         </div>
+        <button id="bottomMapButton" ng-controller="TrailMapController"
+                ng-if="!trail.map && trail.lat && trail.long"
+                class="button button-large" ng-click="openInMapsApp(trail.lat, trail.long)">
+            Open in Maps App
+        </button>
+
     </ion-content>
 </ion-view>

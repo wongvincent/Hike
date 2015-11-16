@@ -96,8 +96,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 //For general app wide functionality
 app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite) {
     $ionicPlatform.ready(function () {
-        $ionicLoading.show({template: 'Loading...'});
         if (window.cordova) {
+            $ionicLoading.show({template: 'Loading...'});
             window.plugins.sqlDB.copy("trails.db", 0, openDatabase, openDatabase);
 
             function openDatabase() {
@@ -112,10 +112,11 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
                     if (!$scope.trails)
                         $scope.failedPopupReload();
                     else $scope.updateFavourites();
+
+                    $ionicLoading.hide();
                 });
             }
         }
-        $ionicLoading.hide();
     });
 
 
