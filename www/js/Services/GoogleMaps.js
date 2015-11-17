@@ -6,7 +6,6 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
     var map = null;
 
     var trails = [];
-    var markers = [];
     var elemId = "";
 
     function initMap() {
@@ -81,15 +80,7 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
         }
     }
 
-    function clearMarkers(){
-        for(var i = 0; i < markers.length; i++){
-            markers[i].setMap(null);
-        }
-        markers.length = 0;
-    }
-
     function loadMarkers() {
-        clearMarkers();
         var bounds = new google.maps.LatLngBounds();
 
         for (var i = 0; i < trails.length; i++) {
@@ -117,8 +108,7 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
         var infoWindow = new google.maps.InfoWindow({
             content: message
         });
-
-        markers.push(marker);
+        
         google.maps.event.addListener(marker, 'click', function () {
             infoWindow.open(map, marker);
         });
