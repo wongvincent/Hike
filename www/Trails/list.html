@@ -1,6 +1,6 @@
 <ion-view title="Trails list"> 
     <ion-content>
-        <div class="card" ng-hide="trails && filteredtrails.length">
+        <div class="card" ng-hide="trails && filteredTrails.length">
             <div class="item item-text-wrap none-found">
                 No trails matching filters
                 <button id="resetAllFilters" class="button button-block button-assertive" ng-click="resetFilters()">
@@ -8,7 +8,7 @@
                 </button>
             </div>
         </div>
-            <ion-item class="item-text-wrap list-trail-item" ng-if="trails" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in filteredtrails = (trails | filter:searchText | trailsFilter:data | orderBy: data.sortSelected)" ui-sref='trail.details({name: trail.href})'>
+            <ion-item class="item-text-wrap list-trail-item" ng-if="trails" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in filteredTrails" ui-sref='trail.details({name: trail.href})'>
                 <div class="row">
                     {{::trail.name}}
                 </div>

@@ -22,3 +22,12 @@
     font-weight:bold;
     padding-right:5px;
 }
+
+.scroll {
+    height: 100%;
+}
+
+#trails-map{
+    width: 100%;
+    height: 100%;
+}

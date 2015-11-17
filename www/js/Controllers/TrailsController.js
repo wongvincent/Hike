@@ -1,6 +1,8 @@
 var app = angular.module('controllers');
 
-app.controller('TrailsController', ['$rootScope', '$scope', 'TrailsService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($rootScope, $scope) {
+app.controller('TrailsController', ['$rootScope', '$state', '$scope', '$ionicLoading', function ($rootScope, $state, $scope, $ionicLoading) {
+
+    $scope.uiRouterState = $state;
 
     var defaultFilters = {
         sortSelected: "name",
@@ -19,6 +21,10 @@ app.controller('TrailsController', ['$rootScope', '$scope', 'TrailsService', '$i
     };
 
     $scope.data = defaultFilters;
+
+    $scope.$watch(function () {
+        $scope.filteredTrails = $scope.$eval("trails | filter:searchText | trailsFilter:data | orderBy: data.sortSelected");
+    });
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.lastMainState = 'trails.list';

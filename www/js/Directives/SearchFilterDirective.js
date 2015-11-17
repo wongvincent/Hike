@@ -3,9 +3,7 @@ var app = angular.module('directives');
 app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPopup, $ionicModal) {
         return {
             templateUrl: 'trails/searchfilter.html',
-            controller: ['$scope', '$state', function ($scope, $state) {
-
-                $scope.uiRouterState = $state;
+            controller: ['$scope', function ($scope) {
 
                     $scope.sortOptions = [
                         {text: "Name (A-Z)", sortby: "name"},

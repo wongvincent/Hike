@@ -1,8 +1,15 @@
 <ion-view title="Trails map">
     <ion-content>
-        <div class="card">
+        <div class="card" ng-hide="trails && filteredTrails.length">
             <div class="item item-text-wrap none-found">
-                No map
+                No trails matching filters
+                <button id="resetAllFilters" class="button button-block button-assertive" ng-click="resetFilters()">
+                    Reset all filters
+                </button>
             </div>
         </div>
+
+        <div ng-show="trails && filteredTrails.length" id="trails-map" class="map" data-tap-disabled="true">
+        </div>
+    </ion-content>
 </ion-view>

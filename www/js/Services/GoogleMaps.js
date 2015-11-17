@@ -6,24 +6,15 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
     var map = null;
 
     var trails = [];
+    var markers = [];
+    var elemId = "";
 
     function initMap() {
-
         var latLong = new google.maps.LatLng(49.2827, -123.1207); //Lat long of Downtown Vancouver
         var zoom = 12;
 
-        if(!trails || trails.length < 1) {
-            $ionicLoading.show({
-                template: 'An unexpected error occurred.'
-            });
-        }
         if (trails.length == 1) {
             latLong = new google.maps.LatLng(trails[0].lat, trails[0].long);
-        }
-        else if (trails.length > 1) {
-            console.log("More than 1 trail to mark");
-            //do something to calculate latLng on middle and the zoom ratio
-            return;
         }
 
         var mapOptions = {
@@ -32,12 +23,17 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        map = new google.maps.Map(document.getElementById(elemId), mapOptions);
 
         //Wait until the map is loaded
         google.maps.event.addListenerOnce(map, 'idle', function () {
-            loadMarkers();
             enableMap();
+            if(!trails || trails.length < 1) {
+                return;
+            }
+            else {
+                loadMarkers();
+            }
         });
     }
 
@@ -67,10 +63,10 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
         script.id = "googleMaps";
 
         if (apiKey) {
-            script.src = 'http://maps.google.com/maps/api/js?key=' + apiKey + '&sensor=true&callback=mapInit';
+            script.src = 'https://maps.google.com/maps/api/js?key=' + apiKey + '&sensor=true&callback=mapInit';
         }
         else {
-            script.src = 'http://maps.google.com/maps/api/js?sensor=true&callback=mapInit';
+            script.src = 'https://maps.google.com/maps/api/js?sensor=true&callback=mapInit';
         }
 
         document.body.appendChild(script);
@@ -85,7 +81,17 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
         }
     }
 
+    function clearMarkers(){
+        for(var i = 0; i < markers.length; i++){
+            markers[i].setMap(null);
+        }
+        markers.length = 0;
+    }
+
     function loadMarkers() {
+        clearMarkers();
+        var bounds = new google.maps.LatLngBounds();
+
         for (var i = 0; i < trails.length; i++) {
             var trail = trails[i];
             var markerPos = new google.maps.LatLng(trail.lat, trail.long);
@@ -98,6 +104,12 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
 
             var infoWindowContent = "<h4>" + trail.name + "</h4>";
             addInfoWindow(marker, infoWindowContent, trail);
+
+            bounds.extend(marker.position);
+        }
+
+        if(trails.length > 1){
+            map.fitBounds(bounds);
         }
     }
 
@@ -106,6 +118,7 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
             content: message
         });
 
+        markers.push(marker);
         google.maps.event.addListener(marker, 'click', function () {
             infoWindow.open(map, marker);
         });
@@ -135,9 +148,10 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
     }
 
     return {
-        init: function (arrayOfMarkers) {
+        init: function (arrayOfMarkers, elementId) {
             trails = arrayOfMarkers;
             apiKey = "AIzaSyClUi3fHwITYAL8qhel240O3r3scblMG8g";
+            elemId = elementId;
 
             if (typeof google == "undefined" || typeof google.maps == "undefined") {
                 console.warn("Google Maps SDK needs to be loaded");
