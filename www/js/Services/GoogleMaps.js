@@ -104,7 +104,14 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
                 position: markerPos
             });
 
-            marker.desc = "<h4>" + trail.name + "</h4>";
+            var description = "<a href='#/trail/" + trail.href + "/list'><h4>" + trail.name + "</h4></a>";
+
+            if(trail.favourite){
+                description = "<div class='pin-info-description'>" + description + "</div>";
+            }
+
+            marker.desc = description;
+
             oms.addMarker(marker);
 
             bounds.extend(marker.position);

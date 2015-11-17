@@ -22,17 +22,4 @@
 }
 
 
-.scroll {
-    height: 100%;
-}
-
-#trail-map{
-    width: 100%;
-    height: 90%;
-}
-
-button#bottomMapButton{
-    min-height: 10% !important;
-    max-height: 10% !important;
-    width: 100%
-}
+/* See maps.css for trail-map css */

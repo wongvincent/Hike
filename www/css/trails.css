@@ -18,16 +18,10 @@
     padding-bottom:10px;
 }
 
-.list-trail-item .row span:nth-child(1){
-    font-weight:bold;
-    padding-right:5px;
+.list-trail-item .row span:nth-child(1) {
+    font-weight: bold;
+    padding-right: 5px;
 }
 
-.scroll {
-    height: 100%;
-}
 
-#trails-map{
-    width: 100%;
-    height: 100%;
-}
+/* See maps.css for trails-map css */
