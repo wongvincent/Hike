@@ -81,7 +81,18 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
     }
 
     function loadMarkers() {
+        var oms = new OverlappingMarkerSpiderfier(map);
         var bounds = new google.maps.LatLngBounds();
+
+        var iw = new google.maps.InfoWindow();
+        oms.addListener('click', function(marker, event){
+            iw.setContent(marker.desc);
+            iw.open(map, marker);
+        });
+
+        oms.addListener('spiderfy', function(markers){
+            iw.close();
+        });
 
         for (var i = 0; i < trails.length; i++) {
             var trail = trails[i];
@@ -93,8 +104,8 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
                 position: markerPos
             });
 
-            var infoWindowContent = "<h4>" + trail.name + "</h4>";
-            addInfoWindow(marker, infoWindowContent, trail);
+            marker.desc = "<h4>" + trail.name + "</h4>";
+            oms.addMarker(marker);
 
             bounds.extend(marker.position);
         }
@@ -104,15 +115,6 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
         }
     }
 
-    function addInfoWindow(marker, message, trail) {
-        var infoWindow = new google.maps.InfoWindow({
-            content: message
-        });
-        
-        google.maps.event.addListener(marker, 'click', function () {
-            infoWindow.open(map, marker);
-        });
-    }
 
     function addConnectivityListeners() {
         if (ionic.Platform.isWebView()) {
