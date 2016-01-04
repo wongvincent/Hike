@@ -85,6 +85,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             controller: 'FavouritesController'
         })
 
+        .state('nearby', {
+            url: '/nearby',
+            templateUrl: 'nearby.html',
+            controller: 'NearbyController'
+        })
+
     $urlRouterProvider.otherwise('/trails/list');
 
 
