@@ -25,14 +25,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         .state('trails', {
             url: '/trails',
             abstract: true,
-            templateUrl: 'trails/index.html',
+            templateUrl: 'views/trails/index.html',
             controller: 'TrailsController'
         })
         .state('trails.list', {
             url: '/list',
             views: {
                 'trails-list-tab': {
-                    templateUrl: 'trails/list.html'
+                    templateUrl: 'views/trails/list.html'
                 }
             }
         })
@@ -40,7 +40,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/map',
             views: {
                 'trails-map-tab': {
-                    templateUrl: 'trails/map.html',
+                    templateUrl: 'views/trails/map.html',
                     controller: 'TrailsMapController'
                 }
             }
@@ -50,14 +50,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/trail/:name',
             abstract: true,
             cache: false,
-            templateUrl: 'trail/index.html',
+            templateUrl: 'views/trail/index.html',
             controller: 'TrailController'
         })
         .state('trail.details', {
             url: '/list',
             views: {
                 'trail-details-tab': {
-                    templateUrl: 'trail/details.html'
+                    templateUrl: 'views/trail/details.html'
                 }
             }
         })
@@ -65,7 +65,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/map',
             views: {
                 'trail-map-tab': {
-                    templateUrl: 'trail/map.html',
+                    templateUrl: 'views/trail/map.html',
                     controller: 'TrailMapController'
                 }
             }
@@ -74,20 +74,20 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/gallery',
             views: {
                 'trail-gallery-tab': {
-                    templateUrl: 'trail/gallery.html'
+                    templateUrl: 'views/trail/gallery.html'
                 }
             }
         })
 
         .state('favourites', {
             url: '/favourites',
-            templateUrl: 'favourites/index.html',
+            templateUrl: 'views/favourites.html',
             controller: 'FavouritesController'
         })
 
         .state('nearby', {
             url: '/nearby',
-            templateUrl: 'nearby.html',
+            templateUrl: 'views/nearby.html',
             controller: 'NearbyController'
         })
 
