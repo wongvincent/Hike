@@ -105,7 +105,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen) {
     $ionicPlatform.ready(function () {
         if (window.cordova) {
-            $ionicLoading.show({template: 'Loading...'});
+            $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Loading'});
             window.plugins.sqlDB.copy("trails.db", 0, openDatabase, openDatabase);
 
             function openDatabase() {
@@ -131,7 +131,7 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
 
 
     $scope.updateFavourites = function(){
-        $ionicLoading.show({template: 'Loading...'});
+        $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Loading'});
 
         // Get the favouriteIds
         var promise = FavouritesService.getFavourites();
@@ -196,8 +196,12 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
     };
 
     $scope.failedPopupReload = function () {
+        $scope.failedPopupReload('An unexpected error occurred');
+    };
+
+    $scope.failedPopupReload = function (message) {
         var failedPopup = $ionicPopup.alert({
-            title: 'An unexpected error occurred'
+            title: message
             //template:
         });
         failedPopup.then(function (res) {
