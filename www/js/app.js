@@ -25,14 +25,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         .state('trails', {
             url: '/trails',
             abstract: true,
-            templateUrl: 'trails/index.html',
+            templateUrl: 'views/trails/index.html',
             controller: 'TrailsController'
         })
         .state('trails.list', {
             url: '/list',
             views: {
                 'trails-list-tab': {
-                    templateUrl: 'trails/list.html'
+                    templateUrl: 'views/trails/list.html'
                 }
             }
         })
@@ -40,7 +40,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/map',
             views: {
                 'trails-map-tab': {
-                    templateUrl: 'trails/map.html',
+                    templateUrl: 'views/trails/map.html',
                     controller: 'TrailsMapController'
                 }
             }
@@ -50,14 +50,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/trail/:name',
             abstract: true,
             cache: false,
-            templateUrl: 'trail/index.html',
+            templateUrl: 'views/trail/index.html',
             controller: 'TrailController'
         })
         .state('trail.details', {
             url: '/list',
             views: {
                 'trail-details-tab': {
-                    templateUrl: 'trail/details.html'
+                    templateUrl: 'views/trail/details.html'
                 }
             }
         })
@@ -65,7 +65,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/map',
             views: {
                 'trail-map-tab': {
-                    templateUrl: 'trail/map.html',
+                    templateUrl: 'views/trail/map.html',
                     controller: 'TrailMapController'
                 }
             }
@@ -74,15 +74,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/gallery',
             views: {
                 'trail-gallery-tab': {
-                    templateUrl: 'trail/gallery.html'
+                    templateUrl: 'views/trail/gallery.html'
                 }
             }
         })
 
         .state('favourites', {
             url: '/favourites',
-            templateUrl: 'favourites/index.html',
+            templateUrl: 'views/favourites.html',
             controller: 'FavouritesController'
+        })
+
+        .state('nearby', {
+            url: '/nearby',
+            templateUrl: 'views/nearby.html',
+            controller: 'NearbyController'
         })
 
     $urlRouterProvider.otherwise('/trails/list');
@@ -96,10 +102,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite) {
+app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen) {
     $ionicPlatform.ready(function () {
         if (window.cordova) {
-            $ionicLoading.show({template: 'Loading...'});
+            $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Loading'});
             window.plugins.sqlDB.copy("trails.db", 0, openDatabase, openDatabase);
 
             function openDatabase() {
@@ -108,12 +114,14 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
             }
 
             function getAllTrails() {
-                var promise = TrailsService.getAllTrails();
-                promise.then(function (res) {
+                TrailsService.getAllTrails().then(function (res) {
                     $scope.trails = res;
                     if (!$scope.trails)
                         $scope.failedPopupReload();
-                    else $scope.updateFavourites();
+                    else {
+                        $scope.updateFavourites();
+                        $cordovaSplashscreen.hide();
+                    }
 
                     $ionicLoading.hide();
                 });
@@ -123,7 +131,7 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
 
 
     $scope.updateFavourites = function(){
-        $ionicLoading.show({template: 'Loading...'});
+        $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Loading'});
 
         // Get the favouriteIds
         var promise = FavouritesService.getFavourites();
@@ -188,8 +196,12 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
     };
 
     $scope.failedPopupReload = function () {
+        $scope.failedPopupReload('An unexpected error occurred');
+    };
+
+    $scope.failedPopupReload = function (message) {
         var failedPopup = $ionicPopup.alert({
-            title: 'An unexpected error occurred'
+            title: message
             //template:
         });
         failedPopup.then(function (res) {
