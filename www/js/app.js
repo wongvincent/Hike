@@ -102,7 +102,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite) {
+app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen) {
     $ionicPlatform.ready(function () {
         if (window.cordova) {
             $ionicLoading.show({template: 'Loading...'});
@@ -114,12 +114,14 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
             }
 
             function getAllTrails() {
-                var promise = TrailsService.getAllTrails();
-                promise.then(function (res) {
+                TrailsService.getAllTrails().then(function (res) {
                     $scope.trails = res;
                     if (!$scope.trails)
                         $scope.failedPopupReload();
-                    else $scope.updateFavourites();
+                    else {
+                        $scope.updateFavourites();
+                        $cordovaSplashscreen.hide();
+                    }
 
                     $ionicLoading.hide();
                 });
