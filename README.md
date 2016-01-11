@@ -11,6 +11,7 @@ Uses SQLite for data storage.
 * **Sort** trails (by Name, Time, Distance)
 * **Filter** trails (on Location, Time min/max, Distance min/max, Difficulty, Dog Friendly, Transit Accessible, In Season)
 * Save trails as **Favourites**
-* Find **nearby trails** (by using device's GPS location)
+* Find **nearby** trails (by using device's GPS location)
 
 #### Under development ####
+Nothing at the moment
