@@ -102,7 +102,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen) {
+app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q) {
     $ionicPlatform.ready(function () {
         if (window.cordova) {
             $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Loading'});
@@ -119,18 +119,21 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
                     if (!$scope.trails)
                         $scope.failedPopupReload();
                     else {
-                        $scope.updateFavourites();
-                        $cordovaSplashscreen.hide();
+                        $scope.updateFavourites().then(function(){
+                            $cordovaSplashscreen.hide();
+                        });
                     }
 
-                    $ionicLoading.hide();
+
                 });
             }
+            $ionicLoading.hide();
         }
     });
 
 
     $scope.updateFavourites = function(){
+        var q = $q.defer();
         $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Loading'});
 
         // Get the favouriteIds
@@ -170,7 +173,10 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
             $scope.sortAlphabetically($scope.favourites);
 
             $ionicLoading.hide();
+
+            q.resolve();
         });
+        return q.promise;
     };
 
     $scope.goState = function (state) {
