@@ -15,23 +15,26 @@
                 <div class="row" ng-if="trail.location">
                     <span>Location:</span>{{::trail.location}}
                 </div>
+                <div class="row" ng-if="trail.difficulty != null">
+                    <span>Difficulty:</span>{{::trail.difficulty| HumanizeDifficulty}}
+                </div>
                 <div class="row" ng-if="trail.time">
                     <span>Time:</span>{{::trail.time}} hours
                 </div>
                 <div class="row" ng-if="trail.distance">
                     <span>Distance:</span>{{::trail.distance}}km
                 </div>
-                <div class="row" ng-if="trail.difficulty != null">
-                    <span>Difficulty:</span>{{::trail.difficulty| HumanizeDifficulty}}
+                <div class="row" ng-if="trail.elevation">
+                    <span>Elevation Gain:</span>{{::trail.elevation| ProcessElevationToString}}
                 </div>
                 <div class="row" ng-if="trail.season">
                     <span>Season:</span>{{::trail.season| HumanizeSeason}}
                 </div>
-                <div class="row" ng-if="trail.dogFriendly != null">
-                    <span>Dog friendly:</span>{{::trail.dogFriendly| BoolToString}}
-                </div>      
                 <div class="row" ng-if="trail.transit != null">
-                    <span>Transit accessible:</span>{{::trail.transit| BoolToString}}
+                    <span>Transit Accessible:</span>{{::trail.transit| BoolToString}}
+                </div>
+                <div class="row" ng-if="trail.dogFriendly != null">
+                    <span>Dog Friendly:</span>{{::trail.dogFriendly| BoolToString}}
                 </div>
             </ion-item>
     </ion-content>     
