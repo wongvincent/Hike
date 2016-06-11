@@ -263,3 +263,13 @@ app.filter("HumanizeSeason", function () {
         monthNameArray[parts[0] - 1] + " - " + monthNameArray[parts[1] - 1];
     };
 });
+
+app.filter("ProcessElevationToString", function () {
+   return function (elevation) {
+       if (elevation > 0) {
+           return elevation + "m";
+       } else if (elevation === 0) {
+           return "minimal";
+       }
+   };
+});
