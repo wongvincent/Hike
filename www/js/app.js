@@ -264,12 +264,16 @@ app.filter("HumanizeSeason", function () {
     };
 });
 
+app.filter("ConvertDistanceCategoryToString", function () {
+   return function (categoryInt) {
+       if (categoryInt === 0) return "One-Way";
+       if (categoryInt === 1) return "Round-Trip";
+   };
+});
+
 app.filter("ProcessElevationToString", function () {
    return function (elevation) {
-       if (elevation > 0) {
-           return elevation + "m";
-       } else if (elevation === 0) {
-           return "minimal";
-       }
+       if (elevation === 0) return "minimal";
+       if (elevation > 0) return elevation + "m";
    };
 });
