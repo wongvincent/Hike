@@ -14,4 +14,7 @@ Uses SQLite for data storage.
 * Find **nearby** trails (by using device's GPS location)
 
 #### Under development ####
-Nothing at the moment
+* Sharing trail card to other apps
+
+#### Future ####
+* Create accounts so your favourite trails can be accessed on multiple devices
