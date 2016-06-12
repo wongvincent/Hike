@@ -22,7 +22,7 @@
                     <span>Time:</span>{{::trail.time}} hours
                 </div>
                 <div class="row" ng-if="trail.distance && trail.distanceCategory != null">
-                    <span>{{::trail.distanceCategory| ConvertDistanceCategoryToString}}</span>{{::trail.distance}}km
+                    <span>{{::trail.distanceCategory| ConvertDistanceCategoryToString}}:</span>{{::trail.distance}}km
                 </div>
                 <div class="row" ng-if="trail.elevation != null">
                     <span>Elevation Gain:</span>{{::trail.elevation| ProcessElevationToString}}
