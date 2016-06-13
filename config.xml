@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.hike174819" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ionicframework.hike174819"
+        version="1.0.0"
+        xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Hiking Vancouver</name>
-  <description>&#xD;&#xD;
-        Hiking in and around Vancouver, British Columbia, Canada&#xD;&#xD;
-    </description>
-  <author email="hello@vincentwong.me" href="http://hike.vincentwong.me/">&#xD;&#xD;
-      Vincent Wong&#xD;&#xD;
-    </author>
+  <description>Hiking in and around Vancouver, British Columbia, Canada</description>
+  <author email="hello@vincentwong.me" href="http://hike.vincentwong.me/">Vincent Wong</author>
   <content src="index.html"/>
   <access origin="*"/>
   <preference name="webviewbounce" value="false"/>
