@@ -29,7 +29,7 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$c
         });
         $scope.nearby.sort(function(a,b){
             return a.distanceFromPos - b.distanceFromPos;
-        })
+        });
 
         $ionicLoading.hide();
 
