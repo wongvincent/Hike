@@ -1,1 +1,85 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src *; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; *; style-src  &apos;self&apos; &apos;unsafe-inline&apos; *">
+    <!--<title>Vancouver Hiking Trails</title> -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <!-- bootstrap css and js -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+    <!-- custom -->
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <div class="container-fluid">
+            <h1>Hiking Vancouver</h1>
+
+            <div class="subtitle">
+                Find hiking trails around <span class="location">Vancouver, British Columbia, Canada</span>
+            </div>
+            <ul>
+                <li>Info and locations of over 90 trails</li>
+                <li>Sort and filter based on location, time, distance, and difficulty</li>
+                <li>Save your favourite trails and find nearby trails (requires permission to access device's GPS
+                    location)
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid">
+            <a href="https://github.com/wongvincent/Hike/releases/download/1.0.0/HikingVancouver1.0.0.apk"
+               class="button download-button">
+                <span class="glyphicon glyphicon-download-alt"></span>Download APK (latest)
+            </a>
+        </div>
+        <div class="container-fluid release-info">
+            <div class="row">
+                <div class="col-xs-6">Updated</div>
+                <div class="col-xs-6">June 13, 2016</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">Version</div>
+                <div class="col-xs-6">1.0.0</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">File Format</div>
+                <div class="col-xs-6">APK</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">File Size</div>
+                <div class="col-xs-6">4.52MB</div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            Release history:
+            <a href="https://github.com/wongvincent/Hike/releases" target="_blank">https://github.com/wongvincent/Hike/releases</a>
+        </div>
+
+        <hr>
+        <div class="container-fluid faq">
+            <div>FAQs</div>
+            <div class="qa">
+                <div>
+                    I see this message: "For security, your phone is set to block installation of apps obtained from
+                    unknown sources."
+                </div>
+                <div>
+                    On your device, go to settings, then security, then flip the toggle next to "Unknown sources". This
+                    will enable you to install apps from sources other than the Play Store.
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="http://vincentwong.me" class="about-me">About me</a>
+</div>
+</body>
+</html>

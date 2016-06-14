@@ -1,0 +1,68 @@
+body {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-top: 20px;
+    background-color: #dddddd;
+    margin-bottom: 20px;
+}
+
+.jumbotron {
+    padding: 10px;
+}
+
+.subtitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.subtitle span.location {
+    font-weight: 400;
+}
+
+div.jumbotron {
+    background-color: #f9f9f9;
+}
+
+div.container-fluid {
+    margin-bottom: 20px;
+}
+
+.download-button, .download-button:link, .download-button:visited, .download-button:active {
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.download-button:hover {
+    text-decoration: none;
+    color: white;
+    background-color: darkgreen;
+}
+
+.download-button > span.glyphicon{
+    margin-right: 10px;
+}
+
+.release-info .row > div:first-of-type {
+    color: #aaaaaa;
+}
+
+.faq > div:first-child {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.faq > .qa > div:first-child {
+    font-weight: bold;
+}
+
+.about-me {
+    float: right;
+}
+
+.about-me:hover {
+    text-decoration: none;
+}
