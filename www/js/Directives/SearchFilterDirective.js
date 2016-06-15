@@ -96,6 +96,8 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
                     $scope.$on('$destroy', function () {
                         $scope.filterModal.remove();
                     });
+
+                    $scope.Math = Math;
                 }]
         };
     }]);

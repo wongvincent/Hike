@@ -10,76 +10,13 @@
             <button class="button icon ion-checkmark button-clear small-icon" ng-click="closeFilterModal()"></button> 
         </div>
     </ion-header-bar>
-
-
+    
     <ion-content>
         <div class="list">
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Location
-                </div>
-                <select ng-model="data.filterLocation">
-                    <option ng-repeat="location in filterLocations" ng-value="location.filterval">{{::location.text}}</option>
-                </select>
-            </label>
-
-            <div class="item item-divider">
-                Time (hours)    
-            </div>
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Min
-                </div>
-                <select ng-model="data.filterTimeMin">
-                    <option value="0">No min</option>
-                    <option ng-repeat="n in []| range:6" value="{{(n + 1) * 2}}">{{(n + 1) * 2}} hrs</option>
-                </select>
-            </label>
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Max
-                </div>
-                <select ng-model="data.filterTimeMax">
-                    <option value="999">No max</option>
-                    <option ng-repeat="n in []| range:6" value="{{(n + 1) * 2}}">{{(n + 1) * 2}} hrs</option>
-                </select>
-            </label>
-
-
-
-            <div class="item item-divider">
-                Distance (km)
-            </div>
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Min
-                </div>
-                <select ng-model="data.filterDistanceMin">
-                    <option value="0">No min</option>
-                    <option ng-repeat="n in []| range:10" value="{{(n + 1) * 3}}">{{(n + 1) * 3}} km</option>
-                </select>
-            </label>
-
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Max
-                </div>
-                <select ng-model="data.filterDistanceMax">
-                    <option value="999">No max</option>
-                    <option ng-repeat="n in []| range:10" value="{{(n + 1) * 3}}">{{(n + 1) * 3}} km</option>
-                </select>
-            </label>
-
-
-
             <div class="item">
-                <div id="filter-difficulty-title">Difficulty</div>
-
-
+                <div id="filter-difficulty-title">
+                    Difficulty
+                </div>
                 <div id="filter-difficulty-check">
                     <ion-checkbox ng-model="data.filterDifficultyEasy">
                         Easy
@@ -95,23 +32,71 @@
                 </div>
             </div>
 
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Location
+                </div>
+                <select ng-model="data.filterLocation">
+                    <option ng-repeat="location in filterLocations" ng-value="location.filterval">{{::location.text}}</option>
+                </select>
+            </label>
 
-            <ion-checkbox ng-model="data.filterDogFriendly" class="item-checkbox-right">
-                <span>Must be Dog Friendly</span>
-            </ion-checkbox>
+            <div class="item item-divider">
+                Time (hours)    
+            </div>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Min
+                </div>
+                <select ng-model="data.filterTimeMin">
+                    <option value="0">No min</option>
+                    <option ng-repeat="n in []| range:3" value="{{Math.pow(2, (n + 1))}}">{{Math.pow(2, (n + 1))}} hrs</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Max
+                </div>
+                <select ng-model="data.filterTimeMax">
+                    <option ng-repeat="n in []| range:3" value="{{Math.pow(2, (n + 1))}}">{{Math.pow(2, (n + 1))}} hrs</option>
+                    <option value="999">No max</option>
+                </select>
+            </label>
 
-
-            <ion-checkbox ng-model="data.filterTransit" class="item-checkbox-right">
-                <span>Transit Accessible</span>
-            </ion-checkbox>
-
+            <div class="item item-divider">
+                Distance (km)
+            </div>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Min
+                </div>
+                <select ng-model="data.filterDistanceMin">
+                    <option value="0">No min</option>
+                    <option ng-repeat="n in []| range:4" value="{{Math.pow(2, (n + 1))}}">{{Math.pow(2, (n + 1))}} km</option>
+                </select>
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    Max
+                </div>
+                <select ng-model="data.filterDistanceMax">
+                    <option ng-repeat="n in []| range:4" value="{{Math.pow(2, (n + 1))}}">{{Math.pow(2, (n + 1))}} km</option>
+                    <option value="999">No max</option>
+                </select>
+            </label>
 
             <ion-checkbox ng-model="data.filterInSeason" class="item-checkbox-right">
                 <span>In Season (currently accessible)</span>
             </ion-checkbox>
 
+            <ion-checkbox ng-model="data.filterTransit" class="item-checkbox-right">
+                <span>Transit Accessible</span>
+            </ion-checkbox>
+
+            <ion-checkbox ng-model="data.filterDogFriendly" class="item-checkbox-right">
+                <span>Must be Dog Friendly</span>
+            </ion-checkbox>
 
         </div>
-
     </ion-content>
 </div>
