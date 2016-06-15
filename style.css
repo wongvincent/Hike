@@ -5,6 +5,10 @@ body {
     background-color: #dddddd;
 }
 
+a, a:link, a:visited, a:active, a:hover {
+    text-decoration: none;
+}
+
 @media only screen and (max-device-width: 480px) {
     body {
         margin-top: 0;
@@ -55,11 +59,9 @@ div.container-fluid {
     color: white;
     font-weight: bold;
     padding: 10px 15px;
-    text-decoration: none;
 }
 
 .download-button:hover {
-    text-decoration: none;
     color: white;
     background-color: darkgreen;
 }
@@ -85,5 +87,4 @@ div.container-fluid {
 .about-me, .about-me:link, .about-me:visited, .about-me:active, .about-me:hover {
     float: right;
     margin-right: 10px;
-    text-decoration: none;
 }

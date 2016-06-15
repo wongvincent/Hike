@@ -3,9 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src *; script-src &apos;self&apos; &apos;unsafe-inline&apos; &apos;unsafe-eval&apos; *; style-src  &apos;self&apos; &apos;unsafe-inline&apos; *">
-    <!--<title>Vancouver Hiking Trails</title> -->
+    <title>Hiking Vancouver | Android App Download</title>
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <!-- bootstrap css and js -->
@@ -16,6 +14,17 @@
             crossorigin="anonymous"></script>
     <!-- custom -->
     <link href="style.css" rel="stylesheet">
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-70991808-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 </head>
 <body>
 <div class="container">
@@ -36,6 +45,7 @@
         </div>
         <div class="container-fluid download-container">
             <a href="https://github.com/wongvincent/Hike/releases/download/1.0.0/HikingVancouver1.0.0.apk"
+               onclick="sendGaEvent('Button', 'Download Hike App', '1.0.0');"
                class="button download-button">
                 <span class="glyphicon glyphicon-download-alt"></span>Download APK (latest)
             </a>
@@ -61,7 +71,9 @@
 
         <div class="container-fluid">
             Release history:
-            <a href="https://github.com/wongvincent/Hike/releases" target="_blank">https://github.com/wongvincent/Hike/releases</a>
+            <a href="https://github.com/wongvincent/Hike/releases" onclick="trackOutboundLink('https://github.com/wongvincent/Hike/releases');" target="_blank">
+                https://github.com/wongvincent/Hike/releases
+            </a>
         </div>
 
         <hr>
@@ -79,7 +91,37 @@
             </div>
         </div>
     </div>
-    <a href="http://vincentwong.me" class="about-me">About me</a>
+    <a href="http://vincentwong.me" onclick="trackOutboundLink('http://vincentwong.me');" class="about-me">
+        About me
+    </a>
 </div>
+
+<script>
+    /**
+     * Function that tracks a click on an outbound link in Analytics.
+     * This function takes a valid URL string as an argument, and uses that URL string
+     * as the event label. Setting the transport method to 'beacon' lets the hit be sent
+     * using 'navigator.sendBeacon' in browser that support it.
+     */
+    var trackOutboundLink = function(url) {
+        ga('send', 'event', 'outbound', 'click', url, {
+            'transport': 'beacon',
+            'hitCallback': function(){document.location = url;}
+        });
+    };
+
+    /**
+     * Function that sends a general event to Analytics.
+     * This function takes an eventCategory:text, eventAction:text, eventLabel:text (optional)
+     */
+    var sendGaEvent = function(eventCategory, eventAction, eventLabel) {
+        eventCategory = eventCategory ? eventCategory : "";
+        eventAction = eventAction ? eventAction : "";
+        eventLabel = eventLabel ? eventLabel : "";
+        ga('send', eventCategory, eventAction, eventLabel);
+    };
+
+    ga('send', 'event', 'Videos', 'play', 'Fall Campaign');
+</script>
 </body>
 </html>
