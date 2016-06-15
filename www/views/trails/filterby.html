@@ -10,7 +10,7 @@
             <button class="button icon ion-checkmark button-clear small-icon" ng-click="closeFilterModal()"></button> 
         </div>
     </ion-header-bar>
-    
+
     <ion-content>
         <div class="list">
             <div class="item">
@@ -37,6 +37,7 @@
                     Location
                 </div>
                 <select ng-model="data.filterLocation">
+                    <option value="">Any</option>
                     <option ng-repeat="location in filterLocations" ng-value="location.filterval">{{::location.text}}</option>
                 </select>
             </label>
