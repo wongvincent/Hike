@@ -1,13 +1,36 @@
 body {
     font-family: "Segoe UI", Arial, Helvetica, sans-serif;
     font-size: 16px;
-    margin-top: 20px;
+    margin: 20px 0;
     background-color: #dddddd;
-    margin-bottom: 20px;
+}
+
+@media only screen and (max-device-width: 480px) {
+    body {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+    .container {
+        padding: 0;
+    }
+    .jumbotron {
+        padding: 0 0 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+    .subtitle {
+        text-align: center;
+        line-height: 28px;
+    }
+    .download-container {
+        text-align: center;
+    }
 }
 
 .jumbotron {
     padding: 10px;
+    margin-bottom: 10px;
 }
 
 .subtitle {
@@ -59,10 +82,8 @@ div.container-fluid {
     font-weight: bold;
 }
 
-.about-me {
+.about-me, .about-me:link, .about-me:visited, .about-me:active, .about-me:hover {
     float: right;
-}
-
-.about-me:hover {
+    margin-right: 10px;
     text-decoration: none;
 }
