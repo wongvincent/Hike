@@ -1,6 +1,6 @@
 var app = angular.module('controllers');
 
-app.controller('TrailController', ['$scope', '$state', '$stateParams', '$ionicLoading', 'TrailsService', 'FavouritesService', function ($scope, $state, $stateParams, $ionicLoading, TrailsService, FavouritesService) {
+app.controller('TrailController', ['$scope', '$state', '$stateParams', '$ionicLoading', 'TrailsService', 'FavouritesService', '$ionicSideMenuDelegate', function ($scope, $state, $stateParams, $ionicLoading, TrailsService, FavouritesService, $ionicSideMenuDelegate) {
     $scope.state = $state.current;
     $scope.params = $stateParams;
 
@@ -24,4 +24,8 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$ionicLo
             $ionicLoading.hide();
         });
     }
+
+    $scope.$on('$ionicView.enter', function(){
+        $ionicSideMenuDelegate.canDragContent(true);
+    });
 }]);
