@@ -1,6 +1,6 @@
 <ion-view title="Favourite Trails">
     <ion-content>
-        <div class="card" ng-if="!favourites">
+        <div class="card" ng-if="!favourites || favourites.length === 0">
             <div class="item item-text-wrap none-found">
                 No favourite trails found
             </div>
