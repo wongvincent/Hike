@@ -1,11 +1,46 @@
-/*GENERAL app css changes *//
+/*GENERAL app css changes */
 
-.left-menu-item {
+.side-menu-content {
+    background-color: #555;
+    color: white;
+}
+
+.side-menu-content .left-side-menu-header-bar {
+    text-align: center;
+    background-color: #555;
+    color: white;
+}
+
+.side-menu-content .left-side-menu-header-bar .title-name {
+    font-size: 34px;
+}
+
+.side-menu-content .left-side-menu-header-bar .title-icon {
+    height: 120px;
+    width: 120px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.side-menu-content .left-menu-item {
     font-size: 20px;
 }
 
-.icon-container {
+.side-menu-content .left-menu-item a.item-content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #555;
+    color: white;
+}
+
+.side-menu-content .left-menu-item .icon-container {
     margin: 0 10px;
+    font-size: 42px;
+    vertical-align: sub;
+}
+
+
+.side-menu-content .left-menu-item .name {
     font-size: 25px;
 }
 

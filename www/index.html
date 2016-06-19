@@ -56,17 +56,17 @@
 
     <!-- Left menu -->
     <ion-side-menu side="left">
-        <ion-header-bar class="bar-dark">
-            <h1 class="title">Hike</h1>
-        </ion-header-bar>
-
-        <ion-content scroll="false">
+        <ion-content scroll="false" class="side-menu-content">
             <ion-list>
+                <ion-item class="left-side-menu-header-bar">
+                    <img src="img/icon.png" class="title-icon">
+                    <div class="title-name">Hiking Vancouver</div>
+                </ion-item>
                 <ion-item nav-clear="" menu-close="" ui-sref="trails.list" class="left-menu-item">
                     <span class="icon-container">
                         <i class="icon ion-map" style="color:#4F8EF7"></i>
                     </span>
-                    <span>
+                    <span class="name">
                         Trails
                     </span>
                 </ion-item>
@@ -74,15 +74,15 @@
                     <span class="icon-container">
                         <i class="icon ion-android-star" style="color:#FFCC00;"></i>
                     </span>
-                    <span>
+                    <span class="name">
                         Favourites
                     </span>
                 </ion-item>
                 <ion-item nav-clear="" menu-close="" ui-sref="nearby" class="left-menu-item">
                     <span class="icon-container">
-                        <i class="icon ion-pinpoint" style="color:#333333;"></i>
+                        <i class="icon ion-pinpoint" style="color:#eeeeee;"></i>
                         </span>
-                    <span>
+                    <span class="name">
                         Nearby
                     </span>
                 </ion-item>
