@@ -1,13 +1,13 @@
 /*GENERAL app css changes */
 
 .side-menu-content {
-    background-color: #555;
+    background-color: #444;
     color: white;
 }
 
 .side-menu-content .left-side-menu-header-bar {
     text-align: center;
-    background-color: #555;
+    background-color: #444;
     color: white;
 }
 
@@ -29,7 +29,7 @@
 .side-menu-content .left-menu-item a.item-content {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #555;
+    background-color: #444;
     color: white;
 }
 
