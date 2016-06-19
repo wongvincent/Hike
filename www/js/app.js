@@ -89,7 +89,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/nearby',
             templateUrl: 'views/nearby.html',
             controller: 'NearbyController'
-        })
+        });
 
     $urlRouterProvider.otherwise('/trails/list');
 
@@ -131,6 +131,9 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
         }
     });
 
+    $scope.$on('$ionicView.beforeEnter', function () {
+        $ionicSideMenuDelegate.canDragContent(true);
+    });
 
     $scope.updateFavourites = function(){
         var q = $q.defer();

@@ -8,8 +8,7 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$ionicLo
 
     if (hrefSelected === undefined) {
         $scope.failedPopup();
-    }
-    else {
+    } else {
         $ionicLoading.show({template: 'Loading...'});
 
         // Get data of trail selected (based on href name param)
@@ -25,5 +24,4 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$ionicLo
             $ionicLoading.hide();
         });
     }
-
 }]);

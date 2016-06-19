@@ -10,10 +10,8 @@ app.controller('TrailMapController', ['$scope', 'GoogleMaps', function ($scope, 
     $scope.openInMapsApp = function(lat, long) {
         if(ionic.Platform.isIOS()){
             window.open("http://maps.apple.com/?q="+lat+","+long, '_system');
-        }
-        else{
+        } else {
             window.open("http://maps.google.com/maps?daddr="+lat+","+long, '_system');
         }
-    }
-
+    };
 }]);

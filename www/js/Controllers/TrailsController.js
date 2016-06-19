@@ -23,7 +23,7 @@ app.controller('TrailsController', ['$rootScope', '$state', '$scope', '$ionicLoa
     $scope.data = defaultFilters;
 
     $scope.$watch(function () {
-        $scope.filteredTrails = $scope.$eval("trails | filter:searchText | trailsFilter:data | orderBy: data.sortSelected");
+        $scope.filteredTrails = $scope.$eval("trails | filter:searchText | trailsFilter:data | orderBy:data.sortSelected");
     });
 
     $scope.$on('$ionicView.enter', function () {
