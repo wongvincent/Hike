@@ -119,8 +119,16 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
             bounds.extend(marker.position);
         }
 
-        if(trails.length > 1){
+        if (trails.length > 1) {
             map.fitBounds(bounds);
+        } else {
+            // trail-map isn't rendering after first time, rerender it
+            google.maps.event.trigger(map, 'resize');
+            // recenter the map
+            var centerLat = (bounds.H.H + bounds.H.j) / 2;
+            var centerLng = (bounds.j.H + bounds.j.j) / 2;
+            var centerLatLng = new google.maps.LatLng(centerLat, centerLng);
+            map.setCenter(centerLatLng)
         }
     }
 

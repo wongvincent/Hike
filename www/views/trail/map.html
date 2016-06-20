@@ -1,22 +1,14 @@
-<ion-view title="{{trail.name}}">
-    <ion-content>
-        <div class="card" ng-if="!trail.map && !(trail.lat && trail.long)">
-            <div class="item item-text-wrap none-found">
-                No map
-            </div>
-        </div>
+<div class="card" ng-if="!(trail.lat && trail.long)">
+    <div class="item item-text-wrap none-found">
+        No map
+    </div>
+</div>
 
-        <div ng-if="trail.map">
-        </div>
+<div id="trail-map" class="map" ng-show="trail.lat && trail.long" data-tap-disabled="true">
+</div>
 
-        <div ng-show="!trail.map && trail.lat && trail.long" id="trail-map" class="map" data-tap-disabled="true">
-        </div>
-
-        <button id="bottomMapButton" ng-controller="TrailMapController"
-                ng-if="!trail.map && trail.lat && trail.long"
-                class="button button-large" ng-click="openInMapsApp(trail.lat, trail.long)">
-            Open in Maps App
-        </button>
-
-    </ion-content>
-</ion-view>
+<button id="bottomMapButton"
+        ng-if="trail.lat && trail.long"
+        class="button button-large" ng-click="openInMapsApp(trail.lat, trail.long)">
+    Open in Maps App
+</button>

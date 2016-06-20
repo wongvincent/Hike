@@ -15,6 +15,7 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$ionicLo
         var promise = TrailsService.getSingle(hrefSelected);
         promise.then(function (res) {
             $scope.trail = res;
+            $scope.$broadcast ('trailDataLoaded');
 
             var promise = FavouritesService.isFavouriteTrail(res.id);
             promise.then(function (status) {

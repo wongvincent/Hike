@@ -61,15 +61,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
                 }
             }
         })
-        .state('trail.map', {
-            url: '/map',
-            views: {
-                'trail-map-tab': {
-                    templateUrl: 'views/trail/map.html',
-                    controller: 'TrailMapController'
-                }
-            }
-        })
         .state('trail.gallery', {
             url: '/gallery',
             views: {

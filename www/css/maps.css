@@ -10,10 +10,9 @@
 }
 
 /* Only used by Trail Map */
-
-#trail-map{
+#trail-map {
     width: 100%;
-    height: 90%;
+    height: 300px;
 }
 
 button#bottomMapButton{
