@@ -44,13 +44,13 @@
     font-size: 25px;
 }
 
-.popup-head{
+.sort-trails-popup .popup-head{
     border-color: #e42012;
     background: #ef473a linear-gradient(0deg, #e42012, #e42012 50%, transparent 50%);
     color: #fff;
 }
 
-.popup-head .popup-title {
+.sort-trails-popup .popup-head .popup-title {
     color:white;
 }
 

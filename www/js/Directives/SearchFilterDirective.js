@@ -17,6 +17,7 @@ app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPop
 
                         var sortByPopup = $ionicPopup.show({
                             title: 'Sort trails',
+                            cssClass: 'sort-trails-popup',
                             templateUrl: 'views/trails/sortby.html',
                             scope: $scope,
                             buttons: [

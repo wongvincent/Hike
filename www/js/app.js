@@ -188,19 +188,21 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
 
     $scope.goBackState = function(){
         $scope.goState($rootScope.lastMainState);
-    }
+    };
 
     $scope.scrollToTop = function () {
         $ionicScrollDelegate.scrollTop();
     };
 
-    $scope.failedPopup = function () {
+    $scope.failedPopup = function (message, redirectTo) {
+        var errorMessage = message ? message : "An unexpected error occurred";
+        var goToState = redirectTo ? redirectTo : "trails.list";
         var failedPopup = $ionicPopup.alert({
-            title: 'An unexpected error occurred'
-            //template:
+                title: errorMessage
+                //template:
         });
         failedPopup.then(function (res) {
-            $state.go('trails.list');
+            $state.go(goToState);
         });
     };
 
@@ -217,7 +219,6 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
             window.location.reload(true);
         });
     };
-
     $scope.sortAlphabetically = function(array){
         function compare(a,b) {
             if(a.name < b.name) return -1;
