@@ -9,9 +9,9 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
     var showTurnOnLocationPopup = function() {
         var turnLocationOnPopup = $ionicPopup.confirm({
             title: "Your GPS is off - would you like to turn it ON?",
-            cancelText: "No",
+            cancelText: "NO",
             cancelType: "button-dark",
-            okText: "Yes",
+            okText: "YES",
             okType: "button-balanced"
         });
         turnLocationOnPopup.then(function (res) {

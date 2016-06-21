@@ -1,7 +1,7 @@
 var app = angular.module('app', ['ionic', 'ngCordova', 'controllers', 'services', 'directives']);
 var db = null;
 
-app.run(function ($ionicPlatform) {
+app.run(function ($rootScope, $ionicPlatform, $ionicHistory, $ionicPopup) {
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
@@ -12,6 +12,28 @@ app.run(function ($ionicPlatform) {
             StatusBar.styleDefault();
         }
     });
+
+    $ionicPlatform.registerBackButtonAction(function(e) {
+        if ($ionicHistory.backView()) {
+            $ionicHistory.goBack();
+        } else {
+            var exitAppPopup = $ionicPopup.confirm({
+                title: "Exit",
+                template: "Are you sure want to close Hiking Vancouver?",
+                cancelText: "NO",
+                cancelType: "button-dark",
+                okText: "YES",
+                okType: "button-dark"
+            });
+            exitAppPopup.then(function (res) {
+                if (res) {
+                    ionic.Platform.exitApp();
+                }
+            });
+        }
+        e.preventDefault();
+        return false;
+    }, 101);
 });
 
 app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
