@@ -1,4 +1,4 @@
-<ion-tabs>
+<!-- <ion-tabs>
     <ion-tab title="List" ui-sref="trails.list" class="trails">
         <ion-nav-view name="trails-list-tab"></ion-nav-view>
     </ion-tab>
@@ -6,11 +6,10 @@
     <ion-tab title="Map" ui-sref="trails.map">
         <ion-nav-view name="trails-map-tab"></ion-nav-view>
     </ion-tab>
-</ion-tabs>
+</ion-tabs> -->
 
-<ion-content padding="true">
-</ion-content>
+<ion-nav-view></ion-nav-view>
 
-<ion-footer-bar id="footer-bar" class="bar-balanced" ng-show="uiRouterState.current.name == 'trails.list'">
+<ion-footer-bar id="footer-bar" class="bar-balanced" ng-show="uiRouterState.current.name === 'trails.list'">
     <search-filter style="width:100%"></search-filter>
 </ion-footer-bar>

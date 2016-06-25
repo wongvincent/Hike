@@ -52,20 +52,13 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         })
         .state('trails.list', {
             url: '/list',
-            views: {
-                'trails-list-tab': {
-                    templateUrl: 'views/trails/list.html'
-                }
-            }
+            templateUrl: 'views/trails/list.html',
+            controller: 'TrailsListController'
         })
         .state('trails.map', {
             url: '/map',
-            views: {
-                'trails-map-tab': {
-                    templateUrl: 'views/trails/map.html',
-                    controller: 'TrailsMapController'
-                }
-            }
+            templateUrl: 'views/trails/map.html',
+            controller: 'TrailsMapController'
         })
 
         .state('trail', {
@@ -115,7 +108,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q) {
+app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', '$ionicHistory', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q, $ionicHistory) {
     $ionicPlatform.ready(function () {
         if (window.cordova) {
             $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Loading'});
@@ -195,12 +188,17 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
         return q.promise;
     };
 
-    $scope.goState = function (state) {
+    $scope.goState = function (state, disableBack) {
+        if (disableBack) {
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
+        }
         $state.go(state);
     };
 
     $scope.goBackState = function(){
-        $scope.goState($rootScope.lastMainState);
+        $scope.goState($rootScope.lastMainState, true);
     };
 
     $scope.scrollToTop = function () {

@@ -1,4 +1,9 @@
-<ion-view title="Trails map">
+<ion-view title="Map of Trails">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-ios-paper" ng-click="goState('trails.list', true)">
+        </button>
+    </ion-nav-buttons>
+
     <ion-content>
         <div class="card" ng-hide="trails && filteredTrails.length">
             <div class="item item-text-wrap none-found">

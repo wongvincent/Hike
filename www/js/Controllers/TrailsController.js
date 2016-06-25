@@ -1,6 +1,6 @@
 var app = angular.module('controllers');
 
-app.controller('TrailsController', ['$rootScope', '$state', '$scope', '$ionicLoading', function ($rootScope, $state, $scope, $ionicLoading) {
+app.controller('TrailsController', ['$rootScope', '$state', '$scope', function ($rootScope, $state, $scope) {
 
     $scope.uiRouterState = $state;
 
@@ -24,10 +24,6 @@ app.controller('TrailsController', ['$rootScope', '$state', '$scope', '$ionicLoa
 
     $scope.$watch(function () {
         $scope.filteredTrails = $scope.$eval("trails | filter:searchText | trailsFilter:data | orderBy:data.sortSelected");
-    });
-
-    $scope.$on('$ionicView.enter', function () {
-        $rootScope.lastMainState = 'trails.list';
     });
 
     $scope.resetFilters = function () {
