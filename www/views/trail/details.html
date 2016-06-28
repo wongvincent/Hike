@@ -1,4 +1,10 @@
 <ion-view title="{{trail.name}}">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-android-share-alt trail-share-button"
+                ng-click="shareTrail()">
+        </button>
+    </ion-nav-buttons>
+
     <ion-content id="trail-details">
 
         <div id="trail-info" class="card">
