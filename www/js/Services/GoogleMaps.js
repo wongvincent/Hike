@@ -26,31 +26,19 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
 
         //Wait until the map is loaded
         google.maps.event.addListenerOnce(map, 'idle', function () {
-            enableMap();
-            if(!trails || trails.length < 1) {
-                return;
-            }
-            else {
+            if (trails && trails.length) {
                 loadMarkers();
             }
         });
     }
 
-    function enableMap() {
-        $ionicLoading.hide();
-    }
-
-    function disableMap() {
-        $ionicLoading.show({
-            template: "You must be connected to the Internet to view this map."
-        })
+    function disabledMapToast() {
+        window.plugins.toast.showLongBottom(
+            "Failed to load map. Check internet connection."
+        );
     }
 
     function loadGoogleMaps() {
-        $ionicLoading.show({
-            template: 'Loading Google Maps...'
-        });
-
         //This function will be called once the SDK has been loaded
         window.mapInit = function () {
             initMap();
@@ -74,9 +62,6 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
     function checkLoaded() {
         if (typeof google == "undefined" || typeof google.maps == "undefined") {
             loadGoogleMaps();
-        }
-        else {
-            enableMap();
         }
     }
 
@@ -140,7 +125,7 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
 
             //Disable the map when the user goes offline
             $rootScope.$on('$cordovaNetwork:offline', function (event, networkState) {
-                disableMap();
+                disabledMapToast();
             });
         }
         else {
@@ -149,7 +134,7 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
             }, false);
 
             window.addEventListener("offline", function (e) {
-                disableMap();
+                disabledMapToast();
             }, false);
         }
     }
@@ -163,7 +148,7 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
             if (typeof google == "undefined" || typeof google.maps == "undefined") {
                 console.warn("Google Maps SDK needs to be loaded");
 
-                disableMap();
+                disabledMapToast();
 
                 if (ConnectivityMonitor.isOnline()) {
                     loadGoogleMaps();
@@ -172,10 +157,9 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
             else {
                 if (ConnectivityMonitor.isOnline()) {
                     initMap();
-                    enableMap();
                 }
                 else {
-                    disableMap();
+                    disabledMapToast();
                 }
             }
 
