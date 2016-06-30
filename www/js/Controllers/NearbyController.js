@@ -3,8 +3,29 @@ var app = angular.module('controllers');
 app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$ionicPopup', function($rootScope, $scope, $ionicLoading, $ionicPopup) {
     $scope.$on('$ionicView.enter', function(){
         $rootScope.lastMainState = 'nearby';
-        checkIfLocationIsOn();
+        isLocationAuthorized();
     });
+
+    var isLocationAuthorized = function() {
+        cordova.plugins.diagnostic.isLocationAuthorized(function(enabled) {
+            if (enabled) {
+                checkIfLocationIsOn();
+            } else {
+                cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
+                    switch (status) {
+                        case cordova.plugins.diagnostic.permissionStatus.GRANTED:
+                            checkIfLocationIsOn();
+                            break;
+                        default:
+                            window.plugins.toast.showLongBottom(
+                                "Location permissions required"
+                            );
+                            break;
+                    }
+                });
+            }
+        });
+    };
 
     var showTurnOnLocationPopup = function() {
         var turnLocationOnPopup = $ionicPopup.confirm({
@@ -28,11 +49,9 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
         });
     };
 
-    function checkIfLocationIsOn() {
+    var checkIfLocationIsOn = function() {
         cordova.plugins.diagnostic.isLocationEnabled(function(enabled) {
-                if (!enabled) {
-                    showTurnOnLocationPopup();
-                } else {
+                if (enabled) {
                     $ionicLoading.show({
                         template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
                     });
@@ -42,12 +61,14 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
                         enableHighAccuracy: true
                     };
                     navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, geolocationOptions);
+                } else {
+                    showTurnOnLocationPopup();
                 }
             }, function(error) {
                 geolocationError();
             }
         );
-    }
+    };
 
     var geolocationError = function(err) {
         $ionicLoading.hide();
@@ -67,9 +88,9 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
         });
     };
 
-    function geolocationSuccess(position) {
+    var geolocationSuccess = function(position) {
         function distanceFromPos(trail, posLat, posLong){
-            if(!trail.lat || !trail.long) return Number.MAX_SAFE_INTEGER;
+            if (!trail.lat || !trail.long) return Number.MAX_SAFE_INTEGER;
 
             var R = 6371; // Radius of the earth in km
             var dLat = deg2rad(trail.lat-posLat);  // deg2rad below
@@ -102,5 +123,5 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
         });
 
         $ionicLoading.hide();
-    }
+    };
 }]);
