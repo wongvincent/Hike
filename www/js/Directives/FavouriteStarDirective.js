@@ -1,6 +1,6 @@
 var app = angular.module('directives');
 
-app.directive('favouriteStar', ['FavouritesService', 'TrailsService', function(FavouritesService, TrailsService){
+app.directive('favouriteStar', ['FavouritesService', function(FavouritesService) {
     return {
         templateUrl: 'views/trail/favouritestar.html',
         restrict: "E",

@@ -9,7 +9,7 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter'
     if (hrefSelected === undefined) {
         $scope.failedPopup();
     } else {
-        $ionicLoading.show({template: 'Loading...'});
+        $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>'});
 
         // Get data of trail selected (based on href name param)
         var promise = TrailsService.getSingle(hrefSelected);

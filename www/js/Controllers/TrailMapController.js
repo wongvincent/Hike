@@ -5,7 +5,6 @@ app.controller('TrailMapController', ['$scope', 'GoogleMaps', function ($scope, 
         var mapElement = angular.element(document.querySelector("#trail-map"));
         mapElement.empty();
         GoogleMaps.init([$scope.trail], "trail-map");
-        google.maps.event.trigger(map, 'resize');
     });
 
     $scope.openInMapsApp = function(lat, long) {

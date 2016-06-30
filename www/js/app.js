@@ -113,7 +113,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', '$ionicHistory', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q, $ionicHistory) {
     $ionicPlatform.ready(function () {
         if (window.cordova) {
-            $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Loading'});
             window.plugins.sqlDB.copy("trails.db", 0, openDatabase, openDatabase);
 
             function openDatabase() {
@@ -131,11 +130,8 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
                             $cordovaSplashscreen.hide();
                         });
                     }
-
-
                 });
             }
-            $ionicLoading.hide();
         }
     });
 
@@ -145,7 +141,6 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
 
     $scope.updateFavourites = function(){
         var q = $q.defer();
-        $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Loading'});
 
         // Get the favouriteIds
         var promise = FavouritesService.getFavourites();
@@ -182,8 +177,6 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
 
             // Order list of favourites alphabetically
             $scope.sortAlphabetically($scope.favourites);
-
-            $ionicLoading.hide();
 
             q.resolve();
         });
@@ -242,7 +235,13 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
         array.sort(compare);
     };
 
-    $rootScope.$on('event:favourite-change', function() {
+    $rootScope.$on('event:add-favourite', function() {
+        //TODO: optimize so updateFavourites does not need to be called
+        $scope.updateFavourites();
+    });
+
+    $rootScope.$on('event:remove-favourite', function() {
+        //TODO: optimize so updateFavourites does not need to be called
         $scope.updateFavourites();
     });
 }]);
