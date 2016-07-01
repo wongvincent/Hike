@@ -5,8 +5,8 @@
 }
 
 #filter-difficulty-title{
-    font-weight:500;
-    margin-bottom:10px;
+    font-weight: 500;
+    margin-bottom: 10px;
 }
 
 #filter-difficulty-check{
@@ -21,13 +21,17 @@
 }
 
 button#filter-cancel {
-    width:50%;
-    float:left;
+    width: 50%;
+    float: left;
+    font-weight: bold;
+    color: white;
 }
 
 button#filter-ok {
-    width:50%;
-    float:right;
+    width: 50%;
+    float: right;
+    font-weight: bold;
+    color: white;
 }
 
 .item-checkbox-right {
@@ -41,5 +45,5 @@ button#filter-ok {
 }
 
 .item-checkbox-right span {
-    font-weight:500;
+    font-weight: 500;
 }

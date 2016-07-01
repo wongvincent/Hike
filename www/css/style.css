@@ -1,4 +1,7 @@
 /*GENERAL app css changes */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
 
 .side-menu-content {
     background-color: #444;
@@ -43,16 +46,6 @@
 
 .side-menu-content .left-menu-item .name {
     font-size: 25px;
-}
-
-.sort-trails-popup .popup-head{
-    border-color: #e42012;
-    background: #ef473a linear-gradient(0deg, #e42012, #e42012 50%, transparent 50%);
-    color: #fff;
-}
-
-.sort-trails-popup .popup-head .popup-title {
-    color:white;
 }
 
 .bar.bar-balanced {

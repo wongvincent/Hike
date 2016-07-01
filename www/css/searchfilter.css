@@ -35,7 +35,7 @@
 
 #search-filter > div.sort-and-filter{
     display: inline-block;
-    float:right;
+    float: right;
 }
 
 #search-filter > div.sort-and-filter > button {
@@ -46,10 +46,20 @@
     background-color: white;
     color: black;
     margin-left: 4px;
-    border: 2px solid crimson;
     border-radius: 6px;
 }
 
 #search-filter > div.sort-and-filter > button > icon {
     padding-right: 3px;
+}
+
+.sort-trails-popup .popup-head{
+    background-color: #28a54c;
+    color: #fff;
+}
+
+.sort-trails-popup .popup-head .popup-title {
+    color :white;
+    font-weight: bold;
+    font-size: 20px;
 }
