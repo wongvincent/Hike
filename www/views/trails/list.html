@@ -5,7 +5,7 @@
     </ion-nav-buttons>
 
     <ion-content>
-        <div class="card" ng-hide="trails && filteredTrails.length">
+        <div class="card" ng-show="filteredTrails.length === 0 && trails">
             <div class="item item-text-wrap none-found">
                 No trails matching filters
                 <button id="resetAllFilters" class="button button-block button-assertive" ng-click="resetFilters()">
