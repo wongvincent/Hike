@@ -12,7 +12,8 @@
 }
 
 .side-menu-content .left-side-menu-header-bar .title-name {
-    font-size: 34px;
+    font-size: 32px;
+    padding-bottom: 5px;
 }
 
 .side-menu-content .left-side-menu-header-bar .title-icon {
