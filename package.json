@@ -1,6 +1,6 @@
 {
   "name": "Hiking Vancouver",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Hiking in and around Vancouver, British Columbia, Canada",
   "dependencies": {
     "gulp": "^3.5.6",
