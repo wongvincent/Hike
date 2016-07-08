@@ -1,49 +1,98 @@
 /* FILTER POPUP MODAL */
-.small-icon:before {
+.modal-backdrop.active .modal-backdrop-bg {
+    background-color: #000;
+    opacity: 0.5;
+}
+.filter-by-modal {
+    bottom: 0;
+    min-height: initial;
+    top: initial;
+    height: 60%;
+}
+
+.filter-by-modal .bar-header {
+    font-weight: bold;
+}
+
+.filter-by-modal .bar-header .title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.filter-by-modal .bar-header .title #filter-title {
+    height: 18px;
+    font-size: 25px;
+    line-height: 25px;
+    margin: 6px 0 4px;
+}
+
+.filter-by-modal .bar-header .title #number-of-results {
+    color: #AAAAAA;
+    line-height: 17px;
+    font-weight: normal;
+}
+
+.filter-by-modal .bar-header #reset-button {
+    color: #AAAAAA;
+    font-weight: bold;
+}
+
+.filter-by-modal .bar-header #done-button {
+    color: #28A54C;
+    font-weight: bold;
+}
+
+.filter-by-modal .small-icon:before {
     font-size: 20px !important;
-    margin-top:2px;
+    margin-top: 2px;
 }
 
-#filter-difficulty-title{
-    font-weight: 500;
-    margin-bottom: 10px;
-}
-
-#filter-difficulty-check{
-    white-space: normal;
-}
-
-#filter-difficulty-check .item-checkbox{
+.filter-by-modal #filter-difficulty-title {
     display: inline-block;
-    white-space: normal!important;
-    padding-left: 50px;
-    padding-right: 10px;
 }
 
-button#filter-cancel {
-    width: 50%;
-    float: left;
-    font-weight: bold;
-    color: white;
-}
-
-button#filter-ok {
-    width: 50%;
+.filter-by-modal #filter-difficulty-check {
     float: right;
-    font-weight: bold;
-    color: white;
 }
 
-.item-checkbox-right {
-    /*the default item padding*/
+.filter-by-modal #filter-difficulty-check .item-checkbox {
+    display: inline-block;
+    padding: 0 5px 0 44px;
+    border: none;
+}
+
+.filter-by-modal .item-checkbox-right {
     padding: 15px;
 }
 
-.item-checkbox-right .checkbox input,
-.item-checkbox-right .checkbox-icon {
+.filter-by-modal .item-checkbox-right .checkbox input,
+.filter-by-modal .item-checkbox-right .checkbox-icon {
     float: right;
 }
 
-.item-checkbox-right span {
-    font-weight: 500;
+.filter-by-modal .group-header-item.item {
+    background-color: white;
+}
+
+.filter-by-modal .group-header-item.item .current-filter-name {
+    color: #AAAAAA;
+    float: right;
+    margin-right: 24px;
+}
+
+.filter-by-modal .list .item.item-accordion {
+    line-height: 50px;
+    padding: 0 16px 0 35px;
+    transition: 0.09s all linear;
+}
+.filter-by-modal .list .item.item-accordion.ng-hide {
+    line-height: 0px;
+}
+.filter-by-modal .list .item.item-accordion.ng-hide-add,
+.filter-by-modal .list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+}
+
+.filter-by-modal .filtergroup-collapsible-icon-toggle {
+    float: right;
 }

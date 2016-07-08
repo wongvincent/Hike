@@ -7,11 +7,11 @@ app.controller('TrailsController', ['$rootScope', '$state', '$scope', function (
     var defaultFilters = {
         sortSelected: "name",
         sortSelectedIndex: "0",
-        filterLocation: "",
-        filterTimeMin: "0",
-        filterTimeMax: "999",
-        filterDistanceMin: "0",
-        filterDistanceMax: "999",
+        filterLocation: { name: "Any", value: []},
+        filterTimeMin: { name: "No Minimum", value: 0 },
+        filterTimeMax: { name: "No Maximum", value: 999 },
+        filterDistanceMin: { name: "No Minimum", value: 0},
+        filterDistanceMax: { name: "No Maximum", value: 999},
         filterDifficultyEasy: true,
         filterDifficultyModerate: true,
         filterDifficultyHard: true,
@@ -38,12 +38,11 @@ app.filter('trailsFilter', function () {
         if (trails === undefined) return true;
 
         locationFilter = function (trail) {
-            if (data.filterLocation === "")
-                return true;
-            var locationSelectedArray = data.filterLocation.toLowerCase().split(',');
+            var filterLocationValue = data.filterLocation.value;
+            if (filterLocationValue.length === 0) return true;
             var trailLocation = trail.location.toLowerCase();
-            for (var i = 0; i < locationSelectedArray.length; i++) {
-                var indexOf = trailLocation.indexOf(locationSelectedArray[i]);
+            for (var i = 0; i < filterLocationValue.length; i++) {
+                var indexOf = trailLocation.indexOf(filterLocationValue[i].toLowerCase());
                 if (indexOf > -1) {
                     return true;
                 }
@@ -52,13 +51,13 @@ app.filter('trailsFilter', function () {
         };
 
         timeFilter = function (trail) {
-            return (Math.round(trail.time * 100) >= Math.round(data.filterTimeMin * 100) &&
-            Math.round(trail.time * 100) <= Math.round(data.filterTimeMax * 100));
+            return (Math.round(trail.time * 100) >= Math.round(data.filterTimeMin.value * 100) &&
+            Math.round(trail.time * 100) <= Math.round(data.filterTimeMax.value * 100));
         };
 
         distanceFilter = function (trail) {
-            return (Math.round(trail.distance * 100) >= Math.round(data.filterDistanceMin * 100) &&
-            Math.round(trail.distance * 100) <= Math.round(data.filterDistanceMax * 100));
+            return (Math.round(trail.distance * 100) >= Math.round(data.filterDistanceMin.value * 100) &&
+            Math.round(trail.distance * 100) <= Math.round(data.filterDistanceMax.value * 100));
         };
 
         difficultyFilter = function (trail) {

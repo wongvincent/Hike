@@ -1,19 +1,24 @@
-<div class="modal">
-    <ion-header-bar class="bar-balanced">
+<div class="modal filter-by-modal">
+    <ion-header-bar class="bar-stable">
         <div class="buttons">
-            <button class="button button-clear" ng-click="resetFilters()">
+            <button id="reset-button" class="button button-clear" ng-click="resetFilters()">
                 RESET
             </button>
         </div>
-        <h1 class="title">Filter trails</h1>
+
+        <h1 class="title">
+            <div id="filter-title">Filter</div>
+            <div id="number-of-results">{{filteredTrails.length}} results</div>
+        </h1>
+
         <div class="buttons">
-            <button class="button button-clear" ng-click="closeFilterModal()">DONE</button>
+            <button id="done-button" class="button button-clear" ng-click="closeFilterModal()">DONE</button>
         </div>
     </ion-header-bar>
 
     <ion-content>
         <div class="list">
-            <div class="item">
+            <ion-item>
                 <div id="filter-difficulty-title">
                     Difficulty
                 </div>
@@ -21,70 +26,31 @@
                     <ion-checkbox ng-model="data.filterDifficultyEasy">
                         Easy
                     </ion-checkbox>
-
                     <ion-checkbox ng-model="data.filterDifficultyModerate">
                         Moderate
                     </ion-checkbox>
-
                     <ion-checkbox ng-model="data.filterDifficultyHard">
                         Hard
                     </ion-checkbox>
                 </div>
-            </div>
+            </ion-item>
 
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Location
-                </div>
-                <select ng-model="data.filterLocation">
-                    <option value="">Any</option>
-                    <option ng-repeat="location in filterLocations" ng-value="location.filterval">{{::location.text}}</option>
-                </select>
-            </label>
-
-            <div class="item item-divider">
-                Time (hours)    
+            <div ng-repeat="filterGroup in filterGroups">
+                <ion-item
+                          ng-click="toggleGroup(filterGroup)"
+                          ng-class="{active: isGroupShown(filterGroup)}"
+                          class="group-header-item">
+                    {{::filterGroup.name}}
+                    <i class="icon filtergroup-collapsible-icon-toggle" ng-class="isGroupShown(filterGroup) ? 'ion-chevron-down' : 'ion-chevron-right'"></i>
+                    <div class="current-filter-name">{{data[filterGroup.key].name}}</div>
+                </ion-item>
+                <ion-item class="item-accordion item-stable"
+                          ng-repeat="item in filterGroup.items"
+                          ng-show="isGroupShown(filterGroup)"
+                          ng-click="saveFilterValue(filterGroup.key, item)">
+                    {{::item.name}}
+                </ion-item>
             </div>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Min
-                </div>
-                <select ng-model="data.filterTimeMin">
-                    <option value="0">No min</option>
-                    <option ng-repeat="n in []| range:3" value="{{Math.pow(2, (n + 1))}}">{{Math.pow(2, (n + 1))}} hrs</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Max
-                </div>
-                <select ng-model="data.filterTimeMax">
-                    <option ng-repeat="n in []| range:3" value="{{Math.pow(2, (n + 1))}}">{{Math.pow(2, (n + 1))}} hrs</option>
-                    <option value="999">No max</option>
-                </select>
-            </label>
-
-            <div class="item item-divider">
-                Distance (km)
-            </div>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Min
-                </div>
-                <select ng-model="data.filterDistanceMin">
-                    <option value="0">No min</option>
-                    <option ng-repeat="n in []| range:4" value="{{Math.pow(2, (n + 1))}}">{{Math.pow(2, (n + 1))}} km</option>
-                </select>
-            </label>
-            <label class="item item-input item-select">
-                <div class="input-label">
-                    Max
-                </div>
-                <select ng-model="data.filterDistanceMax">
-                    <option ng-repeat="n in []| range:4" value="{{Math.pow(2, (n + 1))}}">{{Math.pow(2, (n + 1))}} km</option>
-                    <option value="999">No max</option>
-                </select>
-            </label>
 
             <ion-checkbox ng-model="data.filterInSeason" class="item-checkbox-right">
                 <span>In Season (currently accessible)</span>

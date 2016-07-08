@@ -8,12 +8,12 @@
         <div class="card" ng-show="filteredTrails.length === 0 && trails">
             <div class="item item-text-wrap none-found">
                 No trails matching filters
-                <button id="resetAllFilters" class="button button-block button-assertive" ng-click="resetFilters()">
+                <button id="resetAllFilters" class="button button-block button-balanced" ng-click="resetFilters()">
                     Reset all filters
                 </button>
             </div>
         </div>
-            <ion-item class="item-text-wrap list-trail-item" ng-if="trails" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in filteredTrails" ui-sref='trail.details({name: trail.href})'>
+            <ion-item class="item-text-wrap list-trail-item" ng-if="trails" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in filteredTrails track by trail.id" ui-sref='trail.details({name: trail.href})'>
                 <div class="row">
                     {{::trail.name}}
                 </div>

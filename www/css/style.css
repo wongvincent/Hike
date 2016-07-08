@@ -65,8 +65,8 @@ ol {
 }
 
 .none-found {
-    font-weight:bold; 
-    text-align:center;
+    font-weight: bold;
+    text-align: center;
 }
 
 .platform-android .bar .title {
@@ -79,4 +79,9 @@ ol {
 
 .tab-item{
     font-size: 18px;
+}
+
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+    background: green;
+    border-color: green;
 }
