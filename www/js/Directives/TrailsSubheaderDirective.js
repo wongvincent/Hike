@@ -1,8 +1,8 @@
 var app = angular.module('directives');
 
-app.directive('searchFilter', ['$ionicPopup', '$ionicModal', function ($ionicPopup, $ionicModal) {
+app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionicPopup, $ionicModal) {
     return {
-        templateUrl: 'views/trails/searchfilter.html',
+        templateUrl: 'views/trails/trailsSubheader.html',
         controller: ['$scope', function ($scope) {
 
             $scope.sortOptions = [
