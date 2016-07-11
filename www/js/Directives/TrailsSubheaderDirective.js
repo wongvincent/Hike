@@ -25,8 +25,6 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                             type: 'button-clear button-small disabled',
                             onTap: function (e) {
                                 $scope.scrollToTop();
-                                $scope.data.sortSelected = $scope.sortOptions[$scope.data.sortSelectedIndex].sortby;
-                                return $scope.data.sortSelectedIndex;
                             }
                         },
                         {
@@ -120,7 +118,6 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
 
             var defaultFilters = {
                 sortSelected: "name",
-                sortSelectedIndex: "0",
                 filterLocation: { name: "Any", value: []},
                 filterTimeMin: { name: "No Minimum", value: 0 },
                 filterTimeMax: { name: "No Maximum", value: 999 },
