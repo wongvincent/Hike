@@ -1,0 +1,11 @@
+/* SORT BY popup */
+.sort-trails-popup .popup-head{
+    background-color: #28a54c;
+    color: #fff;
+}
+
+.sort-trails-popup .popup-head .popup-title {
+    color :white;
+    font-weight: bold;
+    font-size: 20px;
+}

@@ -1,0 +1,32 @@
+/* SUBHEADER BAR */
+
+.trails-nav-view ion-content {
+    top: 82px !important;
+}
+
+.trails-subheader-bar {
+    margin-top: 44px;
+    height: 38px;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.trails-subheader-bar .number-of-results {
+    width: calc(100% - 100px);
+    font-size: 26px;
+    line-height: 32px;
+    padding-left: 8px;
+}
+
+.trails-subheader-bar .right-side-buttons {
+    min-width: 100px;
+    text-align: right;
+}
+
+.trails-subheader-bar .right-side-buttons button {
+    padding-left: 10px;
+}
+
+.trails-map-view .trails-subheader-bar .right-side-buttons {
+    visibility: hidden;
+}
