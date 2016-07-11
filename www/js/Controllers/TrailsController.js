@@ -1,36 +1,7 @@
 var app = angular.module('controllers');
 
 app.controller('TrailsController', ['$rootScope', '$state', '$scope', function ($rootScope, $state, $scope) {
-
     $scope.uiRouterState = $state;
-
-    var defaultFilters = {
-        sortSelected: "name",
-        sortSelectedIndex: "0",
-        filterLocation: { name: "Any", value: []},
-        filterTimeMin: { name: "No Minimum", value: 0 },
-        filterTimeMax: { name: "No Maximum", value: 999 },
-        filterDistanceMin: { name: "No Minimum", value: 0},
-        filterDistanceMax: { name: "No Maximum", value: 999},
-        filterDifficultyEasy: true,
-        filterDifficultyModerate: true,
-        filterDifficultyHard: true,
-        filterDogFriendly: false,
-        filterTransit: false,
-        filterInSeason: false
-    };
-
-    $scope.data = defaultFilters;
-
-    $scope.$watch(function () {
-        $scope.filteredTrails = $scope.$eval("trails | filter:searchText | trailsFilter:data | orderBy:data.sortSelected");
-    });
-
-    $scope.resetFilters = function () {
-        $scope.searchText = '';
-        $scope.data = defaultFilters;
-    };
-
 }]);
 
 app.filter('trailsFilter', function () {

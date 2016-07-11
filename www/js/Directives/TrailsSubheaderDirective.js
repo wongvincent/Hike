@@ -39,7 +39,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 });
             };
 
-            $scope.filterLocation =
+            var filterLocation =
                 {
                     key: "filterLocation",
                     name: "Location",
@@ -56,7 +56,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                     ]
                 };
 
-            $scope.filterTimeMin =
+            var filterTimeMin =
                 {
                     key: "filterTimeMin",
                     name: "Time - Minimum",
@@ -68,7 +68,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                     ]
                 };
 
-            $scope.filterTimeMax =
+            var filterTimeMax =
             {
                 key: "filterTimeMax",
                 name: "Time - Maximum",
@@ -80,7 +80,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 ]
             };
 
-            $scope.filterDistanceMin =
+            var filterDistanceMin =
             {
                 key: "filterDistanceMin",
                     name: "Distance - Minimum",
@@ -93,7 +93,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 ]
             };
 
-            $scope.filterDistanceMax =
+            var filterDistanceMax =
             {
                 key: "filterDistanceMax",
                 name: "Distance - Maximum",
@@ -107,38 +107,51 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
             };
 
             $scope.filterGroups = [
-                $scope.filterLocation,
-                $scope.filterTimeMin,
-                $scope.filterTimeMax,
-                $scope.filterDistanceMin,
-                $scope.filterDistanceMax
+                filterLocation,
+                filterTimeMin,
+                filterTimeMax,
+                filterDistanceMin,
+                filterDistanceMax
             ];
 
             $scope.saveFilterValue = function(groupKey, item) {
                 $scope.data[groupKey] = item;
             };
 
+            var defaultFilters = {
+                sortSelected: "name",
+                sortSelectedIndex: "0",
+                filterLocation: { name: "Any", value: []},
+                filterTimeMin: { name: "No Minimum", value: 0 },
+                filterTimeMax: { name: "No Maximum", value: 999 },
+                filterDistanceMin: { name: "No Minimum", value: 0},
+                filterDistanceMax: { name: "No Maximum", value: 999},
+                filterDifficultyEasy: true,
+                filterDifficultyModerate: true,
+                filterDifficultyHard: true,
+                filterDogFriendly: false,
+                filterTransit: false,
+                filterInSeason: false
+            };
+
+            $scope.data = angular.copy(defaultFilters);
+
+            var watchCollectionNames = Object.keys(defaultFilters).map(function (obj) {
+                return "data." + obj;
+            });
+            $scope.$watch('trails', function() {
+                $scope.filteredTrails = $scope.$eval("trails | filter:searchText | trailsFilter:data | orderBy:data.sortSelected");
+            });
+            $scope.$watchGroup(watchCollectionNames, function() {
+                $scope.filteredTrails = $scope.$eval("trails | filter:searchText | trailsFilter:data | orderBy:data.sortSelected");
+            });
+
             $scope.filterby = function () {
                 $scope.closeFilterModal();
             };
 
             $scope.resetFilters = function () {
-                $scope.data = {
-                    sortSelected: "name",
-                    sortSelectedIndex: "0",
-                    filterLocation: { name: "Any", value: []},
-                    filterTimeMin: { name: "No Minimum", value: 0 },
-                    filterTimeMax: { name: "No Maximum", value: 999 },
-                    filterDistanceMin: { name: "No Minimum", value: 0},
-                    filterDistanceMax: { name: "No Maximum", value: 999},
-                    filterDifficultyEasy: true,
-                    filterDifficultyModerate: true,
-                    filterDifficultyHard: true,
-                    filterDogFriendly: false,
-                    filterTransit: false,
-                    filterInSeason: false
-                };
-
+                angular.copy(defaultFilters, $scope.data);
                 $scope.searchText = '';
                 window.plugins.toast.showShortBottom(
                     "Filters reset"
