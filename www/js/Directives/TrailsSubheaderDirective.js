@@ -117,6 +117,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
             };
 
             var defaultFilters = {
+                searchText: "",
                 sortSelected: "name",
                 filterLocation: { name: "Any", value: []},
                 filterTimeMin: { name: "No Minimum", value: 0 },
@@ -137,10 +138,10 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 return "data." + obj;
             });
             $scope.$watch('trails', function() {
-                $scope.filteredTrails = $scope.$eval("trails | filter:searchText | trailsFilter:data | orderBy:data.sortSelected");
+                $scope.filteredTrails = $scope.$eval("trails | filter:data.searchText | trailsFilter:data | orderBy:data.sortSelected");
             });
             $scope.$watchGroup(watchCollectionNames, function() {
-                $scope.filteredTrails = $scope.$eval("trails | filter:searchText | trailsFilter:data | orderBy:data.sortSelected");
+                $scope.filteredTrails = $scope.$eval("trails | filter:data.searchText | trailsFilter:data | orderBy:data.sortSelected");
             });
 
             $scope.filterby = function () {
@@ -149,7 +150,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
 
             $scope.resetFilters = function () {
                 angular.copy(defaultFilters, $scope.data);
-                $scope.searchText = '';
+                $scope.data.searchText = '';
                 window.plugins.toast.showShortBottom(
                     "Filters reset"
                 );

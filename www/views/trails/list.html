@@ -1,8 +1,20 @@
-<ion-view title="List of Trails" class="trails-list-view">
-    <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-map" ng-click="goState('trails.map', true)">
-        </button>
-    </ion-nav-buttons>
+<ion-view class="trails-list-view">
+    <ion-nav-bar ng-show="!searchBarActive" class="bar-balanced"> <!-- workaround for ng-class-->
+        <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            Trails List
+        </ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-android-search" ng-click="showSearchBar()">
+            </button>
+            <button class="button button-icon button-clear ion-map" ng-click="goState('trails.map', true)">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <search-bar></search-bar>
 
     <trails-subheader></trails-subheader>
 
