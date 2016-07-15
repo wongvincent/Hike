@@ -1,5 +1,5 @@
 .trail-tabs .tab-nav {
-    top: 44px !important;
+    top: 56px !important;
 }
 
 #trail-info {
@@ -10,8 +10,8 @@
 }
 
 #trail-details #trail-info .item .row span:nth-child(1){
-    font-weight:bold;
-    padding-right:5px;
+    font-weight: bold;
+    padding-right: 5px;
 }
 
 #trail-details ol .item,  #trail-details ul .item{

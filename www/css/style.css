@@ -1,51 +1,14 @@
 /*GENERAL app css changes */
+* {
+    font-family: sans-serif;
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
     display: none !important;
 }
 
-.side-menu-content {
-    background-color: #444;
-    color: white;
-}
-
-.side-menu-content .left-side-menu-header-bar {
-    text-align: center;
-    background-color: #444;
-    color: white;
-}
-
-.side-menu-content .left-side-menu-header-bar .title-name {
-    font-size: 32px;
-    padding-bottom: 5px;
-}
-
-.side-menu-content .left-side-menu-header-bar .title-icon {
-    height: 120px;
-    width: 120px;
-    margin-bottom: 10px;
-    border-radius: 10px;
-}
-
-.side-menu-content .left-menu-item {
-    font-size: 20px;
-}
-
-.side-menu-content .left-menu-item a.item-content {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: #444;
-    color: white;
-}
-
-.side-menu-content .left-menu-item .icon-container {
-    margin: 0 10px;
-    font-size: 42px;
-    vertical-align: sub;
-}
-
-
-.side-menu-content .left-menu-item .name {
-    font-size: 25px;
+.bar {
+    padding: 0 16px ;
 }
 
 .bar.bar-balanced {
@@ -69,19 +32,59 @@ ol {
     text-align: center;
 }
 
-.platform-android .bar .title {
-    line-height: 55px !important;
+.platform-android .bar-header .title {
+    line-height: 56px !important;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 23px;
+    top: 4px;
+    left: 48px;
 }
 
-.tabs{
+.platform-android .bar-header .buttons-left button,
+.platform-android .bar-header .buttons-right button {
+    top: 7px;
+}
+
+.bar .buttons-right button {
+    margin-left: 16px;
+    height: 100%;
+}
+
+.platform-android .bar-header .buttons-right {
+    top: 0;
+    margin-right: 9px;
+}
+
+.bar-header {
+    height: 56px;
+}
+
+.has-header {
+    top: 56px;
+}
+
+.tabs {
     height: 37px !important;
 }
 
-.tab-item{
+.tab-item {
     font-size: 18px;
 }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
     background: green;
     border-color: green;
+}
+
+.bar .right-buttons button {
+    padding-left: 10px !important;
+}
+
+.has-header.has-tabs-top {
+    top: 89px;
+}
+
+ion-header-bar > div {
+    height: 56px;
 }

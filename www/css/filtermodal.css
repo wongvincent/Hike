@@ -28,13 +28,14 @@
 
 .filter-by-modal .bar-header .title #number-of-results {
     color: #AAAAAA;
-    line-height: 17px;
+    line-height: 20px;
     font-weight: normal;
 }
 
 .filter-by-modal .bar-header #reset-button {
     color: #AAAAAA;
     font-weight: bold;
+    top: 4px;
 }
 
 .filter-by-modal .bar-header #done-button {
