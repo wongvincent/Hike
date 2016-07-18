@@ -7,7 +7,7 @@ Built on Ionic framework (Advanced HTML5 and AngularJS Mobile App Framework).
 Uses SQLite for data storage.
 
 ## Features ##
-* View over 90 trails in List or Maps view.
+* View over 100 trails in List or Maps view.
 * **Filter** trails (on Location, Time min/max, Distance min/max, Difficulty, Dog Friendly, Transit Accessible, In Season)
 * **Sort** trails (by Name, Time, Distance)
 * Find **nearby** trails (by using the device's location)
