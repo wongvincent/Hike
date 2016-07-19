@@ -1,9 +1,7 @@
 <div class="modal filter-by-modal">
     <ion-header-bar class="bar-stable">
         <div class="buttons">
-            <button id="reset-button" class="button button-clear" ng-click="resetFilters()">
-                RESET
-            </button>
+            <button id="cancel-button" class="button button-clear" ng-click="closeFilterModal()">Cancel</button>
         </div>
 
         <h1 class="title">
@@ -12,7 +10,7 @@
         </h1>
 
         <div class="buttons">
-            <button id="apply-button" class="button button-clear" ng-click="applyFilters()">APPLY</button>
+            <button id="reset-button" class="button button-clear" ng-click="resetFilters()">Reset</button>
         </div>
     </ion-header-bar>
 
@@ -66,4 +64,8 @@
 
         </div>
     </ion-content>
+
+    <ion-footer-bar class="bar-clear footer-bar">
+        <button id="apply-button" class="button button-balanced" ng-click="applyFilters()">Save Filters</button>
+    </ion-footer-bar>
 </div>

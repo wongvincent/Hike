@@ -10,6 +10,10 @@
     height: calc(100% - 56px);
 }
 
+.filter-by-modal .has-footer {
+    bottom: 77px;
+}
+
 .filter-by-modal .bar-header {
     font-weight: bold;
 }
@@ -32,15 +36,18 @@
     font-weight: normal;
 }
 
-.filter-by-modal .bar-header #reset-button {
-    color: #AAAAAA;
-    font-weight: bold;
-    top: 4px;
+.filter-by-modal .bar-header .buttons {
+    top: 0;
+    bottom: 0;
 }
 
-.filter-by-modal .bar-header #apply-button {
+.filter-by-modal .bar-header .buttons button {
     color: #28A54C;
     font-weight: bold;
+    line-height: 56px;
+    font-size: 24px;
+    padding-right: 10px;
+    paddint-top: 3px;
 }
 
 .filter-by-modal .small-icon:before {
@@ -96,4 +103,15 @@
 
 .filter-by-modal .filtergroup-collapsible-icon-toggle {
     float: right;
+}
+
+.filter-by-modal .footer-bar {
+    height: 65px;
+}
+
+.filter-by-modal .footer-bar #apply-button {
+    font-weight: bold;
+    font-size: 24px;
+    width: 100%;
+    height: 56px;
 }
