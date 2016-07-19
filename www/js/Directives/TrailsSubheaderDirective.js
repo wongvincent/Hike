@@ -113,7 +113,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
             ];
 
             $scope.saveFilterValue = function(groupKey, item) {
-                $scope.data[groupKey] = item;
+                $scope.tempData[groupKey] = item;
             };
 
             var defaultFilters = {
@@ -134,26 +134,32 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
 
             $scope.data = angular.copy(defaultFilters);
 
-            var watchCollectionNames = Object.keys(defaultFilters).map(function (obj) {
-                return "data." + obj;
-            });
             $scope.$watch('trails', function() {
                 $scope.filteredTrails = $scope.$eval("trails | filter:data.searchText | trailsFilter:data | orderBy:data.sortSelected");
             });
-            $scope.$watchGroup(watchCollectionNames, function() {
+            $scope.$watchGroup(["data.searchText", "data.sortSelected"], function() {
                 $scope.filteredTrails = $scope.$eval("trails | filter:data.searchText | trailsFilter:data | orderBy:data.sortSelected");
             });
 
-            $scope.filterby = function () {
-                $scope.closeFilterModal();
-            };
+            $scope.$watchGroup(["tempData.filterLocation", "tempData.filterTimeMin", "tempData.filterTimeMax",
+                "tempData.filterDistanceMin", "tempData.filterDistanceMax", "tempData.filterDifficultyEasy",
+                "tempData.filterDifficultyModerate", "tempData.filterDifficultyHard", "tempData.filterDogFriendly",
+                "tempData.filterTransit", "tempData.filterInSeason"], function() {
+                $scope.tempFilteredTrails = $scope.$eval("trails | filter:tempData.searchText | trailsFilter:tempData | orderBy:tempData.sortSelected");
+            });
 
             $scope.resetFilters = function () {
                 angular.copy(defaultFilters, $scope.data);
-                $scope.data.searchText = '';
+                angular.copy(defaultFilters, $scope.tempData);
                 window.plugins.toast.showShortBottom(
-                    "Filters reset"
+                    "Filters Reset"
                 );
+            };
+
+            $scope.applyFilters = function() {
+                $scope.data = angular.copy($scope.tempData);
+                $scope.filteredTrails = $scope.tempFilteredTrails;
+                $scope.closeFilterModal();
             };
 
             $ionicModal.fromTemplateUrl('views/trails/filterby.html', {
@@ -164,12 +170,14 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
             });
 
             $scope.openFilterModal = function () {
+                $scope.tempData = angular.copy($scope.data);
                 $scope.filterModal.show();
             };
             $scope.closeFilterModal = function () {
                 $scope.filterModal.hide();
                 $scope.scrollToTop();
             };
+
             //Cleanup the modal when we're done with it!
             $scope.$on('$destroy', function () {
                 $scope.filterModal.remove();

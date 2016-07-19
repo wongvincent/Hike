@@ -5,9 +5,9 @@
 }
 .filter-by-modal {
     bottom: 0;
-    min-height: initial;
     top: initial;
-    height: 60%;
+    min-height: initial;
+    height: calc(100% - 56px);
 }
 
 .filter-by-modal .bar-header {
@@ -38,7 +38,7 @@
     top: 4px;
 }
 
-.filter-by-modal .bar-header #done-button {
+.filter-by-modal .bar-header #apply-button {
     color: #28A54C;
     font-weight: bold;
 }
@@ -87,7 +87,7 @@
     transition: 0.09s all linear;
 }
 .filter-by-modal .list .item.item-accordion.ng-hide {
-    line-height: 0px;
+    line-height: 0;
 }
 .filter-by-modal .list .item.item-accordion.ng-hide-add,
 .filter-by-modal .list .item.item-accordion.ng-hide-remove {

@@ -8,11 +8,11 @@
 
         <h1 class="title">
             <div id="filter-title">Filter</div>
-            <div id="number-of-results">{{filteredTrails.length}} results</div>
+            <div id="number-of-results">{{tempFilteredTrails.length}} results</div>
         </h1>
 
         <div class="buttons">
-            <button id="done-button" class="button button-clear" ng-click="closeFilterModal()">DONE</button>
+            <button id="apply-button" class="button button-clear" ng-click="applyFilters()">APPLY</button>
         </div>
     </ion-header-bar>
 
@@ -23,13 +23,13 @@
                     Difficulty
                 </div>
                 <div id="filter-difficulty-check">
-                    <ion-checkbox ng-model="data.filterDifficultyEasy">
+                    <ion-checkbox ng-model="tempData.filterDifficultyEasy">
                         Easy
                     </ion-checkbox>
-                    <ion-checkbox ng-model="data.filterDifficultyModerate">
+                    <ion-checkbox ng-model="tempData.filterDifficultyModerate">
                         Moderate
                     </ion-checkbox>
-                    <ion-checkbox ng-model="data.filterDifficultyHard">
+                    <ion-checkbox ng-model="tempData.filterDifficultyHard">
                         Hard
                     </ion-checkbox>
                 </div>
@@ -42,7 +42,7 @@
                           class="group-header-item">
                     {{::filterGroup.name}}
                     <i class="icon filtergroup-collapsible-icon-toggle" ng-class="isGroupShown(filterGroup) ? 'ion-chevron-down' : 'ion-chevron-right'"></i>
-                    <div class="current-filter-name">{{data[filterGroup.key].name}}</div>
+                    <div class="current-filter-name">{{tempData[filterGroup.key].name}}</div>
                 </ion-item>
                 <ion-item class="item-accordion item-stable"
                           ng-repeat="item in filterGroup.items"
@@ -52,15 +52,15 @@
                 </ion-item>
             </div>
 
-            <ion-checkbox ng-model="data.filterInSeason" class="item-checkbox-right">
+            <ion-checkbox ng-model="tempData.filterInSeason" class="item-checkbox-right">
                 <span>In Season (currently accessible)</span>
             </ion-checkbox>
 
-            <ion-checkbox ng-model="data.filterTransit" class="item-checkbox-right">
+            <ion-checkbox ng-model="tempData.filterTransit" class="item-checkbox-right">
                 <span>Transit Accessible</span>
             </ion-checkbox>
 
-            <ion-checkbox ng-model="data.filterDogFriendly" class="item-checkbox-right">
+            <ion-checkbox ng-model="tempData.filterDogFriendly" class="item-checkbox-right">
                 <span>Must be Dog Friendly</span>
             </ion-checkbox>
 
