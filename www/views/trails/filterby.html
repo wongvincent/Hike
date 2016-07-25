@@ -50,6 +50,22 @@
                 </ion-item>
             </div>
 
+            <ion-item>
+                <ion-label>Time</ion-label>
+                <rzslider rz-slider-model="tempData.filterTimeMin"
+                          rz-slider-high="tempData.filterTimeMax"
+                          rz-slider-options="filterTimeSlider.options">
+                </rzslider>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Distance</ion-label>
+                <rzslider rz-slider-model="tempData.filterDistanceMin"
+                          rz-slider-high="tempData.filterDistanceMax"
+                          rz-slider-options="filterDistanceSlider.options">
+                </rzslider>
+            </ion-item>
+
             <ion-checkbox ng-model="tempData.filterInSeason" class="item-checkbox-right">
                 <span>In Season (currently accessible)</span>
             </ion-checkbox>

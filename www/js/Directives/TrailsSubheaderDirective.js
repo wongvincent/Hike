@@ -1,4 +1,4 @@
-var app = angular.module('directives');
+var app = angular.module('directives', ['rzModule']);
 
 app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionicPopup, $ionicModal) {
     return {
@@ -78,38 +78,8 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 ]
             };
 
-            var filterDistanceMin =
-            {
-                key: "filterDistanceMin",
-                    name: "Distance - Minimum",
-                items: [
-                    { name: "No Minimum", value: 0},
-                    { name: "2 km", value: 2},
-                    { name: "4 km", value: 4},
-                    { name: "8 km", value: 8},
-                    { name: "16 km", value: 16}
-                ]
-            };
-
-            var filterDistanceMax =
-            {
-                key: "filterDistanceMax",
-                name: "Distance - Maximum",
-                items: [
-                    { name: "2 km", value: 2},
-                    { name: "4 km", value: 4},
-                    { name: "8 km", value: 8},
-                    { name: "16 km", value: 16},
-                    { name: "No Maximum", value: 999},
-                ]
-            };
-
             $scope.filterGroups = [
-                filterLocation,
-                filterTimeMin,
-                filterTimeMax,
-                filterDistanceMin,
-                filterDistanceMax
+                filterLocation
             ];
 
             $scope.saveFilterValue = function(groupKey, item) {
@@ -120,10 +90,10 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 searchText: "",
                 sortSelected: "name",
                 filterLocation: { name: "Any", value: []},
-                filterTimeMin: { name: "No Minimum", value: 0 },
-                filterTimeMax: { name: "No Maximum", value: 999 },
-                filterDistanceMin: { name: "No Minimum", value: 0},
-                filterDistanceMax: { name: "No Maximum", value: 999},
+                filterTimeMin: 0,
+                filterTimeMax: 12,
+                filterDistanceMin: 0,
+                filterDistanceMax: 30,
                 filterDifficultyEasy: true,
                 filterDifficultyModerate: true,
                 filterDifficultyHard: true,
@@ -133,6 +103,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
             };
 
             $scope.data = angular.copy(defaultFilters);
+            $scope.tempData = angular.copy(defaultFilters);
 
             var reEvalTrails = function() {
                 $scope.filteredTrails = $scope.$eval("trails | filter:data.searchText | trailsFilter:data | orderBy:data.sortSelected");
@@ -170,6 +141,40 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 $scope.closeFilterModal();
             };
 
+            $scope.filterTimeSlider = {
+                options: {
+                    ceil: 12,
+                    step: 2,
+                    translate: function(value) {
+                        return value + ' hours'
+                    },
+                    onChange: function(sliderId, modelValue, highValue, pointerType) {
+                        if (pointerType === 'min') {
+                            $scope.tempData.filterTimeMin = modelValue;
+                        } else {
+                            $scope.tempData.filterTimeMax = highValue;
+                        }
+                    }
+                }
+            };
+
+            $scope.filterDistanceSlider = {
+                options: {
+                    ceil: 30,
+                    step: 5,
+                    translate: function(value) {
+                        return value + 'km'
+                    },
+                    onChange: function(sliderId, modelValue, highValue, pointerType) {
+                        if (pointerType === 'min') {
+                            $scope.tempData.filterDistanceMin = modelValue;
+                        } else {
+                            $scope.tempData.filterDistanceMax = highValue;
+                        }
+                    }
+                }
+            };
+
             $ionicModal.fromTemplateUrl('views/trails/filterby.html', {
                 scope: $scope,
                 animation: 'slide-in-up'
@@ -181,6 +186,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 $scope.tempData = angular.copy($scope.data);
                 $scope.filterModal.show();
             };
+
             $scope.closeFilterModal = function () {
                 $scope.filterModal.hide();
                 $scope.scrollToTop();

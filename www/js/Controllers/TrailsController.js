@@ -22,13 +22,13 @@ app.filter('trailsFilter', function () {
         };
 
         timeFilter = function (trail) {
-            return (Math.round(trail.time * 100) >= Math.round(data.filterTimeMin.value * 100) &&
-            Math.round(trail.time * 100) <= Math.round(data.filterTimeMax.value * 100));
+            return (Math.round(trail.time * 100) >= Math.round(data.filterTimeMin * 100) &&
+            Math.round(trail.time * 100) <= Math.round(data.filterTimeMax * 100));
         };
 
         distanceFilter = function (trail) {
-            return (Math.round(trail.distance * 100) >= Math.round(data.filterDistanceMin.value * 100) &&
-            Math.round(trail.distance * 100) <= Math.round(data.filterDistanceMax.value * 100));
+            return (Math.round(trail.distance * 100) >= Math.round(data.filterDistanceMin * 100) &&
+            Math.round(trail.distance * 100) <= Math.round(data.filterDistanceMax * 100));
         };
 
         difficultyFilter = function (trail) {

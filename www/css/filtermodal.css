@@ -78,6 +78,20 @@
     float: right;
 }
 
+/* slider */
+.filter-by-modal .rzslider .rz-bar.rz-selection {
+    background-color: #DDDDDD;
+}
+
+.filter-by-modal .rzslider .rz-pointer {
+    background-color: #28A54C;
+}
+
+.filter-by-modal .rzslider .rz-pointer.rz-active:after {
+    background-color: white;
+}
+
+/* accordian stuff */
 .filter-by-modal .group-header-item.item {
     background-color: white;
 }
@@ -105,6 +119,8 @@
     float: right;
 }
 
+
+/* footer */
 .filter-by-modal .footer-bar {
     height: 65px;
 }
