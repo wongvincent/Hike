@@ -153,8 +153,11 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
             });
 
             $scope.resetFilters = function () {
-                angular.copy(defaultFilters, $scope.data);
-                angular.copy(defaultFilters, $scope.tempData);
+                var copyDefaultFilters = {};
+                angular.copy(defaultFilters, copyDefaultFilters);
+                copyDefaultFilters.sortSelected = $scope.data.sortSelected;
+                angular.copy(copyDefaultFilters, $scope.data);
+                angular.copy(copyDefaultFilters, $scope.tempData);
                 reEvalTrails();
                 window.plugins.toast.showShortBottom(
                     "Filters Reset"
