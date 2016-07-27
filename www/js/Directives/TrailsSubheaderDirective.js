@@ -7,15 +7,15 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
 
             $scope.sortOptions = [
                 {text: "Name (A-Z)", sortby: "name"},
-                {text: "Time: Lo to Hi", sortby: "time"},
-                {text: "Time: Hi to Lo", sortby: "-time"},
-                {text: "Distance: Lo to Hi", sortby: "distance"},
-                {text: "Distance: Hi to Lo", sortby: "-distance"}
+                {text: "Time (Low - High)", sortby: "time"},
+                {text: "Time (High - Low)", sortby: "-time"},
+                {text: "Distance (Low - High)", sortby: "distance"},
+                {text: "Distance (High - Low)", sortby: "-distance"}
             ];
 
             $scope.sortby = function () {
                 var sortByPopup = $ionicPopup.show({
-                    title: 'Sort trails',
+                    title: 'Sort by',
                     cssClass: 'sort-trails-popup',
                     templateUrl: 'views/trails/sortby.html',
                     scope: $scope,

@@ -1,11 +1,66 @@
 /* SORT BY popup */
-.sort-trails-popup .popup-head{
-    background-color: #28a54c;
-    color: #fff;
+
+.sort-trails-popup .popup {
+    background-color: white;
+    border-radius: 3px;
+    min-width: 75%;
+    max-width: 90%;
+    padding: 10px 0;
+}
+
+.sort-trails-popup .popup-head {
+    border: 0;
+    padding: 10px 16px 0 23px;
 }
 
 .sort-trails-popup .popup-head .popup-title {
-    color :white;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 22px;
+    text-align: left;
+}
+
+.sort-trails-popup .popup-body {
+    padding-top: 0;
+}
+
+.sort-trails-popup .popup-body .list .item {
+    border: 0;
+    height: 50px;
+}
+
+.sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content {
+    background-color: white;
+}
+
+/* Filled icon of selected element */
+.sort-trails-popup .popup-body .list .item input:checked + .radio-content i.radio-icon {
+    color: #28A54C;
+    font-size: 28px;
+    left: 0;
+}
+
+/* Outline icon */
+.sort-trails-popup .popup-body .list .item .radio-content .item-content i {
+    font-size: 24px;
+    padding-right: 16px;
+}
+
+/* Outline icon of selected element */
+.sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content i {
+    display: none;
+}
+
+/* Text of any element */
+.sort-trails-popup .popup-body .list .item .item-content span {
+    font-size: 18px;
+    vertical-align: text-bottom;
+}
+
+/* Text of selected element */
+.sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content span {
+    margin-left: 37px;
+}
+
+.sort-trails-popup .popup-buttons {
+    display: none;
 }
