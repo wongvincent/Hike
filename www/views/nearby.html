@@ -1,32 +1,32 @@
 <ion-view title="Nearby Trails">
     <ion-content>
-       <ion-item class="item-text-wrap list-trail-item " ng-if="nearby" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in nearby | limitTo:25" ui-sref='trail.details({name: trail.href})'>
+       <ion-item class="item-text-wrap list-trail-item nearby-card" ng-if="nearby" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in nearby | limitTo:25" ui-sref='trail.details({name: trail.href})'>
             <div class="row">
-                {{::trail.name}} : {{::trail.distanceFromPos | number:0}} km away
+                {{::trail.name}} <div class="distance-from">{{::trail.distanceFromPos | number:0}}km</div>
             </div>
            <div class="row" ng-if="trail.location">
-               <span>Location:</span>{{::trail.location}}
+               <span>Location</span>{{::trail.location}}
            </div>
            <div class="row" ng-if="trail.difficulty != null">
-               <span>Difficulty:</span>{{::trail.difficulty| HumanizeDifficulty}}
+               <span>Difficulty</span>{{::trail.difficulty| HumanizeDifficulty}}
            </div>
            <div class="row" ng-if="trail.time">
-               <span>Time:</span>{{::trail.time}} hours
+               <span>Time</span>{{::trail.time}} hours
            </div>
            <div class="row" ng-if="trail.distance && trail.distanceCategory != null">
-               <span>{{::trail.distanceCategory| ConvertDistanceCategoryToString}}:</span>{{::trail.distance}}km
+               <span>{{::trail.distanceCategory| ConvertDistanceCategoryToString}}</span>{{::trail.distance}}km
            </div>
            <div class="row" ng-if="trail.elevation != null">
-               <span>Elevation Gain:</span>{{::trail.elevation| ProcessElevationToString}}
+               <span>Elevation Gain</span>{{::trail.elevation| ProcessElevationToString}}
            </div>
            <div class="row" ng-if="trail.season">
-               <span>Season:</span>{{::trail.season| HumanizeSeason}}
+               <span>Season</span>{{::trail.season| HumanizeSeason}}
            </div>
            <div class="row" ng-if="trail.transit != null">
-               <span>Transit Accessible:</span>{{::trail.transit| BoolToString}}
+               <span>Transit Accessible</span>{{::trail.transit| BoolToString}}
            </div>
            <div class="row" ng-if="trail.dogFriendly != null">
-               <span>Dog Friendly:</span>{{::trail.dogFriendly| BoolToString}}
+               <span>Dog Friendly</span>{{::trail.dogFriendly| BoolToString}}
            </div>
         </ion-item>
     </ion-content>

@@ -9,19 +9,26 @@
 }
 
 .list-trail-item a.item-content {
-    padding: 5px 10px;
+    padding: 10px 16px;
 }
 
 .list-trail-item .row:nth-child(1) {
-    font-weight:bold;
-    font-size: 1.2em;
-    padding-bottom:10px;
+    font-weight: 500;
+    font-size: 1.8em;
+    padding-bottom: 14px;
 }
 
-.list-trail-item .row span:nth-child(1) {
+.list-trail-item .row span:nth-child(1), #trail-details #trail-info .item .row span:nth-child(1) {
     font-weight: bold;
-    padding-right: 5px;
+    padding-right: 16px;
+    color: #666;
 }
 
+.nearby-card .row .distance-from {
+    font-weight: 300;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+}
 
 /* See maps.css for trails-map css */
