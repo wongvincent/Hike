@@ -14,8 +14,10 @@
 
 .list-trail-item .row:nth-child(1) {
     font-weight: 500;
-    font-size: 1.8em;
-    padding-bottom: 14px;
+    font-size: 28px;
+    line-height: 28px;
+    padding-bottom: 8px;
+    padding-top: 0;
 }
 
 .list-trail-item .row span:nth-child(1), #trail-details #trail-info .item .row span:nth-child(1) {
@@ -28,7 +30,7 @@
     font-weight: 300;
     position: absolute;
     right: 16px;
-    top: 16px;
+    top: 10px;
 }
 
 /* See maps.css for trails-map css */
