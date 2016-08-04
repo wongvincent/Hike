@@ -33,22 +33,22 @@
                 </div>
             </ion-item>
 
-            <div ng-repeat="filterGroup in filterGroups">
-                <ion-item
-                          ng-click="toggleGroup(filterGroup)"
-                          ng-class="{active: isGroupShown(filterGroup)}"
-                          class="group-header-item">
-                    {{::filterGroup.name}}
-                    <i class="icon filtergroup-collapsible-icon-toggle" ng-class="isGroupShown(filterGroup) ? 'ion-chevron-down' : 'ion-chevron-right'"></i>
-                    <div class="current-filter-name">{{tempData[filterGroup.key].name}}</div>
-                </ion-item>
-                <ion-item class="item-accordion item-stable"
-                          ng-repeat="item in filterGroup.items"
-                          ng-show="isGroupShown(filterGroup)"
-                          ng-click="saveFilterValue(filterGroup.key, item)">
-                    {{::item.name}}
-                </ion-item>
-            </div>
+            <ion-item ng-click="toggleGroup('filterLocation')"
+                      ng-class="{active: isGroupShown('filterLocation')}"
+                      class="group-header-item">
+                Location
+                <i class="icon filtergroup-collapsible-icon-toggle" ng-class="isGroupShown('filterLocation') ? 'ion-chevron-down' : 'ion-chevron-right'"></i>
+                <div class="current-filter-name">
+                    {{updateLocationsSelectedText()}}
+                </div>
+            </ion-item>
+            <ion-checkbox class="item-accordion item-stable item-checkbox-right"
+                          ng-repeat="item in tempData.filterLocation"
+                          ng-show="isGroupShown('filterLocation')"
+                          ng-model="item.isChecked"
+                          ng-change="evaluateTemporaryFilters()">
+                {{::item.name}}
+            </ion-checkbox>
 
             <ion-item>
                 <ion-label>Time</ion-label>

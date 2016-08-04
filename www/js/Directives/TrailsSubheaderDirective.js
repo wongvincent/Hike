@@ -42,15 +42,14 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                     key: "filterLocation",
                     name: "Location",
                     items: [
-                        { name: "Any", value: []},
-                        { name: "North Shore", value: ["north van", "west van"]},
-                        { name: "Fraser Valley", value: ["fraser valley"]},
-                        { name: "Howe Sound", value: ["howe sound"]},
-                        { name: "Ridge Meadows", value: ["ridge meadows"]},
-                        { name: "South of Fraser (Delta, Langley)", value: ["south of fraser"]},
-                        { name: "Tri-Cities", value: ["tri-cities"]},
-                        { name: "Vancouver", value: ["vancouver"]},
-                        { name: "Whistler", value: ["whistler"]}
+                        { name: "North Shore", value: ["north van", "west van"], isChecked: true},
+                        { name: "Fraser Valley", value: ["fraser valley"], isChecked: true},
+                        { name: "Howe Sound", value: ["howe sound"], isChecked: true},
+                        { name: "Ridge Meadows", value: ["ridge meadows"], isChecked: true},
+                        { name: "South of Fraser (Delta, Langley)", value: ["south of fraser"], isChecked: true},
+                        { name: "Tri-Cities", value: ["tri-cities"], isChecked: true},
+                        { name: "Vancouver", value: ["vancouver"], isChecked: true},
+                        { name: "Whistler", value: ["whistler"], isChecked: true}
                     ]
                 };
 
@@ -78,18 +77,20 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 ]
             };
 
-            $scope.filterGroups = [
-                filterLocation
-            ];
-
-            $scope.saveFilterValue = function(groupKey, item) {
-                $scope.tempData[groupKey] = item;
+            $scope.updateLocationFilter = function() {
+                var selectedFilterItems = [];
+                angular.forEach($scope.filterLocation, function(item) {
+                    if (item.isChecked) {
+                        selectedFilterItems.push(item);
+                    }
+                });
+                $scope.tempData.filterLocation = selectedFilterItems;
             };
 
             var defaultFilters = {
                 searchText: "",
                 sortSelected: "name",
-                filterLocation: { name: "Any", value: []},
+                filterLocation: filterLocation.items,
                 filterTimeMin: 0,
                 filterTimeMax: 12,
                 filterDistanceMin: 0,
@@ -105,22 +106,50 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
             $scope.data = angular.copy(defaultFilters);
             $scope.tempData = angular.copy(defaultFilters);
 
-            var reEvalTrails = function() {
-                $scope.filteredTrails = $scope.$eval("trails | filter:data.searchText | trailsFilter:data | orderBy:data.sortSelected");
+
+            var getSelectedFilterLocations = function() {
+                var selectedFilterLocations = [];
+                angular.forEach($scope.tempData.filterLocation, function(location) {
+                    if (location.isChecked) {
+                        selectedFilterLocations.push(location);
+                    }
+                });
+                return selectedFilterLocations;
+            };
+
+            $scope.updateLocationsSelectedText = function() {
+                var selectedFilterLocations = getSelectedFilterLocations();
+                if (selectedFilterLocations.length === 1) {
+                    return selectedFilterLocations[0].name;
+                } else {
+                    return selectedFilterLocations.length + " selected";
+                }
+            };
+
+            $scope.evaluateFilters = function() {
+                $scope.filtersEvaluate = angular.copy($scope.data);
+                $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
+                $scope.filteredTrails = $scope.$eval("trails | filter:filtersEvaluate.searchText | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
+            };
+
+            $scope.evaluateTemporaryFilters = function() {
+                $scope.filtersEvaluate = angular.copy($scope.tempData);
+                $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
+                $scope.tempFilteredTrails = $scope.$eval("trails | filter:filtersEvaluate.searchText | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
             };
 
             $scope.$watch('trails', function() {
-                reEvalTrails();
+                $scope.evaluateFilters();
             });
             $scope.$watchGroup(["data.searchText", "data.sortSelected"], function() {
-                reEvalTrails();
+                $scope.evaluateFilters();
             });
 
-            $scope.$watchGroup(["tempData.filterLocation", "tempData.filterTimeMin", "tempData.filterTimeMax",
+            $scope.$watchGroup(["tempData.filterTimeMin", "tempData.filterTimeMax",
                 "tempData.filterDistanceMin", "tempData.filterDistanceMax", "tempData.filterDifficultyEasy",
                 "tempData.filterDifficultyModerate", "tempData.filterDifficultyHard", "tempData.filterDogFriendly",
                 "tempData.filterTransit", "tempData.filterInSeason"], function() {
-                $scope.tempFilteredTrails = $scope.$eval("trails | filter:tempData.searchText | trailsFilter:tempData | orderBy:tempData.sortSelected");
+                $scope.evaluateTemporaryFilters();
             });
 
             $scope.resetFilters = function () {
@@ -129,7 +158,8 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                 copyDefaultFilters.sortSelected = $scope.data.sortSelected;
                 angular.copy(copyDefaultFilters, $scope.data);
                 angular.copy(copyDefaultFilters, $scope.tempData);
-                reEvalTrails();
+                $scope.evaluateFilters();
+                $scope.tempFilteredTrails = angular.copy($scope.filteredTrails);
                 window.plugins.toast.showShortBottom(
                     "Filters Reset"
                 );
@@ -137,7 +167,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
 
             $scope.applyFilters = function() {
                 $scope.data = angular.copy($scope.tempData);
-                $scope.filteredTrails = $scope.tempFilteredTrails;
+                $scope.filteredTrails = angular.copy($scope.tempFilteredTrails);
                 $scope.closeFilterModal();
             };
 
@@ -184,6 +214,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
 
             $scope.openFilterModal = function () {
                 $scope.tempData = angular.copy($scope.data);
+                $scope.tempFilteredTrails = angular.copy($scope.filteredTrails);
                 $scope.filterModal.show();
             };
 

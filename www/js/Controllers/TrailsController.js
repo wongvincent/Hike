@@ -9,13 +9,20 @@ app.filter('trailsFilter', function () {
         if (trails === undefined) return true;
 
         locationFilter = function (trail) {
-            var filterLocationValue = data.filterLocation.value;
-            if (filterLocationValue.length === 0) return true;
-            var trailLocation = trail.location.toLowerCase();
-            for (var i = 0; i < filterLocationValue.length; i++) {
-                var indexOf = trailLocation.indexOf(filterLocationValue[i].toLowerCase());
-                if (indexOf > -1) {
-                    return true;
+            if (!data.filterLocation || data.filterLocation.length === 0) {
+                return false;
+            } else if (data.filterLocation.length === 8) {
+                return true;
+            } else {
+                var trailLocation = trail.location.toLowerCase();
+                for (var i = 0; i < data.filterLocation.length; i++) {
+                    var singleFilterLocationKeywords = data.filterLocation[i].value;
+                    for (var j = 0; j < singleFilterLocationKeywords.length; j++) {
+                        var indexOf = trailLocation.indexOf(singleFilterLocationKeywords[j].toLowerCase());
+                        if (indexOf > -1) {
+                            return true;
+                        }
+                    }
                 }
             }
             return false;
