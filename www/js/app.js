@@ -72,8 +72,21 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
         })
         .state('trail.details', {
             url: '/list',
-            templateUrl: 'views/trail/details.html'
+            views: {
+                'trail-details-tab': {
+                    templateUrl: 'views/trail/details.html'
+                }
+            }
         })
+        .state('trail.photos', {
+            url: '/photos',
+            views: {
+                'trail-photos-tab': {
+                    templateUrl: 'views/trail/photos.html'
+                }
+            }
+        })
+
 
         .state('favourites', {
             url: '/favourites',

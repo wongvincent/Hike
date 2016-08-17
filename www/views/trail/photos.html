@@ -1,0 +1,24 @@
+<ion-view title="{{trail.name}}">
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-android-share-alt trail-share-button"
+                ng-click="shareTrail()">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content ng-controller="TrailPhotosController">
+        <div ng-repeat="photo in trail.photos" class="list card trail-photo">
+            <div class="item item-image">
+                <!-- a ng-href = opens up full size of image -->
+                <img ng-src="{{::photo.src}}">
+            </div>
+            <div class="photoAttribution">
+                <span ng-repeat="attribution in photo.html_attributions">
+                    <span ng-bind-html="attribution"></span>
+                </span>
+            </div>
+        </div>
+        <div class="powered-by-google" ng-if="trail.photos">
+            <img src="img/powered_by_google/powered_by_google_on_white.png">
+        </div>
+    </ion-content>
+</ion-view>

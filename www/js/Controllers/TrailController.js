@@ -1,6 +1,6 @@
 var app = angular.module('controllers');
 
-app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter', '$ionicLoading', 'TrailsService', 'FavouritesService', '$ionicSideMenuDelegate', function ($scope, $state, $stateParams, $filter, $ionicLoading, TrailsService, FavouritesService, $ionicSideMenuDelegate) {
+app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter', '$ionicLoading', 'TrailsService', 'FavouritesService', '$ionicSideMenuDelegate', 'GooglePlacesService', function ($scope, $state, $stateParams, $filter, $ionicLoading, TrailsService, FavouritesService, $ionicSideMenuDelegate, GooglePlacesService) {
     $scope.state = $state.current;
     $scope.params = $stateParams;
 
