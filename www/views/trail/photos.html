@@ -13,7 +13,7 @@
             </div>
             <div class="photoAttribution">
                 <span ng-repeat="attribution in photo.html_attributions">
-                    <span ng-bind-html="attribution"></span>
+                    <span ng-bind-html="attribution | hrefToJS"></span>
                 </span>
             </div>
         </div>

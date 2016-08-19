@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ionic', 'ngCordova', 'controllers', 'services', 'directives']);
+var app = angular.module('app', ['ionic', 'ngCordova', 'ngSanitize', 'controllers', 'services', 'directives']);
 var db = null;
 
 app.run(function ($rootScope, $ionicPlatform, $ionicHistory, $ionicPopup) {
@@ -298,4 +298,12 @@ app.filter("ProcessElevationToString", function () {
        if (elevation === 0) return "minimal";
        if (elevation > 0) return elevation + "m";
    };
+});
+
+app.filter('hrefToJS', function ($sce, $sanitize) {
+    return function (text) {
+        var regex = /href="([\S]+)"/g;
+        var newString = $sanitize(text).replace(regex, "href onClick=\"window.open('$1', '_system');return false;\"");
+        return $sce.trustAsHtml(newString);
+    }
 });
