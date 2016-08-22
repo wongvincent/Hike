@@ -129,13 +129,13 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
             $scope.evaluateFilters = function() {
                 $scope.filtersEvaluate = angular.copy($scope.data);
                 $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
-                $scope.filteredTrails = $scope.$eval("trails | filter:filtersEvaluate.searchText | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
+                $scope.filteredTrails = $scope.$eval("trails | filter:{ name: filtersEvaluate.searchText } | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
             };
 
             $scope.evaluateTemporaryFilters = function() {
                 $scope.filtersEvaluate = angular.copy($scope.tempData);
                 $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
-                $scope.tempFilteredTrails = $scope.$eval("trails | filter:filtersEvaluate.searchText | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
+                $scope.tempFilteredTrails = $scope.$eval("trails | filter:{ name: filtersEvaluate.searchText } | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
             };
 
             $scope.$watch('trails', function() {
