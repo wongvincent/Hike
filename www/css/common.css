@@ -1,0 +1,11 @@
+.none-found {
+    font-weight: bold;
+    text-align: center;
+}
+
+.no-connection-alert .popup-buttons .button {
+    color: green;
+    max-width: 60px;
+    position: absolute;
+    right: 23px;
+}

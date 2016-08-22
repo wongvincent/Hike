@@ -76,7 +76,7 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
             title: "Failed to acquire location",
             cancelText: "Cancel",
             cancelType: "button-dark",
-            okText: "Try Again",
+            okText: "Retry",
             okType: "button-balanced"
         });
         geolocationErrorPopup.then(function (res) {

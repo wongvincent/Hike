@@ -9,16 +9,6 @@ app.factory('ConnectivityMonitor', function ($rootScope, $cordovaNetwork) {
             } else {
                 return navigator.onLine;
             }
-
-        },
-        ifOffline: function () {
-
-            if (ionic.Platform.isWebView()) {
-                return !$cordovaNetwork.isOnline();
-            } else {
-                return !navigator.onLine;
-            }
-
         }
     }
 });

@@ -27,11 +27,6 @@ ol {
     list-style-type: decimal !important;
 }
 
-.none-found {
-    font-weight: bold;
-    text-align: center;
-}
-
 .platform-android .bar-header .title {
     line-height: 56px !important;
     font-size: 24px;
@@ -87,4 +82,43 @@ ol {
 
 ion-header-bar > div {
     height: 56px;
+}
+
+
+.popup {
+    background-color: white !important;
+    border-radius: 3px;
+    min-width: 75%;
+    max-width: 90%;
+    padding: 10px 23px;
+}
+
+.popup .popup-head {
+    border: 0;
+    padding: 10px 0;
+}
+
+.popup .popup-head .popup-title {
+    font-weight: bold;
+    font-size: 22px;
+    text-align: left;
+}
+
+.popup .popup-body {
+    padding: 10px 0;
+    font-size: 18px;
+}
+
+.popup .popup-buttons {
+    padding: 10px 0;
+}
+
+.popup .popup-buttons button {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.popup .popup-buttons button.activated {
+    border-color: white;
+    background-color: white;
 }

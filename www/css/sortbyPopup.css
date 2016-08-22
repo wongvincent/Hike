@@ -1,24 +1,5 @@
 /* SORT BY popup */
 
-.sort-trails-popup .popup {
-    background-color: white;
-    border-radius: 3px;
-    min-width: 75%;
-    max-width: 90%;
-    padding: 10px 0;
-}
-
-.sort-trails-popup .popup-head {
-    border: 0;
-    padding: 10px 16px 0 23px;
-}
-
-.sort-trails-popup .popup-head .popup-title {
-    font-weight: bold;
-    font-size: 22px;
-    text-align: left;
-}
-
 .sort-trails-popup .popup-body {
     padding-top: 0;
 }
@@ -29,6 +10,21 @@
 }
 
 .sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content {
+    background-color: white;
+}
+
+.sort-trails-popup .popup-buttons {
+    display: none;
+}
+
+.sort-trails-popup .radio-content > .item-content {
+    padding: 3px;
+}
+.sort-trails-popup .radio-content > .radio-icon {
+    padding: 0 0 0 3px;
+}
+
+.sort-trails-popup .item-radio.activated {
     background-color: white;
 }
 
@@ -59,8 +55,4 @@
 /* Text of selected element */
 .sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content span {
     margin-left: 37px;
-}
-
-.sort-trails-popup .popup-buttons {
-    display: none;
 }

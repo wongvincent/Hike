@@ -231,6 +231,23 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
             window.location.reload(true);
         });
     };
+
+    $scope.noConnectionAlert = function (message, successCallback) {
+        var message = message ? message : "";
+        var noConnectionAlert = $ionicPopup.alert({
+            title: 'No Connection',
+            template: message + ' Check your connection and try again.',
+            okType: "button-light",
+            cssClass: "no-connection-alert"
+        });
+
+        noConnectionAlert.then(function() {
+            if (successCallback) {
+                successCallback();
+            }
+        });
+    };
+
     $scope.sortAlphabetically = function(array){
         function compare(a,b) {
             if(a.name < b.name) return -1;
