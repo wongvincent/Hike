@@ -1,5 +1,12 @@
 <div class="bar bar-light trails-subheader-bar">
-    <div class="number-of-results">{{filteredTrails.length}} <span ng-show="filteredTrails">results</span></div>
+    <div class="number-of-results">{{filteredTrails.length}}
+        <span ng-show="filteredTrails">
+            <ng-pluralize count="filteredTrails.length"
+                      when="{'one': 'result',
+                       'other': 'results'}">
+            </ng-pluralize>
+        </span>
+    </div>
     <div class="buttons-right">
         <button class="button button-icon button-clear ion-android-funnel" ng-click="sortby()">
         </button>
