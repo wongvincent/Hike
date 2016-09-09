@@ -88,3 +88,9 @@ div.container-fluid {
     float: right;
     margin-right: 10px;
 }
+
+.my-gallery figure {
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid lightgray;
+}

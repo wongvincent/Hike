@@ -6,16 +6,36 @@
     <title>Hiking Vancouver | Android App Download</title>
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
     <!-- bootstrap css and js -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
             crossorigin="anonymous"></script>
-    <!-- custom -->
+
+    <!-- Photoswipe Core CSS file -->
+    <link rel="stylesheet" href="photoswipe/photoswipe.css">
+
+    <!-- Photoswipe Skin CSS file (styling of UI - buttons, caption, etc.)
+         In the folder of skin CSS file there are also:
+         - .png and .svg icons sprite,
+         - preloader.gif (for browsers that do not support CSS animations) -->
+    <link rel="stylesheet" href="photoswipe/default-skin/default-skin.css">
+
+    <!-- Photoswipe Core JS file -->
+    <script src="photoswipe/photoswipe.min.js"></script>
+
+    <!-- Photoswipe UI JS file -->
+    <script src="photoswipe/photoswipe-ui-default.min.js"></script>
+
+    <!-- My custom styles -->
     <link href="style.css" rel="stylesheet">
+
+    <script src="photoswipejs.js"></script>
 </head>
 <body>
 <div class="container">
@@ -65,6 +85,34 @@
             </a>
         </div>
 
+        <div class="container-fluid">
+            <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="img/1_full.png" itemprop="contentUrl" data-size="504x867">
+                        <img src="img/1_thumbnail.png" itemprop="thumbnail" />
+                    </a>
+                </figure>
+
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="img/2_full.png" itemprop="contentUrl" data-size="504x867">
+                        <img src="img/2_thumbnail.png" itemprop="thumbnail" />
+                    </a>
+                </figure>
+
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="img/3_full.png" itemprop="contentUrl" data-size="504x867">
+                        <img src="img/3_thumbnail.png" itemprop="thumbnail" />
+                    </a>
+                </figure>
+
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="img/4_full.png" itemprop="contentUrl" data-size="504x867">
+                        <img src="img/4_thumbnail.png" itemprop="thumbnail" />
+                    </a>
+                </figure>
+            </div>
+        </div>
+
         <hr>
         <div class="container-fluid faq">
             <div>FAQs</div>
@@ -83,6 +131,59 @@
     <a href="http://vincentwong.me" class="about-me">
         About me
     </a>
+</div>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
