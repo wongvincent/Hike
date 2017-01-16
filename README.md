@@ -1,10 +1,12 @@
 # **Hike App** #
 
-List of Hiking trails around **Vancouver, Canada**.
 
-Built on Ionic framework (Advanced HTML5 and AngularJS Mobile App Framework).
+**Find hiking trails around Vancouver, Canada**.
 
-Uses SQLite for data storage.
+Download Android app: [http://hike.vincentwong.me/](http://hike.vincentwong.me/)
+
+
+
 
 ## Features ##
 * View the locations and photos from over 100 trails.
@@ -18,3 +20,10 @@ Uses SQLite for data storage.
 
 #### Future ####
 * Create accounts so your favourite trails can be accessed on multiple devices
+
+
+
+## Misc. ##
+Built on Ionic framework (Advanced HTML5 and AngularJS Mobile App Framework).
+
+Uses SQLite for data storage.
