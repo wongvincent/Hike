@@ -6,7 +6,8 @@
 
 .sort-trails-popup .popup-body .list .item {
     border: 0;
-    height: 50px;
+    height: 60px;
+    padding-top: 20px;
 }
 
 .sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content {
@@ -20,8 +21,9 @@
 .sort-trails-popup .radio-content > .item-content {
     padding: 3px;
 }
+
 .sort-trails-popup .radio-content > .radio-icon {
-    padding: 0 0 0 3px;
+    padding: 10px 0 0 3px;
 }
 
 .sort-trails-popup .item-radio.activated {
@@ -31,13 +33,14 @@
 /* Filled icon of selected element */
 .sort-trails-popup .popup-body .list .item input:checked + .radio-content i.radio-icon {
     color: #28A54C;
-    font-size: 28px;
+    font-size: 22px;
     left: 0;
+    top: 10px;
 }
 
 /* Outline icon */
 .sort-trails-popup .popup-body .list .item .radio-content .item-content i {
-    font-size: 24px;
+    font-size: 20px;
     padding-right: 16px;
 }
 
@@ -49,7 +52,7 @@
 /* Text of any element */
 .sort-trails-popup .popup-body .list .item .item-content span {
     font-size: 18px;
-    vertical-align: text-bottom;
+    vertical-align: top;
 }
 
 /* Text of selected element */

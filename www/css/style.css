@@ -28,12 +28,14 @@ ol {
 }
 
 .platform-android .bar-header .title {
-    line-height: 56px !important;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     margin-left: 23px;
-    top: 4px;
+    margin-top: 10px;
     left: 48px;
+}
+
+.platform-android .bar-header .title .nav-bar-title {
 }
 
 .platform-android .bar-header .buttons-left button,
@@ -64,7 +66,13 @@ ol {
 }
 
 .tab-item {
-    font-size: 18px;
+    font-size: 20px;
+}
+
+.tabs-top .tab-nav.tabs a,
+.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.tab-item-active .tab-title,
+.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.activated .tab-title {
+    margin-top: -7px;
 }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
@@ -106,7 +114,7 @@ ion-header-bar > div {
 
 .popup .popup-body {
     padding: 10px 0;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 .popup .popup-buttons {
@@ -115,7 +123,7 @@ ion-header-bar > div {
 
 .popup .popup-buttons button {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .popup .popup-buttons button.activated {
