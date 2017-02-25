@@ -1,6 +1,6 @@
 var app = angular.module('directives', ['rzModule']);
 
-app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionicPopup, $ionicModal) {
+app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupService', function ($ionicPopup, $ionicModal, ClosePopupService) {
     return {
         templateUrl: 'views/trails/trailsSubheader.html',
         controller: ['$scope', function ($scope) {
@@ -33,6 +33,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', function ($ionic
                         }
                     ]
                 });
+                ClosePopupService.register(sortByPopup);
                 sortByPopup.then(function (res) {
                 });
             };
