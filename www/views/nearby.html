@@ -1,4 +1,17 @@
-<ion-view title="Nearby Trails">
+<ion-view>
+    <ion-nav-bar class="bar-balanced">
+        <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            Nearby Trails
+        </ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-android-refresh" ng-click="refreshNearbyTrails(true)">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
     <ion-content>
        <ion-item class="item-text-wrap list-trail-item nearby-card" ng-if="nearby" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in nearby | limitTo:25" ui-sref='trail.details({name: trail.href})'>
             <div class="row">

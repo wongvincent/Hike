@@ -3,27 +3,40 @@ var app = angular.module('controllers');
 app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$ionicPopup', function($rootScope, $scope, $ionicLoading, $ionicPopup) {
     $scope.$on('$ionicView.enter', function(){
         $rootScope.lastMainState = 'nearby';
-        isLocationAuthorized();
+        $scope.refreshNearbyTrails();
     });
 
-    var isLocationAuthorized = function() {
-        cordova.plugins.diagnostic.isLocationAuthorized(function(enabled) {
-            if (enabled) {
-                checkIfLocationIsOn();
+    $scope.refreshNearbyTrails = function(manualRefresh) {
+        isLocationAuthorized().then(function (isEnabled) {
+            if (isEnabled) {
+                checkIfLocationIsOn(manualRefresh);
             } else {
-                cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
-                    switch (status) {
-                        case cordova.plugins.diagnostic.permissionStatus.GRANTED:
-                            checkIfLocationIsOn();
-                            break;
-                        default:
-                            window.plugins.toast.showLongBottom(
-                                "Location permissions required"
-                            );
-                            break;
+                requestLocationAuthorization().then(function (permissionsGranted) {
+                    if (permissionsGranted) {
+                        checkIfLocationIsOn(manualRefresh);
+                    } else {
+                        window.plugins.toast.showLongBottom(
+                            "Location permissions required"
+                        );
                     }
-                });
+                })
             }
+        });
+    };
+
+    var isLocationAuthorized = function() {
+        return new Promise (function (resolve, reject) {
+            cordova.plugins.diagnostic.isLocationAuthorized(function(enabled) {
+                resolve(enabled);
+            });
+        });
+    };
+
+    var requestLocationAuthorization = function() {
+        return new Promise (function (resolve, reject) {
+            cordova.plugins.diagnostic.requestLocationAuthorization(function (status) {
+                resolve(status);
+            });
         });
     };
 
@@ -49,14 +62,15 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
         });
     };
 
-    var checkIfLocationIsOn = function() {
+    var checkIfLocationIsOn = function(manualRefresh) {
         cordova.plugins.diagnostic.isLocationEnabled(function(enabled) {
                 if (enabled) {
                     $ionicLoading.show({
                         template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!'
                     });
+                    var maximumAge = manualRefresh ? 0 : 300000;
                     var geolocationOptions = {
-                        maximumAge: 300000, //milliseconds
+                        maximumAge: maximumAge, //milliseconds
                         timeout: 10000,
                         enableHighAccuracy: true
                     };
