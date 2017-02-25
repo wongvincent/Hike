@@ -1,5 +1,5 @@
-<div class="bar bar-light search-bar" ng-show="searchBarActive">
-	<i class="icon ion-android-arrow-back back-button" ng-click="hideSearchBar()"></i>
-	<input id="input-search" type="search input-search" autocomplete="off" placeholder="Search" ng-model="data.searchText" ng-model-options="{debounce: 400}" class="input-search">
-	<i class="icon ion-close placeholder-icon x-button" ng-show="data.searchText.length" ng-click="clearSearchBar()"></i>
-</div>
+<label class="bar bar-light search-bar" ng-show="searchBarActive">
+	<i class="icon ion-android-arrow-back back-button" on-touch="hideSearchBar()"></i>
+	<input id="input-search" type="search input-search" autocomplete="off" placeholder="Search" ng-model="data.searchText" ng-model-options="{debounce: 800}" class="input-search">
+	<i class="icon ion-close placeholder-icon x-button" ng-show="data.searchText.length" on-touch="clearSearchBar()"></i>
+</label>

@@ -10,9 +10,6 @@ app.directive('searchBar', ['$ionicPopup', '$ionicModal', function ($ionicPopup,
             };
             $scope.clearSearchBar = function() {
                 $scope.data.searchText = '';
-                setTimeout(function() {
-                    document.getElementById('input-search').focus(); //TODO: use directive
-                }, 0);
             };
         }]
     };
