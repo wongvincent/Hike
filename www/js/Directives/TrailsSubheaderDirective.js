@@ -130,20 +130,36 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
             $scope.evaluateFilters = function() {
                 $scope.filtersEvaluate = angular.copy($scope.data);
                 $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
-                $scope.filteredTrails = $scope.$eval("trails | filter:{ name: filtersEvaluate.searchText } | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
+                $scope.filteredTrailsWithoutNameFilter = $scope.$eval("trails | trailsFilter:filtersEvaluate | filter:{ name: filtersEvaluate.searchText } | orderBy:filtersEvaluate.sortSelected");
+                $scope.filteredTrails = $scope.$eval("filteredTrailsWithoutNameFilter | filter:{ name: filtersEvaluate.searchText }");
             };
 
             $scope.evaluateTemporaryFilters = function() {
                 $scope.filtersEvaluate = angular.copy($scope.tempData);
                 $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
-                $scope.tempFilteredTrails = $scope.$eval("trails | filter:{ name: filtersEvaluate.searchText } | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
+                $scope.filteredTrailsWithoutNameFilter = $scope.$eval("trails | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
+                $scope.tempFilteredTrails = $scope.$eval("filteredTrailsWithoutNameFilter | filter:{ name: filtersEvaluate.searchText }");
+            };
+
+            $scope.evaluateSortFilter = function() {
+                $scope.filteredTrailsWithoutNameFilter = $scope.$eval("filteredTrailsWithoutNameFilter | orderBy:data.sortSelected");
+                $scope.filteredTrails = $scope.$eval("filteredTrails | orderBy:data.sortSelected");
+            };
+
+            $scope.evaluateNameFilter = function() {
+                $scope.filteredTrails = $scope.$eval("filteredTrailsWithoutNameFilter | filter:{ name: data.searchText }")
             };
 
             $scope.$watch('trails', function() {
                 $scope.evaluateFilters();
             });
-            $scope.$watchGroup(["data.searchText", "data.sortSelected"], function() {
-                $scope.evaluateFilters();
+
+            $scope.$watch("data.sortSelected", function() {
+                $scope.evaluateSortFilter();
+            });
+
+            $scope.$watch("data.searchText", function() {
+                $scope.evaluateNameFilter();
             });
 
             $scope.$watchGroup(["tempData.filterTimeMin", "tempData.filterTimeMax",

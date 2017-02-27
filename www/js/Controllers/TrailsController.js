@@ -6,7 +6,7 @@ app.controller('TrailsController', ['$rootScope', '$state', '$scope', function (
 
 app.filter('trailsFilter', function () {
     return function (trails, data) {
-        if (trails === undefined) return true;
+        if (trails === undefined) return trails;
 
         locationFilter = function (trail) {
             if (!data.filterLocation || data.filterLocation.length === 0) {
@@ -29,13 +29,11 @@ app.filter('trailsFilter', function () {
         };
 
         timeFilter = function (trail) {
-            return (Math.round(trail.time * 100) >= Math.round(data.filterTimeMin * 100) &&
-            Math.round(trail.time * 100) <= Math.round(data.filterTimeMax * 100));
+            return trail.time >= data.filterTimeMin && trail.time <= data.filterTimeMax;
         };
 
         distanceFilter = function (trail) {
-            return (Math.round(trail.distance * 100) >= Math.round(data.filterDistanceMin * 100) &&
-            Math.round(trail.distance * 100) <= Math.round(data.filterDistanceMax * 100));
+            return trail.distance >= data.filterDistanceMin && trail.distance <= data.filterDistanceMax;
         };
 
         difficultyFilter = function (trail) {
@@ -51,28 +49,22 @@ app.filter('trailsFilter', function () {
         };
 
         dogAccessibleFilter = function (trail) {
-            if (data.filterDogFriendly === undefined || !data.filterDogFriendly)
-                return true;
-            return trail.dogFriendly;
+            return data.filterDogFriendly === undefined || !data.filterDogFriendly || trail.dogFriendly;
         };
 
         transitFilter = function (trail) {
-            if (data.filterTransit === undefined || !data.filterTransit)
-                return true;
-            return trail.transit;
+            return data.filterTransit === undefined || !data.filterTransit || trail.transit;
         };
 
         inSeasonFilter = function (trail) {
             if (data.filterInSeason === undefined || !data.filterInSeason)
                 return true;
-            var currentMonth = new Date().getMonth();
+            var currentMonth = new Date().getMonth() + 1;
             var parts = trail.season.split('-', 2);
             var from = parseInt(parts[0]);
             var to = parseInt(parts[1]);
-            return ((from === 1 && to === 12) ||
-            (from < to && from <= currentMonth && to >= currentMonth) ||
-            (from > to && (from <= currentMonth || to >= currentMonth)) ||
-            (from === to && from === currentMonth));
+            return ((from <= currentMonth && to >= currentMonth) ||
+            (to < from  && (currentMonth >= from || currentMonth <= to)));
         };
 
 
