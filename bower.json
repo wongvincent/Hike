@@ -2,6 +2,10 @@
   "name": "Hiking Vancouver",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.3.1"
+    "ionic": "driftyco/ionic-bower#1.3.1",
+    "angular-mocks": "^1.3.13"
+  },
+  "resolutions": {
+    "angular": "^1.5.3"
   }
 }
