@@ -269,14 +269,6 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
     });
 }]);
 
-app.filter('range', function () {
-    return function (array, range) {
-        range = parseInt(range);
-        for (var i = 0; i < range; i++)
-            array.push(i);
-        return array;
-    };
-});
 
 app.filter('BoolToString', function () {
     return function (bool) {
@@ -284,37 +276,11 @@ app.filter('BoolToString', function () {
     };
 });
 
-app.filter('HumanizeDifficulty', function () {
-    return function (int) {
-        var difficultyScale = ["Easy", "Moderate", "Hard", "Very Hard"];
-        if (int < 0 || int >= difficultyScale.length)
-            return int;
-        return difficultyScale[int];
-    };
-});
-
-app.filter("HumanizeSeason", function () {
-    return function (input) {
-        var monthNameArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var parts = input.split('-', 2);
-
-        return (parts[0] === "1" && parts[1] === "12") ? "Year-round" :
-        monthNameArray[parts[0] - 1] + " - " + monthNameArray[parts[1] - 1];
-    };
-});
-
 app.filter("ConvertDistanceCategoryToString", function () {
-   return function (categoryInt) {
-       if (categoryInt === 0) return "One-Way";
-       if (categoryInt === 1) return "Round-Trip";
-   };
-});
-
-app.filter("ProcessElevationToString", function () {
-   return function (elevation) {
-       if (elevation === 0) return "minimal";
-       if (elevation > 0) return elevation + "m";
-   };
+    return function (categoryInt) {
+        if (categoryInt === 0) return "One-Way";
+        if (categoryInt === 1) return "Round-Trip";
+    };
 });
 
 app.filter('hrefToJS', function ($sce, $sanitize) {
@@ -323,4 +289,28 @@ app.filter('hrefToJS', function ($sce, $sanitize) {
         var newString = $sanitize(text).replace(regex, "href onClick=\"window.open('$1', '_system');return false;\"");
         return $sce.trustAsHtml(newString);
     }
+});
+
+app.filter('HumanizeDifficulty', function () {
+    return function (int) {
+        var difficultyScale = ["Easy", "Moderate", "Hard", "Very Hard"];
+        return difficultyScale[int];
+    };
+});
+
+app.filter("HumanizeSeason", function () {
+    return function (input) {
+        var monthNameArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var parts = input.split('-', 2);
+        var fromMonth = parseInt(parts[0]);
+        var toMonth = parseInt(parts[1]);
+        return ((fromMonth === 1 && toMonth === 12) || (fromMonth > toMonth && fromMonth - 1 === toMonth)) ?
+            "Year-round" : monthNameArray[fromMonth - 1] + " - " + monthNameArray[toMonth - 1];
+    };
+});
+
+app.filter("ProcessElevationToString", function () {
+   return function (elevation) {
+       return Math.abs(elevation) < 100 ? "minimal": Math.abs(elevation) + "m";
+   };
 });
