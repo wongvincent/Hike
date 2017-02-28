@@ -130,15 +130,14 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
             $scope.evaluateFilters = function() {
                 $scope.filtersEvaluate = angular.copy($scope.data);
                 $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
-                $scope.filteredTrailsWithoutNameFilter = $scope.$eval("trails | trailsFilter:filtersEvaluate | filter:{ name: filtersEvaluate.searchText } | orderBy:filtersEvaluate.sortSelected");
+                $scope.filteredTrailsWithoutNameFilter = $scope.$eval("trails | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
                 $scope.filteredTrails = $scope.$eval("filteredTrailsWithoutNameFilter | filter:{ name: filtersEvaluate.searchText }");
             };
 
             $scope.evaluateTemporaryFilters = function() {
                 $scope.filtersEvaluate = angular.copy($scope.tempData);
                 $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
-                $scope.filteredTrailsWithoutNameFilter = $scope.$eval("trails | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
-                $scope.tempFilteredTrails = $scope.$eval("filteredTrailsWithoutNameFilter | filter:{ name: filtersEvaluate.searchText }");
+                $scope.tempFilteredTrails = $scope.$eval("trails | trailsFilter:filtersEvaluate | filter:{ name: filtersEvaluate.searchText } | orderBy:filtersEvaluate.sortSelected");
             };
 
             $scope.evaluateSortFilter = function() {
@@ -184,7 +183,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
 
             $scope.applyFilters = function() {
                 $scope.data = angular.copy($scope.tempData);
-                $scope.filteredTrails = angular.copy($scope.tempFilteredTrails);
+                $scope.evaluateFilters();
                 $scope.closeFilterModal();
             };
 
