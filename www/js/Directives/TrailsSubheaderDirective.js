@@ -175,6 +175,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
                 angular.copy(copyDefaultFilters, $scope.data);
                 angular.copy(copyDefaultFilters, $scope.tempData);
                 $scope.evaluateFilters();
+                updateNumberOfFiltersApplied();
                 $scope.tempFilteredTrails = angular.copy($scope.filteredTrails);
                 window.plugins.toast.showShortBottom(
                     "Filters Reset"
@@ -184,6 +185,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
             $scope.applyFilters = function() {
                 $scope.data = angular.copy($scope.tempData);
                 $scope.evaluateFilters();
+                updateNumberOfFiltersApplied();
                 $scope.closeFilterModal();
             };
 
@@ -254,6 +256,29 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
             $scope.isGroupShown = function(group) {
                 return $scope.shownGroup === group;
             };
+
+            var updateNumberOfFiltersApplied = function() {
+                var hasLocationsFilterApplied = function() {
+                    for (var i = 0; i < $scope.data.filterLocation.length; i++) {
+                        if (!$scope.data.filterLocation[i].isChecked) {
+                            return true;
+                        }
+                    }
+                    return false;
+                };
+                $scope.numberOfFiltersApplied = hasLocationsFilterApplied() +
+                    (defaultFilters.filterTimeMin !== $scope.data.filterTimeMin
+                        || defaultFilters.filterTimeMax !== $scope.data.filterTimeMax) +
+                    (defaultFilters.filterDistanceMin !== $scope.data.filterDistanceMin
+                        || defaultFilters.filterDistanceMax !== $scope.data.filterDistanceMax) +
+                    (defaultFilters.filterDifficultyEasy !== $scope.data.filterDifficultyEasy
+                        || defaultFilters.filterDifficultyModerate !== $scope.data.filterDifficultyModerate
+                        || defaultFilters.filterDifficultyHard !== $scope.data.filterDifficultyHard) +
+                    (defaultFilters.filterDogFriendly !== $scope.data.filterDogFriendly) +
+                    (defaultFilters.filterTransit !== $scope.data.filterTransit) +
+                    (defaultFilters.filterInSeason !== $scope.data.filterInSeason);
+            };
+            $scope.numberOfFiltersApplied = 0;
 
             $scope.Math = Math;
         }]

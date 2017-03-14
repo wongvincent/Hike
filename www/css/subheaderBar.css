@@ -9,6 +9,7 @@
     height: 48px;
     border: none;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 0 0 0 16px;
 }
 
 .trails-subheader-bar .number-of-results {
@@ -20,6 +21,19 @@
 .trails-subheader-bar .buttons-right {
     min-width: 120px;
     text-align: right;
+    display: -webkit-box;
+}
+
+.trails-subheader-bar .buttons-right button {
+    display: flex;
+}
+
+.trails-subheader-bar .buttons-right .filters-applied {
+    color: #28A54C;
+}
+
+.trails-subheader-bar .buttons-right .filters-applied span {
+    margin-left: 0;
 }
 
 .trails-map-view .trails-subheader-bar .buttons-right {

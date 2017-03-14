@@ -11,7 +11,8 @@
         <button class="button button-icon button-clear ion-android-funnel" ng-click="sortby()">
         </button>
 
-        <button class="button button-icon button-clear ion-android-options" ng-click="openFilterModal()">
+        <button class="button button-icon button-clear ion-android-options" ng-class="{ 'filters-applied': numberOfFiltersApplied }" ng-click="openFilterModal()">
+           <span ng-show="numberOfFiltersApplied">({{numberOfFiltersApplied}})</span>
         </button>
     </div>
 </div>
