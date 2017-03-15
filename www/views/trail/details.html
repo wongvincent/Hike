@@ -1,66 +1,63 @@
-<ion-view title="{{trail.name}}">
+<ion-view title="{{trail.name}}" class="trail-details-view">
     <ion-nav-buttons side="right">
         <button class="button button-icon button-clear ion-android-share-alt trail-share-button"
                 ng-click="shareTrail()">
         </button>
     </ion-nav-buttons>
 
-    <ion-content id="trail-details">
-
-        <div id="trail-info" class="card">
-            <div class="item item-text-wrap">
-                <div class="row" ng-if="trail.location">
-                    <span>Location</span>{{::trail.location}}
-                </div>
-                <div class="row" ng-if="trail.difficulty != null">
-                    <span>Difficulty</span>{{::trail.difficulty| HumanizeDifficulty}}
-                </div>
-                <div class="row" ng-if="trail.time">
-                    <span>Time</span>{{::trail.time}} hours
-                </div>
-                <div class="row" ng-if="trail.distance && trail.distanceCategory != null">
-                    <span>{{::trail.distanceCategory| ConvertDistanceCategoryToString}}</span>{{::trail.distance}}km
-                </div>
-                <div class="row" ng-if="trail.elevation != null">
-                    <span>Elevation Gain</span>{{::trail.elevation| ProcessElevationToString}}
-                </div>
-                <div class="row" ng-if="trail.season">
-                    <span>Season</span>{{::trail.season| HumanizeSeason}}
-                </div>
-                <div class="row" ng-if="trail.transit != null">
-                    <span>Transit Accessible</span>{{::trail.transit| BoolToString}}
-                </div>
-                <div class="row" ng-if="trail.dogFriendly != null">
-                    <span>Dog Friendly</span>{{::trail.dogFriendly| BoolToString}}
-                </div>
-                <div class="row">
-                    <favourite-star></favourite-star>
-                </div>
+    <ion-content id="trail-details-content">
+        <ion-item class="item-text-wrap trail-card">
+            <div class="row" ng-if="trail.location">
+                <span>Location</span>{{::trail.location}}
             </div>
-        </div>
+            <div class="row" ng-if="trail.difficulty != null">
+                <span>Difficulty</span>{{::trail.difficulty| HumanizeDifficulty}}
+            </div>
+            <div class="row" ng-if="trail.time">
+                <span>Time</span>{{::trail.time}} hours
+            </div>
+            <div class="row" ng-if="trail.distance && trail.distanceCategory != null">
+                <span>{{::trail.distanceCategory| ConvertDistanceCategoryToString}}</span>{{::trail.distance}}km
+            </div>
+            <div class="row" ng-if="trail.elevation != null">
+                <span>Elevation Gain</span>{{::trail.elevation| ProcessElevationToString}}
+            </div>
+            <div class="row" ng-if="trail.season">
+                <span>Season</span>{{::trail.season| HumanizeSeason}}
+            </div>
+            <div class="row" ng-if="trail.transit != null">
+                <span>Transit Accessible</span>{{::trail.transit| BoolToString}}
+            </div>
+            <div class="row" ng-if="trail.dogFriendly != null">
+                <span>Dog Friendly</span>{{::trail.dogFriendly| BoolToString}}
+            </div>
+            <div class="row">
+                <favourite-star></favourite-star>
+            </div>
+        </ion-item>
 
         <div class="card" ng-controller="TrailMapController">
             <trail-map></trail-map>
         </div>
 
-    <!--
-        <div ng-if="trail.info && trail.info" id="trail-hints" class="card">
-            <ul>
-                <div class="item item-text-wrap">
-                    <li ng-repeat="info in trail.info">{{::info}}</li>
-                </div>
-            </ul>
-        </div>
+        <!--
+            <div ng-if="trail.info && trail.info" id="trail-hints" class="card">
+                <ul>
+                    <div class="item item-text-wrap">
+                        <li ng-repeat="info in trail.info">{{::info}}</li>
+                    </div>
+                </ul>
+            </div>
 
-        <div ng-if="trail.instructions && trail.instructions" id="trail-instructions" class="card">
-            <ol>
-                <div class="item item-text-wrap">
-                    <li ng-repeat="instruction in trail.instructions">{{::instruction}}</li>
-                </div>
-                <div class="item item-text-wrap"><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li></div>
-                <div class="item item-text-wrap"><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li></div>
-            </ol>
-        </div>
-    -->
+            <div ng-if="trail.instructions && trail.instructions" id="trail-instructions" class="card">
+                <ol>
+                    <div class="item item-text-wrap">
+                        <li ng-repeat="instruction in trail.instructions">{{::instruction}}</li>
+                    </div>
+                    <div class="item item-text-wrap"><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li></div>
+                    <div class="item item-text-wrap"><li>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li></div>
+                </ol>
+            </div>
+        -->
     </ion-content>
 </ion-view>

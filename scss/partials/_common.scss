@@ -1,0 +1,144 @@
+/*GENERAL app css changes */
+* {
+	font-family: sans-serif;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+
+.bar {
+	padding: 0 16px;
+
+	.buttons-right button {
+		margin-left: 16px;
+		height: 100%;
+	}
+	.right-buttons button {
+		padding-left: 10px !important;
+	}
+}
+
+.bar.bar-balanced {
+	border-color: #196730;
+	background-color: $green;
+	background-image: linear-gradient(0deg, #196730, #196730 50%, transparent 50%);
+	color: #fff;
+}
+
+ul {
+	list-style-type: initial !important;
+}
+
+ol {
+	list-style-type: decimal !important;
+}
+
+.platform-android .bar-header {
+	.title {
+		font-size: 28px;
+		font-weight: bold;
+		margin-left: 23px;
+		margin-top: 10px;
+		left: 48px;
+	}
+
+	.buttons-left {
+		button {
+			top: 7px;
+		}
+	}
+	.buttons-right {
+		top: 0;
+		margin-right: 9px;
+		button {
+			top: 7px;
+		}
+	}
+}
+
+.bar-header {
+	height: 56px;
+}
+
+.has-header {
+	top: 56px;
+}
+
+.has-header.has-tabs-top {
+	top: 89px;
+}
+
+.tabs {
+	height: 37px !important;
+}
+
+.tab-item {
+	font-size: 20px;
+}
+
+.tabs-top .tab-nav.tabs a,
+.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.tab-item-active .tab-title,
+.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.activated .tab-title {
+	margin-top: -7px;
+}
+
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+	background: green;
+	border-color: green;
+}
+
+ion-header-bar > div {
+	height: 56px;
+}
+
+.popup {
+	background-color: white !important;
+	border-radius: 3px;
+	min-width: 75%;
+	max-width: 90%;
+	padding: 10px 23px;
+
+	.popup-head {
+		border: 0;
+		padding: 10px 0;
+
+		.popup-title {
+			font-weight: bold;
+			font-size: 22px;
+			text-align: left;
+		}
+	}
+
+	.popup-body {
+		padding: 10px 0;
+		font-size: 22px;
+	}
+
+	.popup-buttons {
+		padding: 10px 0;
+
+		button {
+			font-weight: 600;
+			font-size: 24px;
+		}
+		button.activated {
+			border-color: white;
+			background-color: white;
+		}
+	}
+}
+
+/** More specific **/
+
+.none-found {
+	font-weight: bold;
+	text-align: center;
+}
+
+.no-connection-alert .popup-buttons .button {
+	color: green;
+	max-width: 60px;
+	position: absolute;
+	right: 23px;
+}

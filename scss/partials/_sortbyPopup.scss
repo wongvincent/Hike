@@ -1,0 +1,67 @@
+/* SORT BY popup */
+
+.sort-trails-popup {
+	.popup-body {
+		padding-top: 0;
+		.list {
+			.item {
+				border: 0;
+				height: 60px;
+				padding-top: 20px;
+
+				input:checked + .radio-content {
+					.item-content {
+						background-color: white;
+						i {
+							/* Outline icon of selected element */
+							display: none;
+						}
+
+						span {
+							/* Text of selected element */
+							margin-left: 37px;
+						}
+					}
+					i.radio-icon {
+						/* Filled icon of selected element */
+						color: $green;
+						font-size: 22px;
+						left: 0;
+						top: 10px;
+					}
+				}
+
+				.radio-content {
+					.item-content {
+						i {
+							/* Outline icon */
+							font-size: 20px;
+							padding-right: 16px;
+						}
+						span {
+							/* Text of any element */
+							font-size: 18px;
+							vertical-align: top;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.popup-buttons {
+		display: none;
+	}
+
+	.radio-content > .item-content {
+		padding: 3px;
+	}
+
+	.radio-content > .radio-icon {
+		padding: 10px 0 0 3px;
+	}
+
+	.item-radio.activated {
+		background-color: #FFF;
+	}
+}

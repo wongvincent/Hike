@@ -1,0 +1,12 @@
+.favourite-star {
+	font-size: 50px;
+	position: absolute;
+	right: 0;
+	top: 10px;
+}
+
+.favourite-star.is-favourite {
+	i {
+		color: $yellow-star;
+	}
+}

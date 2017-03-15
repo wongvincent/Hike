@@ -1,0 +1,20 @@
+.search-bar {
+	height: 56px;
+	.input-search {
+		width: 100%;
+		font-size: 32px;
+		border-width: 0 0 1px;
+		padding-top: 4px;
+	}
+	.icon.back-button {
+		font-size: 40px;
+		color: #444444;
+		padding-right: 16px !important;
+		padding-top: 10px;
+	}
+	.icon.x-button {
+		font-size: 32px;
+		color: #444444;
+		padding-top: 10px;
+	}
+}

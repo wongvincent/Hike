@@ -1,0 +1,68 @@
+/** Make Main Content black when side-menu is open **/
+body.menu-open {
+	.view-container {
+		background-color: black;
+
+		.pane {
+			opacity: 0.5 !important;
+		}
+	}
+	.menu-content {
+		transform: translate3d(75%, 0px, 0px) !important;
+	}
+}
+
+/** width of side-menu **/
+.menu.menu-left {
+	width: 75% !important;
+}
+
+/** Side Menu **/
+.side-menu-content {
+	background-color: #FFF;
+	color: white;
+
+	.left-side-menu-header-bar {
+		text-align: center;
+		background-color: #1D9943;
+		color: white;
+		border: 0;
+
+		.title-name {
+			font-size: 32px;
+			padding: 10px 0 5px;
+		}
+
+		.title-icon {
+			width: 100%;
+			max-width: 200px;
+		}
+	}
+
+	.left-menu-item {
+		font-size: 20px;
+		border: 0;
+		font-weight: 300;
+
+		a.item-content {
+			padding: 16px 16px 16px 24px;
+			background-color: #FFF;
+			color: #555;
+		}
+
+		.icon-container {
+			font-size: 34px;
+			margin-right: 14px;
+		}
+
+		.name {
+			font-size: 34px;
+		}
+
+		.selected {
+			background-color: grey;
+			color: $green;
+			font-weight: bold;
+		}
+	}
+}

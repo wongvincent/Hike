@@ -1,0 +1,18 @@
+//Vendor
+  //deleted ionic.app.scss. Use www/lib/ionic/css/ionic.min.css instead
+
+//Modules
+@import "modules/_colours";
+
+//Partials
+@import "partials/_common";
+@import "partials/_favourites";
+@import "partials/_filtermodal";
+@import "partials/_nearby";
+@import "partials/_maps";
+@import "partials/_searchBar";
+@import "partials/_sideMenu";
+@import "partials/_sortbyPopup";
+@import "partials/_subheaderBar";
+@import "partials/_trail";
+@import "partials/_trails";

@@ -1,0 +1,32 @@
+.trail-tabs .tab-nav {
+	top: 56px !important;
+}
+
+.trail-details-view {
+	#trail-details-content ol .item, #trail-details-content ul .item {
+		padding: 6px 10px 6px 35px !important;
+	}
+}
+
+.trail-photos-view {
+	.trail-photo .photoAttribution {
+		position: absolute;
+		bottom: 1px;
+		right: 0;
+		z-index: 10;
+		background-color: #222222;
+		opacity: 0.8;
+		display: inline-block;
+		padding: 1px 6px;
+		font-size: 11px;
+	}
+	.powered-by-google {
+		float: right;
+		margin-right: 16px;
+		margin-bottom: 8px;
+	}
+}
+
+/** See _trails.scss for trail-card inner css **/
+
+/** See _maps.scss for trail-map css **/

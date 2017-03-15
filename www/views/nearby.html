@@ -12,8 +12,8 @@
         </ion-nav-buttons>
     </ion-nav-bar>
 
-    <ion-content>
-       <ion-item class="item-text-wrap list-trail-item nearby-card" ng-if="nearby" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in nearby | limitTo:25" ui-sref='trail.details({name: trail.href})'>
+    <ion-content class="trails-list">
+       <ion-item class="item-text-wrap trail-card nearby-card" ng-if="nearby" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in nearby | limitTo:25" ui-sref='trail.details({name: trail.href})'>
             <div class="row">
                 {{::trail.name}} <div class="distance-from">{{::trail.distanceFromPos | number:0}}km</div>
             </div>

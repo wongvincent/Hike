@@ -1,0 +1,131 @@
+/* FILTER POPUP MODAL */
+.modal-backdrop.active .modal-backdrop-bg {
+	background-color: #000;
+	opacity: 0.5;
+}
+
+.filter-by-modal {
+	bottom: 0;
+	top: initial;
+	min-height: initial;
+	height: calc(100% - 56px);
+
+	.bar-header {
+		font-weight: bold;
+
+		.title {
+			text-align: center;
+			font-weight: bold;
+
+			#filter-title {
+				height: 18px;
+				font-size: 25px;
+				line-height: 25px;
+				margin: 6px 0 4px;
+			}
+			#number-of-results {
+				color: #AAAAAA;
+				line-height: 20px;
+				font-weight: normal;
+			}
+		}
+		.buttons {
+			top: 0;
+			bottom: 0;
+			button {
+				color: $green;
+				font-weight: bold;
+				line-height: 56px;
+				font-size: 24px;
+				padding-right: 10px;
+				paddint-top: 3px;
+			}
+		}
+	}
+
+	.filters-list {
+		.filter-difficulty {
+			#filter-difficulty-title {
+				display: inline-block;
+			}
+			#filter-difficulty-check {
+				float: right;
+
+				.item-checkbox {
+					display: inline-block;
+					padding: 0 5px 0 44px;
+					border: none;
+				}
+			}
+		}
+
+		// ACCORDIAN
+		.group-header-item {
+			background-color: white;
+			.filtergroup-collapsible-icon-toggle {
+				float: right;
+			}
+			.current-filter-name {
+				color: #AAAAAA;
+				float: right;
+				margin-right: 24px;
+			}
+		}
+
+		.item-accordian {
+			line-height: 50px;
+			padding: 0 16px 0 35px;
+			transition: 0.09s all linear;
+		}
+		.item-accordian.ng-hide {
+			line-height: 0;
+		}
+		.item-accordian.ng-hide-add,
+		.item-accordian.ng-hide-remove {
+			display: block !important;
+		}
+
+		// SLIDER
+		.rzslider {
+			.rz-bar.rz-selection {
+				background-color: #DDDDDD;
+			}
+			.rz-pointer {
+				background-color: $green;
+			}
+			.rz-pointer.rz-active:after {
+				background-color: #FFF;
+			}
+		}
+
+		.item-checkbox-right {
+			padding: 15px;
+
+			.checkbox input,
+			.checkbox-icon {
+				float: right;
+			}
+		}
+	}
+
+	.small-icon:before {
+		font-size: 20px !important;
+		margin-top: 2px;
+	}
+
+	.has-footer {
+		bottom: 77px;
+	}
+
+	// FOOTER
+	.footer-bar {
+		height: 65px;
+		#apply-button {
+			font-weight: bold;
+			font-size: 24px;
+			width: 100%;
+			height: 56px;
+			background-color: $green;
+		}
+	}
+}

@@ -1,0 +1,398 @@
+/*GENERAL app css changes */
+* {
+  font-family: sans-serif; }
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
+.bar {
+  padding: 0 16px; }
+  .bar .buttons-right button {
+    margin-left: 16px;
+    height: 100%; }
+  .bar .right-buttons button {
+    padding-left: 10px !important; }
+
+.bar.bar-balanced {
+  border-color: #196730;
+  background-color: #28A54C;
+  background-image: linear-gradient(0deg, #196730, #196730 50%, transparent 50%);
+  color: #fff; }
+
+ul {
+  list-style-type: initial !important; }
+
+ol {
+  list-style-type: decimal !important; }
+
+.platform-android .bar-header .title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-left: 23px;
+  margin-top: 10px;
+  left: 48px; }
+.platform-android .bar-header .buttons-left button {
+  top: 7px; }
+.platform-android .bar-header .buttons-right {
+  top: 0;
+  margin-right: 9px; }
+  .platform-android .bar-header .buttons-right button {
+    top: 7px; }
+
+.bar-header {
+  height: 56px; }
+
+.has-header {
+  top: 56px; }
+
+.has-header.has-tabs-top {
+  top: 89px; }
+
+.tabs {
+  height: 37px !important; }
+
+.tab-item {
+  font-size: 20px; }
+
+.tabs-top .tab-nav.tabs a,
+.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.tab-item-active .tab-title,
+.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.activated .tab-title {
+  margin-top: -7px; }
+
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+  background: green;
+  border-color: green; }
+
+ion-header-bar > div {
+  height: 56px; }
+
+.popup {
+  background-color: white !important;
+  border-radius: 3px;
+  min-width: 75%;
+  max-width: 90%;
+  padding: 10px 23px; }
+  .popup .popup-head {
+    border: 0;
+    padding: 10px 0; }
+    .popup .popup-head .popup-title {
+      font-weight: bold;
+      font-size: 22px;
+      text-align: left; }
+  .popup .popup-body {
+    padding: 10px 0;
+    font-size: 22px; }
+  .popup .popup-buttons {
+    padding: 10px 0; }
+    .popup .popup-buttons button {
+      font-weight: 600;
+      font-size: 24px; }
+    .popup .popup-buttons button.activated {
+      border-color: white;
+      background-color: white; }
+
+/** More specific **/
+.none-found {
+  font-weight: bold;
+  text-align: center; }
+
+.no-connection-alert .popup-buttons .button {
+  color: green;
+  max-width: 60px;
+  position: absolute;
+  right: 23px; }
+
+.favourite-star {
+  font-size: 50px;
+  position: absolute;
+  right: 0;
+  top: 10px; }
+
+.favourite-star.is-favourite i {
+  color: #FFDB4B; }
+
+/* FILTER POPUP MODAL */
+.modal-backdrop.active .modal-backdrop-bg {
+  background-color: #000;
+  opacity: 0.5; }
+
+.filter-by-modal {
+  bottom: 0;
+  top: initial;
+  min-height: initial;
+  height: calc(100% - 56px); }
+  .filter-by-modal .bar-header {
+    font-weight: bold; }
+    .filter-by-modal .bar-header .title {
+      text-align: center;
+      font-weight: bold; }
+      .filter-by-modal .bar-header .title #filter-title {
+        height: 18px;
+        font-size: 25px;
+        line-height: 25px;
+        margin: 6px 0 4px; }
+      .filter-by-modal .bar-header .title #number-of-results {
+        color: #AAAAAA;
+        line-height: 20px;
+        font-weight: normal; }
+    .filter-by-modal .bar-header .buttons {
+      top: 0;
+      bottom: 0; }
+      .filter-by-modal .bar-header .buttons button {
+        color: #28A54C;
+        font-weight: bold;
+        line-height: 56px;
+        font-size: 24px;
+        padding-right: 10px;
+        paddint-top: 3px; }
+  .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-title {
+    display: inline-block; }
+  .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check {
+    float: right; }
+    .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check .item-checkbox {
+      display: inline-block;
+      padding: 0 5px 0 44px;
+      border: none; }
+  .filter-by-modal .filters-list .group-header-item {
+    background-color: white; }
+    .filter-by-modal .filters-list .group-header-item .filtergroup-collapsible-icon-toggle {
+      float: right; }
+    .filter-by-modal .filters-list .group-header-item .current-filter-name {
+      color: #AAAAAA;
+      float: right;
+      margin-right: 24px; }
+  .filter-by-modal .filters-list .item-accordian {
+    line-height: 50px;
+    padding: 0 16px 0 35px;
+    transition: 0.09s all linear; }
+  .filter-by-modal .filters-list .item-accordian.ng-hide {
+    line-height: 0; }
+  .filter-by-modal .filters-list .item-accordian.ng-hide-add,
+  .filter-by-modal .filters-list .item-accordian.ng-hide-remove {
+    display: block !important; }
+  .filter-by-modal .filters-list .rzslider .rz-bar.rz-selection {
+    background-color: #DDDDDD; }
+  .filter-by-modal .filters-list .rzslider .rz-pointer {
+    background-color: #28A54C; }
+  .filter-by-modal .filters-list .rzslider .rz-pointer.rz-active:after {
+    background-color: #FFF; }
+  .filter-by-modal .filters-list .item-checkbox-right {
+    padding: 15px; }
+    .filter-by-modal .filters-list .item-checkbox-right .checkbox input,
+    .filter-by-modal .filters-list .item-checkbox-right .checkbox-icon {
+      float: right; }
+  .filter-by-modal .small-icon:before {
+    font-size: 20px !important;
+    margin-top: 2px; }
+  .filter-by-modal .has-footer {
+    bottom: 77px; }
+  .filter-by-modal .footer-bar {
+    height: 65px; }
+    .filter-by-modal .footer-bar #apply-button {
+      font-weight: bold;
+      font-size: 24px;
+      width: 100%;
+      height: 56px;
+      background-color: #28A54C; }
+
+.nearby-card .row .distance-from {
+  font-weight: 300;
+  position: absolute;
+  right: 16px;
+  top: 10px; }
+
+/* Shared by both trail and trails map */
+.scroll {
+  height: 100%; }
+
+.pin-info-description {
+  background: #FFFF56;
+  padding: 1px 8px; }
+
+/* Only used by Trail Map */
+#trail-map {
+  width: 100%;
+  height: 300px; }
+
+button#bottomMapButton {
+  min-height: 10% !important;
+  max-height: 10% !important;
+  width: 100%; }
+
+/* Only used by Trails Map */
+#trails-map {
+  width: 100%;
+  height: 100%; }
+
+.search-bar {
+  height: 56px; }
+  .search-bar .input-search {
+    width: 100%;
+    font-size: 32px;
+    border-width: 0 0 1px;
+    padding-top: 4px; }
+  .search-bar .icon.back-button {
+    font-size: 40px;
+    color: #444444;
+    padding-right: 16px !important;
+    padding-top: 10px; }
+  .search-bar .icon.x-button {
+    font-size: 32px;
+    color: #444444;
+    padding-top: 10px; }
+
+/** Make Main Content black when side-menu is open **/
+body.menu-open .view-container {
+  background-color: black; }
+  body.menu-open .view-container .pane {
+    opacity: 0.5 !important; }
+body.menu-open .menu-content {
+  transform: translate3d(75%, 0px, 0px) !important; }
+
+/** width of side-menu **/
+.menu.menu-left {
+  width: 75% !important; }
+
+/** Side Menu **/
+.side-menu-content {
+  background-color: #FFF;
+  color: white; }
+  .side-menu-content .left-side-menu-header-bar {
+    text-align: center;
+    background-color: #1D9943;
+    color: white;
+    border: 0; }
+    .side-menu-content .left-side-menu-header-bar .title-name {
+      font-size: 32px;
+      padding: 10px 0 5px; }
+    .side-menu-content .left-side-menu-header-bar .title-icon {
+      width: 100%;
+      max-width: 200px; }
+  .side-menu-content .left-menu-item {
+    font-size: 20px;
+    border: 0;
+    font-weight: 300; }
+    .side-menu-content .left-menu-item a.item-content {
+      padding: 16px 16px 16px 24px;
+      background-color: #FFF;
+      color: #555; }
+    .side-menu-content .left-menu-item .icon-container {
+      font-size: 34px;
+      margin-right: 14px; }
+    .side-menu-content .left-menu-item .name {
+      font-size: 34px; }
+    .side-menu-content .left-menu-item .selected {
+      background-color: grey;
+      color: #28A54C;
+      font-weight: bold; }
+
+/* SORT BY popup */
+.sort-trails-popup .popup-body {
+  padding-top: 0; }
+  .sort-trails-popup .popup-body .list .item {
+    border: 0;
+    height: 60px;
+    padding-top: 20px; }
+    .sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content {
+      background-color: white; }
+      .sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content i {
+        /* Outline icon of selected element */
+        display: none; }
+      .sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content span {
+        /* Text of selected element */
+        margin-left: 37px; }
+    .sort-trails-popup .popup-body .list .item input:checked + .radio-content i.radio-icon {
+      /* Filled icon of selected element */
+      color: #28A54C;
+      font-size: 22px;
+      left: 0;
+      top: 10px; }
+    .sort-trails-popup .popup-body .list .item .radio-content .item-content i {
+      /* Outline icon */
+      font-size: 20px;
+      padding-right: 16px; }
+    .sort-trails-popup .popup-body .list .item .radio-content .item-content span {
+      /* Text of any element */
+      font-size: 18px;
+      vertical-align: top; }
+.sort-trails-popup .popup-buttons {
+  display: none; }
+.sort-trails-popup .radio-content > .item-content {
+  padding: 3px; }
+.sort-trails-popup .radio-content > .radio-icon {
+  padding: 10px 0 0 3px; }
+.sort-trails-popup .item-radio.activated {
+  background-color: #FFF; }
+
+/* SUBHEADER BAR */
+.trails-nav-view ion-content {
+  top: 105px !important; }
+
+.trails-subheader-bar {
+  margin-top: 56px;
+  height: 48px;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  padding: 0 0 0 16px; }
+  .trails-subheader-bar .number-of-results {
+    width: calc(100% - 120px);
+    font-size: 24px;
+    line-height: 56px; }
+  .trails-subheader-bar .buttons-right {
+    min-width: 120px;
+    text-align: right;
+    display: -webkit-box; }
+    .trails-subheader-bar .buttons-right button {
+      display: flex; }
+    .trails-subheader-bar .buttons-right .filters-applied {
+      color: #28A54C; }
+      .trails-subheader-bar .buttons-right .filters-applied span {
+        margin-left: 0; }
+
+.trails-map-view .trails-subheader-bar .buttons-right {
+  visibility: hidden; }
+
+.trail-tabs .tab-nav {
+  top: 56px !important; }
+
+.trail-details-view #trail-details-content ol .item, .trail-details-view #trail-details-content ul .item {
+  padding: 6px 10px 6px 35px !important; }
+
+.trail-photos-view .trail-photo .photoAttribution {
+  position: absolute;
+  bottom: 1px;
+  right: 0;
+  z-index: 10;
+  background-color: #222222;
+  opacity: 0.8;
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 11px; }
+.trail-photos-view .powered-by-google {
+  float: right;
+  margin-right: 16px;
+  margin-bottom: 8px; }
+
+/** See _trails.scss for trail-card inner css **/
+/** See _maps.scss for trail-map css **/
+/* TRAIL CARDS */
+.trail-card a.item-content {
+  padding: 10px 16px; }
+.trail-card .row span:nth-child(1), .trail-card #trail-details #trail-info .item .row span:nth-child(1) {
+  font-weight: bold;
+  padding-right: 16px;
+  color: #666; }
+
+.trails-list .trail-card .row:nth-child(1) {
+  /* Trail card title */
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 24px;
+  padding-bottom: 8px;
+  padding-top: 0; }
+.trails-list .trail-card.favourite-trail {
+  border-right: 10px solid #FFDB4B; }
+
+/* See maps.css for trails-map css */
+
+/*# sourceMappingURL=style.css.map */

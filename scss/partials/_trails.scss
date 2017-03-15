@@ -1,0 +1,32 @@
+/* TRAIL CARDS */
+
+.trail-card {
+	a.item-content {
+		padding: 10px 16px;
+	}
+
+	.row span:nth-child(1), #trail-details #trail-info .item .row span:nth-child(1) {
+		font-weight: bold;
+		padding-right: 16px;
+		color: #666;
+	}
+}
+
+.trails-list {
+	.trail-card {
+		.row:nth-child(1) {
+			/* Trail card title */
+			font-weight: 500;
+			font-size: 24px;
+			line-height: 24px;
+			padding-bottom: 8px;
+			padding-top: 0;
+		}
+	}
+	.trail-card.favourite-trail {
+		border-right: 10px solid $yellow-star;
+	}
+}
+
+
+/* See maps.css for trails-map css */
