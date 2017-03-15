@@ -18,6 +18,8 @@ app.run(function ($rootScope, $ionicPlatform, $ionicHistory, $ionicPopup) {
     $ionicPlatform.registerBackButtonAction(function(e) {
         if ($ionicHistory.backView()) {
             $ionicHistory.goBack();
+        } else if ($rootScope.searchBarActive) {
+	        $rootScope.$broadcast('hide-search-bar-request', {});
         } else {
             var exitAppPopup = $ionicPopup.confirm({
                 title: "Exit",
@@ -144,6 +146,8 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
     $scope.$on('$ionicView.beforeEnter', function () {
         $ionicSideMenuDelegate.canDragContent(true);
     });
+
+	$rootScope.searchBarActive = false;
 
     $scope.updateFavourites = function(){
         var q = $q.defer();
