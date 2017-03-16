@@ -262,12 +262,12 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
         array.sort(compare);
     };
 
-    $rootScope.$on('event:add-favourite', function() {
+    $rootScope.$on('event:add-favourite', function(event, args) {
         //TODO: optimize so updateFavourites does not need to be called
         $scope.updateFavourites();
     });
 
-    $rootScope.$on('event:remove-favourite', function() {
+    $rootScope.$on('event:remove-favourite', function(event, args) {
         //TODO: optimize so updateFavourites does not need to be called
         $scope.updateFavourites();
     });

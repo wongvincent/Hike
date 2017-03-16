@@ -25,7 +25,7 @@ app.service('FavouritesService', ['$rootScope', 'Database', function($rootScope,
         var parameters = [trailId];
         return Database.query("INSERT INTO favourites (trailId) VALUES (?)", parameters)
             .then(function(){
-                $rootScope.$broadcast('event:add-favourite');
+                $rootScope.$broadcast('event:add-favourite', { id: trailId });
             });
     };
 
@@ -33,7 +33,7 @@ app.service('FavouritesService', ['$rootScope', 'Database', function($rootScope,
         var parameters = [trailId];
         return Database.query("DELETE FROM favourites WHERE trailId = (?)", parameters)
             .then(function(){
-                $rootScope.$broadcast('event:remove-favourite');
+                $rootScope.$broadcast('event:remove-favourite', { id: trailId });
             });
     };
 

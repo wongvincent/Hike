@@ -1,6 +1,6 @@
 var app = angular.module('directives', ['rzModule']);
 
-app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupService', function ($ionicPopup, $ionicModal, ClosePopupService) {
+app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupService', 'FilterTrailsService', function ($ionicPopup, $ionicModal, ClosePopupService, FilterTrailsService) {
     return {
         templateUrl: 'views/trails/trailsSubheader.html',
         controller: ['$scope', function ($scope) {
@@ -38,75 +38,9 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
                 });
             };
 
-            var filterLocation =
-                {
-                    key: "filterLocation",
-                    name: "Location",
-                    items: [
-                        { name: "North Shore", value: ["north van", "west van"], isChecked: true},
-                        { name: "Fraser Valley", value: ["fraser valley"], isChecked: true},
-                        { name: "Howe Sound", value: ["howe sound"], isChecked: true},
-                        { name: "Ridge Meadows", value: ["ridge meadows"], isChecked: true},
-                        { name: "South of Fraser (Delta, Langley)", value: ["south of fraser"], isChecked: true},
-                        { name: "Tri-Cities", value: ["tri-cities"], isChecked: true},
-                        { name: "Vancouver", value: ["vancouver"], isChecked: true},
-                        { name: "Whistler", value: ["whistler"], isChecked: true}
-                    ]
-                };
-
-            var filterTimeMin =
-                {
-                    key: "filterTimeMin",
-                    name: "Time - Minimum",
-                    items: [
-                        { name: "No Minimum", value: 0 },
-                        { name: "2 hours", value: 2 },
-                        { name: "4 hours", value: 4 },
-                        { name: "8 hours", value: 8 }
-                    ]
-                };
-
-            var filterTimeMax =
-            {
-                key: "filterTimeMax",
-                name: "Time - Maximum",
-                items: [
-                    { name: "2 hours", value: 2 },
-                    { name: "4 hours", value: 4 },
-                    { name: "8 hours", value: 8 },
-                    { name: "No Maximum", value: 999 }
-                ]
-            };
-
-            $scope.updateLocationFilter = function() {
-                var selectedFilterItems = [];
-                angular.forEach($scope.filterLocation, function(item) {
-                    if (item.isChecked) {
-                        selectedFilterItems.push(item);
-                    }
-                });
-                $scope.tempData.filterLocation = selectedFilterItems;
-            };
-
-            var defaultFilters = {
-                searchText: "",
-                sortSelected: "name",
-                filterLocation: filterLocation.items,
-                filterTimeMin: 0,
-                filterTimeMax: 12,
-                filterDistanceMin: 0,
-                filterDistanceMax: 30,
-                filterDifficultyEasy: true,
-                filterDifficultyModerate: true,
-                filterDifficultyHard: true,
-                filterDogFriendly: false,
-                filterTransit: false,
-                filterInSeason: false
-            };
-
-            $scope.data = angular.copy(defaultFilters);
-            $scope.tempData = angular.copy(defaultFilters);
-
+            $scope.data = FilterTrailsService.getData();
+            $scope.tempData = FilterTrailsService.getDefaultFilters();
+	        $scope.filteredTrails = FilterTrailsService.getFilteredTrails();
 
             var getSelectedFilterLocations = function() {
                 var selectedFilterLocations = [];
@@ -132,6 +66,7 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
                 $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
                 $scope.filteredTrailsWithoutNameFilter = $scope.$eval("trails | trailsFilter:filtersEvaluate | orderBy:filtersEvaluate.sortSelected");
                 $scope.filteredTrails = $scope.$eval("filteredTrailsWithoutNameFilter | filter:{ name: filtersEvaluate.searchText }");
+                FilterTrailsService.setFilteredTrails($scope.filteredTrails);
             };
 
             $scope.evaluateTemporaryFilters = function() {
@@ -143,46 +78,52 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
             $scope.evaluateSortFilter = function() {
                 $scope.filteredTrailsWithoutNameFilter = $scope.$eval("filteredTrailsWithoutNameFilter | orderBy:data.sortSelected");
                 $scope.filteredTrails = $scope.$eval("filteredTrails | orderBy:data.sortSelected");
+	            FilterTrailsService.setFilteredTrails($scope.filteredTrails);
             };
 
             $scope.evaluateNameFilter = function() {
-                $scope.filteredTrails = $scope.$eval("filteredTrailsWithoutNameFilter | filter:{ name: data.searchText }")
+                $scope.filteredTrails = $scope.$eval("filteredTrailsWithoutNameFilter | filter:{ name: data.searchText }");
+	            FilterTrailsService.setFilteredTrails($scope.filteredTrails);
             };
 
-            $scope.$watch('trails', function() {
-                $scope.evaluateFilters();
-            });
+	        $scope.$watch('trails', function() {
+	            $scope.evaluateFilters();
+	         });
 
-            $scope.$watch("data.sortSelected", function() {
-                $scope.evaluateSortFilter();
-            });
+	        $scope.$watch("data.sortSelected", function() {
+		        FilterTrailsService.setData($scope.data);
+		        $scope.evaluateSortFilter();
+	        });
 
-            $scope.$watch("data.searchText", function() {
-                $scope.evaluateNameFilter();
-            });
+	        $scope.$watch("data.searchText", function() {
+		        FilterTrailsService.setData($scope.data);
+		        $scope.evaluateNameFilter();
+	        });
 
-            $scope.$watchGroup(["tempData.filterTimeMin", "tempData.filterTimeMax",
-                "tempData.filterDistanceMin", "tempData.filterDistanceMax", "tempData.filterDifficultyEasy",
-                "tempData.filterDifficultyModerate", "tempData.filterDifficultyHard", "tempData.filterDogFriendly",
-                "tempData.filterTransit", "tempData.filterInSeason"], function() {
-                $scope.evaluateTemporaryFilters();
-            });
+	        $scope.$watchGroup(["tempData.filterTimeMin", "tempData.filterTimeMax",
+		        "tempData.filterDistanceMin", "tempData.filterDistanceMax", "tempData.filterDifficultyEasy",
+		        "tempData.filterDifficultyModerate", "tempData.filterDifficultyHard", "tempData.filterDogFriendly",
+		        "tempData.filterTransit", "tempData.filterInSeason"], function() {
+		        $scope.evaluateTemporaryFilters();
+	        });
+
 
             $scope.resetFilters = function () {
-                var copyDefaultFilters = {};
-                angular.copy(defaultFilters, copyDefaultFilters);
-                copyDefaultFilters.sortSelected = $scope.data.sortSelected;
-                angular.copy(copyDefaultFilters, $scope.data);
-                angular.copy(copyDefaultFilters, $scope.tempData);
+                var copyDefaultFilters = FilterTrailsService.getDefaultFilters();
+                copyDefaultFilters.sortSelected = FilterTrailsService.getData().sortSelected;
+                $scope.data = angular.copy(copyDefaultFilters);
+	            FilterTrailsService.setData($scope.data);
+                $scope.tempData = angular.copy(copyDefaultFilters);
                 $scope.evaluateFilters();
                 updateNumberOfFiltersApplied();
-                $scope.tempFilteredTrails = angular.copy($scope.filteredTrails);
+                $scope.tempFilteredTrails = FilterTrailsService.getFilteredTrails();
                 window.plugins.toast.showShortBottom(
                     "Filters Reset"
                 );
             };
 
             $scope.applyFilters = function() {
+	            FilterTrailsService.setData($scope.tempData);
                 $scope.data = angular.copy($scope.tempData);
                 $scope.evaluateFilters();
                 updateNumberOfFiltersApplied();
@@ -231,8 +172,8 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
             });
 
             $scope.openFilterModal = function () {
-                $scope.tempData = angular.copy($scope.data);
-                $scope.tempFilteredTrails = angular.copy($scope.filteredTrails);
+                $scope.tempData = FilterTrailsService.getData();
+                $scope.tempFilteredTrails = FilterTrailsService.getFilteredTrails();
                 $scope.filterModal.show();
             };
 
@@ -258,25 +199,29 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
             };
 
             var updateNumberOfFiltersApplied = function() {
+	            var data = FilterTrailsService.getData();
+	            var defaultFilters = FilterTrailsService.getDefaultFilters();
+
                 var hasLocationsFilterApplied = function() {
-                    for (var i = 0; i < $scope.data.filterLocation.length; i++) {
-                        if (!$scope.data.filterLocation[i].isChecked) {
+                    for (var i = 0; i < data.filterLocation.length; i++) {
+                        if (!data.filterLocation[i].isChecked) {
                             return true;
                         }
                     }
                     return false;
                 };
+
                 $scope.numberOfFiltersApplied = hasLocationsFilterApplied() +
-                    (defaultFilters.filterTimeMin !== $scope.data.filterTimeMin
-                        || defaultFilters.filterTimeMax !== $scope.data.filterTimeMax) +
-                    (defaultFilters.filterDistanceMin !== $scope.data.filterDistanceMin
-                        || defaultFilters.filterDistanceMax !== $scope.data.filterDistanceMax) +
-                    (defaultFilters.filterDifficultyEasy !== $scope.data.filterDifficultyEasy
-                        || defaultFilters.filterDifficultyModerate !== $scope.data.filterDifficultyModerate
-                        || defaultFilters.filterDifficultyHard !== $scope.data.filterDifficultyHard) +
-                    (defaultFilters.filterDogFriendly !== $scope.data.filterDogFriendly) +
-                    (defaultFilters.filterTransit !== $scope.data.filterTransit) +
-                    (defaultFilters.filterInSeason !== $scope.data.filterInSeason);
+                    (defaultFilters.filterTimeMin !== data.filterTimeMin
+                        || defaultFilters.filterTimeMax !== data.filterTimeMax) +
+                    (defaultFilters.filterDistanceMin !== data.filterDistanceMin
+                        || defaultFilters.filterDistanceMax !== data.filterDistanceMax) +
+                    (defaultFilters.filterDifficultyEasy !== data.filterDifficultyEasy
+                        || defaultFilters.filterDifficultyModerate !== data.filterDifficultyModerate
+                        || defaultFilters.filterDifficultyHard !== data.filterDifficultyHard) +
+                    (defaultFilters.filterDogFriendly !== data.filterDogFriendly) +
+                    (defaultFilters.filterTransit !== data.filterTransit) +
+                    (defaultFilters.filterInSeason !== data.filterInSeason);
             };
             $scope.numberOfFiltersApplied = 0;
 
