@@ -263,13 +263,50 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
     };
 
     $rootScope.$on('event:add-favourite', function(event, args) {
-        //TODO: optimize so updateFavourites does not need to be called
-        $scope.updateFavourites();
+	    // Use binary search as trails are already sorted by id
+	    var start = 0;
+	    var end = $scope.trails.length - 1;
+	    while (start <= end) {
+		    var middle = Math.floor((start + end) / 2);
+		    var trail = $scope.trails[middle];
+		    if (trail.id === args.id) {
+			    $scope.trails[middle].favourite = true;
+			    break;
+		    } else if (trail.id > args.id) {
+			    end = middle - 1;
+		    } else {
+			    start = middle + 1;
+		    }
+	    }
+
+	    $scope.favourites.push($scope.trails[middle]);
+	    $scope.sortAlphabetically($scope.favourites);
     });
 
     $rootScope.$on('event:remove-favourite', function(event, args) {
-        //TODO: optimize so updateFavourites does not need to be called
-        $scope.updateFavourites();
+	    // Use binary search as trails are already sorted by id
+	    var start = 0;
+	    var end = $scope.trails.length - 1;
+	    while (start <= end) {
+		    var middle = Math.floor((start + end) / 2);
+		    var trail = $scope.trails[middle];
+		    if (trail.id === args.id) {
+			    $scope.trails[middle].favourite = false;
+			    break;
+		    } else if (trail.id > args.id) {
+			    end = middle - 1;
+		    } else {
+			    start = middle + 1;
+		    }
+	    }
+
+	    // Favourites is probably sorted, but let's use a for loop instead of binary search in case it isn't sorted
+	    for (var i=0; i<$scope.favourites.length; i++) {
+		    if ($scope.favourites[i].id === args.id) {
+			    $scope.favourites.splice(i, 1);
+			    break;
+		    }
+	    }
     });
 }]);
 
