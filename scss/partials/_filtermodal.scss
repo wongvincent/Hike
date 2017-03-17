@@ -8,7 +8,7 @@
 	bottom: 0;
 	top: initial;
 	min-height: initial;
-	height: calc(100% - 56px);
+	height: calc(100% - #{$header-bar-height});
 
 	.bar-header {
 		font-weight: bold;
@@ -35,7 +35,7 @@
 			button {
 				color: $green;
 				font-weight: bold;
-				line-height: 56px;
+				line-height: $header-bar-height;
 				font-size: 24px;
 				padding-right: 10px;
 				paddint-top: 3px;
@@ -127,7 +127,7 @@
 			font-weight: bold;
 			font-size: 24px;
 			width: 100%;
-			height: 56px;
+			height: $header-bar-height;
 			background-color: $green;
 		}
 	}

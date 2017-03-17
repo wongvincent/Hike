@@ -7,7 +7,10 @@
 			.item {
 				border: 0;
 				height: 60px;
-				padding-top: 20px;
+
+				&.activated {
+					background-color: #FFF;
+				}
 
 				input:checked + .radio-content {
 					.item-content {
@@ -19,19 +22,21 @@
 
 						span {
 							/* Text of selected element */
-							margin-left: 37px;
+							margin-left: 33px;
 						}
 					}
 					i.radio-icon {
 						/* Filled icon of selected element */
 						color: $green;
 						font-size: 22px;
-						left: 0;
-						top: 10px;
+						left: 4px;
+						top: 4px;
 					}
 				}
 
 				.radio-content {
+					padding: 3px;
+
 					.item-content {
 						i {
 							/* Outline icon */
@@ -51,17 +56,5 @@
 
 	.popup-buttons {
 		display: none;
-	}
-
-	.radio-content > .item-content {
-		padding: 3px;
-	}
-
-	.radio-content > .radio-icon {
-		padding: 10px 0 0 3px;
-	}
-
-	.item-radio.activated {
-		background-color: #FFF;
 	}
 }

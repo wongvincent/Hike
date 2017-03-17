@@ -1,5 +1,5 @@
 .search-bar {
-	height: 56px;
+	height: $header-bar-height;
 	.input-search {
 		width: 100%;
 		font-size: 32px;
@@ -9,12 +9,11 @@
 	.icon.back-button {
 		font-size: 40px;
 		color: #444444;
-		padding-right: 16px !important;
-		padding-top: 10px;
+		padding: 0 16px;
 	}
 	.icon.x-button {
 		font-size: 32px;
 		color: #444444;
-		padding-top: 10px;
+		padding: 8px 16px 0;
 	}
 }
