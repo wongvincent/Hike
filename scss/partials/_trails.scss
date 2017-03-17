@@ -22,9 +22,9 @@
 			padding-bottom: 8px;
 			padding-top: 0;
 		}
-	}
-	.trail-card.favourite-trail {
-		border-right: 10px solid $yellow-star;
+		&.favourite-trail {
+			border-right: 10px solid $yellow-star;
+		}
 	}
 }
 

@@ -3,10 +3,10 @@
 	position: absolute;
 	right: 0;
 	top: 10px;
-}
 
-.favourite-star.is-favourite {
-	i {
-		color: $yellow-star;
+	&.is-favourite {
+		i {
+			color: $yellow-star;
+		}
 	}
 }

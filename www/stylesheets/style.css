@@ -107,9 +107,8 @@ ion-header-bar > div {
   position: absolute;
   right: 0;
   top: 10px; }
-
-.favourite-star.is-favourite i {
-  color: #FFDB4B; }
+  .favourite-star.is-favourite i {
+    color: #FFDB4B; }
 
 /* FILTER POPUP MODAL */
 .modal-backdrop.active .modal-backdrop-bg {
@@ -165,8 +164,8 @@ ion-header-bar > div {
     line-height: 50px;
     padding: 0 16px 0 35px;
     transition: 0.09s all linear; }
-  .filter-by-modal .filters-list .item-accordian.ng-hide {
-    line-height: 0; }
+    .filter-by-modal .filters-list .item-accordian.ng-hide {
+      line-height: 0; }
   .filter-by-modal .filters-list .item-accordian.ng-hide-add,
   .filter-by-modal .filters-list .item-accordian.ng-hide-remove {
     display: block !important; }
@@ -174,8 +173,8 @@ ion-header-bar > div {
     background-color: #DDDDDD; }
   .filter-by-modal .filters-list .rzslider .rz-pointer {
     background-color: #28A54C; }
-  .filter-by-modal .filters-list .rzslider .rz-pointer.rz-active:after {
-    background-color: #FFF; }
+    .filter-by-modal .filters-list .rzslider .rz-pointer.rz-active:after {
+      background-color: #FFF; }
   .filter-by-modal .filters-list .item-checkbox-right {
     padding: 15px; }
     .filter-by-modal .filters-list .item-checkbox-right .checkbox input,

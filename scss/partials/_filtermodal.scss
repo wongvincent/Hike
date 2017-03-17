@@ -76,10 +76,12 @@
 			line-height: 50px;
 			padding: 0 16px 0 35px;
 			transition: 0.09s all linear;
+
+			&.ng-hide {
+				line-height: 0;
+			}
 		}
-		.item-accordian.ng-hide {
-			line-height: 0;
-		}
+
 		.item-accordian.ng-hide-add,
 		.item-accordian.ng-hide-remove {
 			display: block !important;
@@ -92,9 +94,10 @@
 			}
 			.rz-pointer {
 				background-color: $green;
-			}
-			.rz-pointer.rz-active:after {
-				background-color: #FFF;
+
+				&.rz-active:after {
+					background-color: #FFF;
+				}
 			}
 		}
 
