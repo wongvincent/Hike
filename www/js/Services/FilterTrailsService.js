@@ -4,6 +4,7 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 	var self = this;
 
 	var filteredTrails = [];
+	var lastFilteredTime = new Date();
 
 	var filterLocation =
 	{
@@ -73,6 +74,8 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 
 	self.setFilteredTrails = function(trails) {
 		filteredTrails = angular.copy(trails);
+		_updateLastFilteredTime();
+
 	};
 
 	// Data are the currently applied filters
@@ -81,7 +84,11 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 	};
 
 	self.setData = function(newData) {
-		data = 	angular.copy(newData);
+		data = angular.copy(newData);
+	};
+
+	self.getLastFilteredTime = function() {
+		return lastFilteredTime;
 	};
 
 	$rootScope.$on('event:add-favourite', function(event, args) {
@@ -91,6 +98,7 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 				break;
 			}
 		}
+		_updateLastFilteredTime();
 	});
 
 	$rootScope.$on('event:remove-favourite', function(event, args) {
@@ -100,7 +108,12 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 				break;
 			}
 		}
+		_updateLastFilteredTime();
 	});
+
+	var _updateLastFilteredTime = function() {
+		lastFilteredTime = new Date();
+	};
 
 	return self;
 }]);
