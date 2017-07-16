@@ -75,7 +75,6 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 	self.setFilteredTrails = function(trails) {
 		filteredTrails = angular.copy(trails);
 		_updateLastFilteredTime();
-
 	};
 
 	// Data are the currently applied filters
@@ -89,6 +88,31 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 
 	self.getLastFilteredTime = function() {
 		return lastFilteredTime;
+	};
+
+	self.getNumberOfFiltersApplied = function() {
+		var hasLocationsFilterApplied = function() {
+			for (var i = 0; i < data.filterLocation.length; i++) {
+				if (!data.filterLocation[i].isChecked) {
+					return true;
+				}
+			}
+			return false;
+		};
+
+		var numberOfFiltersApplied = hasLocationsFilterApplied() +
+			(defaultFilters.filterTimeMin !== data.filterTimeMin
+			|| defaultFilters.filterTimeMax !== data.filterTimeMax) +
+			(defaultFilters.filterDistanceMin !== data.filterDistanceMin
+			|| defaultFilters.filterDistanceMax !== data.filterDistanceMax) +
+			(defaultFilters.filterDifficultyEasy !== data.filterDifficultyEasy
+			|| defaultFilters.filterDifficultyModerate !== data.filterDifficultyModerate
+			|| defaultFilters.filterDifficultyHard !== data.filterDifficultyHard) +
+			(defaultFilters.filterDogFriendly !== data.filterDogFriendly) +
+			(defaultFilters.filterTransit !== data.filterTransit) +
+			(defaultFilters.filterInSeason !== data.filterInSeason);
+
+		return numberOfFiltersApplied;
 	};
 
 	$rootScope.$on('event:add-favourite', function(event, args) {
@@ -112,7 +136,7 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 	});
 
 	var _updateLastFilteredTime = function() {
-		lastFilteredTime = new Date();
+		lastFilteredTime = Date.now();
 	};
 
 	return self;

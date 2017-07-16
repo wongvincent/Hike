@@ -1,6 +1,6 @@
 var app = angular.module('directives', ['rzModule']);
 
-app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupService', 'FilterTrailsService', function ($ionicPopup, $ionicModal, ClosePopupService, FilterTrailsService) {
+app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'ClosePopupService', 'FilterTrailsService', function ($rootScope, $ionicPopup, $ionicModal, ClosePopupService, FilterTrailsService) {
     return {
         templateUrl: 'views/trails/trailsSubheader.html',
         controller: ['$scope', function ($scope) {
@@ -39,8 +39,10 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
             };
 
             $scope.data = FilterTrailsService.getData();
-            $scope.tempData = FilterTrailsService.getDefaultFilters();
+	        $scope.tempData = FilterTrailsService.getData();
 	        $scope.filteredTrails = FilterTrailsService.getFilteredTrails();
+	        $scope.numberOfFiltersApplied = FilterTrailsService.getNumberOfFiltersApplied();
+	        $scope.Math = Math;
 
             var getSelectedFilterLocations = function() {
                 var selectedFilterLocations = [];
@@ -115,19 +117,21 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
 	            FilterTrailsService.setData($scope.data);
                 $scope.tempData = angular.copy(copyDefaultFilters);
                 $scope.evaluateFilters();
-                updateNumberOfFiltersApplied();
+	            $scope.numberOfFiltersApplied = FilterTrailsService.getNumberOfFiltersApplied();
                 $scope.tempFilteredTrails = FilterTrailsService.getFilteredTrails();
                 window.plugins.toast.showShortBottom(
                     "Filters Reset"
                 );
+	            $rootScope.$broadcast('new-filters-applied', {});
             };
 
             $scope.applyFilters = function() {
 	            FilterTrailsService.setData($scope.tempData);
                 $scope.data = angular.copy($scope.tempData);
                 $scope.evaluateFilters();
-                updateNumberOfFiltersApplied();
+	            $scope.numberOfFiltersApplied = FilterTrailsService.getNumberOfFiltersApplied();
                 $scope.closeFilterModal();
+	            $rootScope.$broadcast('new-filters-applied', {});
             };
 
             $scope.filterTimeSlider = {
@@ -197,35 +201,6 @@ app.directive('trailsSubheader', ['$ionicPopup', '$ionicModal', 'ClosePopupServi
             $scope.isGroupShown = function(group) {
                 return $scope.shownGroup === group;
             };
-
-            var updateNumberOfFiltersApplied = function() {
-	            var data = FilterTrailsService.getData();
-	            var defaultFilters = FilterTrailsService.getDefaultFilters();
-
-                var hasLocationsFilterApplied = function() {
-                    for (var i = 0; i < data.filterLocation.length; i++) {
-                        if (!data.filterLocation[i].isChecked) {
-                            return true;
-                        }
-                    }
-                    return false;
-                };
-
-                $scope.numberOfFiltersApplied = hasLocationsFilterApplied() +
-                    (defaultFilters.filterTimeMin !== data.filterTimeMin
-                        || defaultFilters.filterTimeMax !== data.filterTimeMax) +
-                    (defaultFilters.filterDistanceMin !== data.filterDistanceMin
-                        || defaultFilters.filterDistanceMax !== data.filterDistanceMax) +
-                    (defaultFilters.filterDifficultyEasy !== data.filterDifficultyEasy
-                        || defaultFilters.filterDifficultyModerate !== data.filterDifficultyModerate
-                        || defaultFilters.filterDifficultyHard !== data.filterDifficultyHard) +
-                    (defaultFilters.filterDogFriendly !== data.filterDogFriendly) +
-                    (defaultFilters.filterTransit !== data.filterTransit) +
-                    (defaultFilters.filterInSeason !== data.filterInSeason);
-            };
-            $scope.numberOfFiltersApplied = 0;
-
-            $scope.Math = Math;
         }]
     };
 }]);

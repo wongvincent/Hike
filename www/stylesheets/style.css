@@ -338,7 +338,7 @@ body.menu-open .menu-content {
       .trails-subheader-bar .buttons-right .filters-applied span {
         margin-left: 0; }
 
-.trails-map-view .trails-subheader-bar .buttons-right {
+.trails-map-view .trails-subheader-bar .buttons-right .ion-android-funnel {
   visibility: hidden; }
 
 .trail-tabs .tab-nav {

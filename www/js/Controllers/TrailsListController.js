@@ -1,8 +1,15 @@
 var app = angular.module('controllers');
 
-app.controller('TrailsListController', ['$rootScope', '$scope', function ($rootScope, $scope) {
+app.controller('TrailsListController', ['$rootScope', '$scope', 'FilterTrailsService', function ($rootScope, $scope, FilterTrailsService) {
+	var listLastUpdated;
+
     $scope.$on('$ionicView.enter', function () {
         $rootScope.lastMainState = 'trails.list';
+
+	    if (!listLastUpdated || listLastUpdated < FilterTrailsService.getLastFilteredTime()) {
+		    $scope.filteredTrails = FilterTrailsService.getFilteredTrails();
+		    $scope.numberOfFiltersApplied = FilterTrailsService.getNumberOfFiltersApplied();
+	    }
     });
 
 	$scope.$on('hide-search-bar-request', function(event, args) {

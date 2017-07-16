@@ -1,22 +1,21 @@
 <ion-view title="Map of Trails" class="trails-map-view">
-    <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-ios-list-outline" ng-click="goState('trails.list', true)">
-        </button>
-    </ion-nav-buttons>
+    <ion-nav-bar ng-show="!searchBarActive" class="bar-balanced"> <!-- workaround for ng-class-->
+        <ion-nav-buttons side="left" >
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            Trails Map
+        </ion-nav-title>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-ios-list-outline" ng-click="goState('trails.list', true)">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
     <trails-subheader></trails-subheader>
 
     <ion-content>
-        <div class="card" ng-hide="trails && filteredTrails.length">
-            <div class="item item-text-wrap none-found">
-                No trails matching filters
-                <button id="resetAllFilters" class="button button-block button-assertive" ng-click="resetFilters()">
-                    Reset all filters
-                </button>
-            </div>
-        </div>
-
-        <div ng-show="trails && filteredTrails.length" id="trails-map" class="map" data-tap-disabled="true">
+        <div ng-show="trails" id="trails-map" class="map" data-tap-disabled="true">
         </div>
     </ion-content>
 </ion-view>
