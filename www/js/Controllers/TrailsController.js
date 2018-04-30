@@ -48,10 +48,6 @@ app.filter('trailsFilter', function () {
             }
         };
 
-        dogAccessibleFilter = function (trail) {
-            return data.filterDogFriendly === undefined || !data.filterDogFriendly || trail.dogFriendly;
-        };
-
         transitFilter = function (trail) {
             return data.filterTransit === undefined || !data.filterTransit || trail.transit;
         };
@@ -73,7 +69,6 @@ app.filter('trailsFilter', function () {
                 timeFilter(trail) &&
                 distanceFilter(trail) &&
                 difficultyFilter(trail) &&
-                dogAccessibleFilter(trail) &&
                 transitFilter(trail) &&
                 inSeasonFilter(trail);
         });

@@ -104,7 +104,7 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
 
 	        $scope.$watchGroup(["tempData.filterTimeMin", "tempData.filterTimeMax",
 		        "tempData.filterDistanceMin", "tempData.filterDistanceMax", "tempData.filterDifficultyEasy",
-		        "tempData.filterDifficultyModerate", "tempData.filterDifficultyHard", "tempData.filterDogFriendly",
+		        "tempData.filterDifficultyModerate", "tempData.filterDifficultyHard",
 		        "tempData.filterTransit", "tempData.filterInSeason"], function() {
 		        $scope.evaluateTemporaryFilters();
 	        });

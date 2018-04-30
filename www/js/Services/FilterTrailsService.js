@@ -57,7 +57,6 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 		filterDifficultyEasy: true,
 		filterDifficultyModerate: true,
 		filterDifficultyHard: true,
-		filterDogFriendly: false,
 		filterTransit: false,
 		filterInSeason: false
 	};
@@ -108,7 +107,6 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 			(defaultFilters.filterDifficultyEasy !== data.filterDifficultyEasy
 			|| defaultFilters.filterDifficultyModerate !== data.filterDifficultyModerate
 			|| defaultFilters.filterDifficultyHard !== data.filterDifficultyHard) +
-			(defaultFilters.filterDogFriendly !== data.filterDogFriendly) +
 			(defaultFilters.filterTransit !== data.filterTransit) +
 			(defaultFilters.filterInSeason !== data.filterInSeason);
 
