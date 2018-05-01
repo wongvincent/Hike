@@ -21,7 +21,7 @@
 				height: 18px;
 				font-size: 25px;
 				line-height: 25px;
-				margin: 6px 0 4px;
+				margin: 0 0 4px;
 			}
 			#number-of-results {
 				color: #AAAAAA;
@@ -32,13 +32,14 @@
 		.buttons {
 			top: 0;
 			bottom: 0;
+
 			button {
 				color: $green;
 				font-weight: bold;
 				line-height: $header-bar-height;
 				font-size: 24px;
 				padding-right: 10px;
-				paddint-top: 3px;
+				padding-top: 5px;
 			}
 		}
 	}
