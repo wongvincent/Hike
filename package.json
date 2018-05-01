@@ -1,22 +1,33 @@
 {
-  "name": "Hiking Vancouver",
+  "name": "hiking-vancouver",
   "version": "1.5.0",
   "description": "Hiking in and around Vancouver, British Columbia, Canada",
-  "dependencies": {
-    "gulp": "^3.5.6",
-    "gulp-sass": "^1.3.3",
-    "gulp-concat": "^2.2.0",
-    "gulp-minify-css": "^0.3.0",
-    "gulp-rename": "^1.2.0"
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wongvincent/Hike.git"
   },
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "engines": {
+    "node": ">=4.2.0 <5"
+  },
+  "dependencies": {},
   "devDependencies": {
     "bower": "^1.3.3",
-    "gulp-util": "^2.2.14",
+    "chalk": "^1.0.0",
+    "gulp": "^3.5.6",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.0.0",
+    "gulp-util": "^3.0.0",
     "ionic-minify": "^2.0.9",
     "jasmine-core": "^2.5.2",
     "karma": "^1.5.0",
     "karma-jasmine": "^1.1.0",
-    "shelljs": "^0.3.0"
+    "shelljs": "^0.5.3"
   },
   "cordovaPlugins": [
     "cordova-plugin-device",

@@ -13,7 +13,13 @@ var paths = {
 
 gulp.task('default', ['sass']);
 
-gulp.task('sass', function(done) {
+gulp.task('sass', function () {
+  gulp.src('./scss/style.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./www/stylesheets'));
+});
+
+/*gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass({
       errLogToConsole: true
@@ -25,9 +31,9 @@ gulp.task('sass', function(done) {
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'))
     .on('end', done);
-});
+});*/
 
-gulp.task('watch', function() {
+gulp.task('sass:watch', function() {
   gulp.watch(paths.sass, ['sass']);
 });
 
