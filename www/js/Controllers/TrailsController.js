@@ -14,16 +14,9 @@ app.filter('trailsFilter', function () {
             } else if (data.filterLocation.length === 8) {
                 return true;
             } else {
-                var trailLocation = trail.location.toLowerCase();
-                for (var i = 0; i < data.filterLocation.length; i++) {
-                    var singleFilterLocationKeywords = data.filterLocation[i].value;
-                    for (var j = 0; j < singleFilterLocationKeywords.length; j++) {
-                        var indexOf = trailLocation.indexOf(singleFilterLocationKeywords[j].toLowerCase());
-                        if (indexOf > -1) {
-                            return true;
-                        }
-                    }
-                }
+                return data.filterLocation.some(function(location) {
+                    return trail.regionId === location.id;
+                });
             }
             return false;
         };

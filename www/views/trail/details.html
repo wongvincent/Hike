@@ -7,8 +7,8 @@
 
     <ion-content id="trail-details-content">
         <ion-item class="item-text-wrap trail-card">
-            <div class="row" ng-if="trail.location">
-                <span>Location</span>{{::trail.location}}
+            <div class="row" ng-if="trail.cityName && trail.regionName">
+                <span>Location</span>{{::trail.cityName}} ({{::trail.regionName}})
             </div>
             <div class="row" ng-if="trail.difficulty != null">
                 <span>Difficulty</span>{{::trail.difficulty| HumanizeDifficulty}}

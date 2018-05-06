@@ -11,19 +11,18 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter'
     } else {
         $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>'});
 
-        // Get data of trail selected (based on href name param)
-        var promise = TrailsService.getSingle(hrefSelected);
-        promise.then(function (res) {
-            $scope.trail = res;
-            $scope.$broadcast ('trailDataLoaded');
-
-            var promise = FavouritesService.isFavouriteTrail(res.id);
-            promise.then(function (status) {
-                $scope.favouriteStatus = status;
-            });
-
-            $ionicLoading.hide();
-        });
+        var trails = $scope.trails;
+        for (var i = 0; i < trails.length; i++) {
+            var trail = trails[i];
+            // Set trail and favouriteStatus (based on href param)
+            if (trail.href === hrefSelected) {
+                $scope.trail = trail;
+                $scope.favouriteStatus = trail.favourite;
+                $scope.$broadcast ('trailDataLoaded');
+                $ionicLoading.hide();
+                break;
+            }
+        }
     }
 
     $scope.$on('$ionicView.enter', function(){
@@ -40,7 +39,7 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter'
 
         var message =
             trail.name + "\n" +
-            "Location: " + trail.location + "\n" +
+            "Location: " + trail.cityName + " (" + trail.regionName + ")" +"\n" +
             "Difficulty: " + humanizeDifficultyFilter(trail.difficulty) + "\n" +
             "Time: " + trail.time + " hours" + "\n" +
             convertDistanceCategoryToStringFilter(trail.distanceCategory) + ": " + trail.distance + "km" + "\n" +

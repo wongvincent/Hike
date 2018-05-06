@@ -118,27 +118,89 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', '$ionicHistory', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q, $ionicHistory) {
+app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'RegionsService', 'CitiesService', 'ParksService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', '$ionicHistory', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, RegionsService, CitiesService, ParksService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q, $ionicHistory) {
     $ionicPlatform.ready(function () {
         if (window.cordova) {
             window.plugins.sqlDB.copy("trails.db", 0, openDatabase, openDatabase);
 
             function openDatabase() {
                 db = $cordovaSQLite.openDB("trails.db");
-                getAllTrails();
+                getAndCombineData();
             }
 
-            function getAllTrails() {
-                TrailsService.getAllTrails().then(function (res) {
-                    $scope.trails = res;
-                    if (!$scope.trails)
-                        $scope.failedPopupReload();
-                    else {
-                        $scope.updateFavourites().then(function(){
-                            $cordovaSplashscreen.hide();
-                        });
-                    }
+            function createObjectIdAsKey(array) {
+                var result = {};
+                array.forEach(function(item) {
+                    result[item.id] = item;
                 });
+                return result;
+            }
+
+            function getAndCombineData() {
+                const trailsPromise = TrailsService.getAllTrails();
+                const regionsPromise = RegionsService.getAll();
+                const citiesPromise = CitiesService.getAll();
+                const parksPromise = ParksService.getAll();
+                const favouritesPromise = FavouritesService.getFavourites();
+
+                Promise.all([trailsPromise, regionsPromise, citiesPromise, parksPromise, favouritesPromise]).then(res => {
+                    const [trailsData, regionsData, citiesData, parksData, favouritesData] = res;
+                    const regions = createObjectIdAsKey(regionsData);
+                    const cities = createObjectIdAsKey(citiesData);
+                    const parks = createObjectIdAsKey(parksData);
+
+                    const favouriteIds = extractFavouritesIds(favouritesData);
+                    
+                    trailsData.forEach(function(trail) {
+                        // Enrich trail with City Name
+                        const matchingCity = cities[trail.cityId];
+                        trail.cityName = matchingCity.name;
+
+                        // Enrich trail with Region Name and Id
+                        const matchingRegion = regions[matchingCity.regionId];
+                        trail.regionId = matchingRegion.id;
+                        trail.regionName = matchingRegion.name;
+
+                        // Enrich trail with favourite
+                        trail.favourite = favouriteIds.indexOf(trail.id) > -1;
+                    });
+
+                    $scope.trailsIndex = createTrailsIndex(trailsData);
+                    $scope.trails = trailsData;
+                    $scope.regions = regions;
+                    $scope.cities = cities;
+                    $scope.parks = parks;
+                    $scope.favouriteIds = favouriteIds;
+
+                    $cordovaSplashscreen.hide();
+                }, err => {
+                    $scope.failedPopupReload();
+                });
+            }
+
+            function createTrailsIndex(trailsData) {
+                const trailsIndex = {};
+                trailsData.forEach(function(trail, index) {
+                    trailsIndex[trail.id] = index;
+                });
+                return trailsIndex;
+            }
+
+            function extractFavouritesIds(favouritesData) {
+                const favouritesDataArrayArray = [];
+                favouritesData.forEach(function(favourite) {
+                    favouritesDataArrayArray.push([favourite.id, favourite.trailId]);
+                });
+
+                //Sort ids by order added (ascending)
+                const sortedFavouritesData = favouritesDataArrayArray.sort((a, b) => a[0] - b[0]);
+                
+                const result = [];
+                sortedFavouritesData.forEach(function(favourite) {
+                    result.push(favourite[1]);
+                });
+
+                return result;
             }
         }
     });
@@ -147,51 +209,7 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
         $ionicSideMenuDelegate.canDragContent(true);
     });
 
-	$rootScope.searchBarActive = false;
-
-    $scope.updateFavourites = function(){
-        var q = $q.defer();
-
-        // Get the favouriteIds
-        var promise = FavouritesService.getFavourites();
-        promise.then(function (res){
-            $scope.favouriteIds = [];
-            angular.forEach(res, function(obj){
-                $scope.favouriteIds.push(obj.trailId);
-            });
-
-            if($scope.favouriteIds !== undefined && $scope.favouriteIds.length !== 0) {
-                //Sort the favouriteIds in ascending number order
-                $scope.favouriteIds.sort(function (a, b) {
-                    return a - b
-                });
-            }
-
-            // Assuming both Trails Ids and FavouriteIds are sorted in ascending number order
-            // We add the trail matching the favourite trailId to favourites list
-            // This is an O(n) operation
-            $scope.favourites = [];
-            var favouriteIndex = 0;
-
-            for(var i=0; i < $scope.trails.length ; i++){
-                var trail = $scope.trails[i];
-                if($scope.favouriteIds[favouriteIndex] == trail.id){
-                    $scope.trails[i].favourite = true;
-                    $scope.favourites.push($scope.trails[i]);
-                    favouriteIndex++;
-                }
-                else {
-                    $scope.trails[i].favourite = false;
-                }
-            }
-
-            // Order list of favourites alphabetically
-            $scope.sortAlphabetically($scope.favourites);
-
-            q.resolve();
-        });
-        return q.promise;
-    };
+    $rootScope.searchBarActive = false;
 
     $scope.goState = function (state, disableBack) {
         if (disableBack) {
@@ -252,61 +270,20 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
         });
     };
 
-    $scope.sortAlphabetically = function(array){
-        function compare(a,b) {
-            if(a.name < b.name) return -1;
-            if(a.name > b.name) return 1;
-            return 0;
-        }
-
-        array.sort(compare);
-    };
-
     $rootScope.$on('event:add-favourite', function(event, args) {
-	    // Use binary search as trails are already sorted by id
-	    var start = 0;
-	    var end = $scope.trails.length - 1;
-	    while (start <= end) {
-		    var middle = Math.floor((start + end) / 2);
-		    var trail = $scope.trails[middle];
-		    if (trail.id === args.id) {
-			    $scope.trails[middle].favourite = true;
-			    break;
-		    } else if (trail.id > args.id) {
-			    end = middle - 1;
-		    } else {
-			    start = middle + 1;
-		    }
-	    }
+        const addTrailId = args.id;
+        const indexOfTrail = $scope.trailsIndex[addTrailId];
+        $scope.trails[indexOfTrail].favourite = true;
 
-	    $scope.favourites.push($scope.trails[middle]);
-	    $scope.sortAlphabetically($scope.favourites);
+        $scope.favouriteIds.push(addTrailId);
     });
 
     $rootScope.$on('event:remove-favourite', function(event, args) {
-	    // Use binary search as trails are already sorted by id
-	    var start = 0;
-	    var end = $scope.trails.length - 1;
-	    while (start <= end) {
-		    var middle = Math.floor((start + end) / 2);
-		    var trail = $scope.trails[middle];
-		    if (trail.id === args.id) {
-			    $scope.trails[middle].favourite = false;
-			    break;
-		    } else if (trail.id > args.id) {
-			    end = middle - 1;
-		    } else {
-			    start = middle + 1;
-		    }
-	    }
+        const removeTrailId = args.id;
+        const indexOfTrail = $scope.trailsIndex[removeTrailId];
+        $scope.trails[indexOfTrail].favourite = false;
 
-	    // Favourites is probably sorted, but let's use a for loop instead of binary search in case it isn't sorted
-	    for (var i=0; i<$scope.favourites.length; i++) {
-		    if ($scope.favourites[i].id === args.id) {
-			    $scope.favourites.splice(i, 1);
-			    break;
-		    }
-	    }
+        $scope.favouriteIds = $scope.favouriteIds.filter(favouriteId => favouriteId !== removeTrailId);
     });
 }]);
 

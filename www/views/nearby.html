@@ -1,6 +1,6 @@
 <ion-view>
     <ion-nav-bar class="bar-balanced">
-        <ion-nav-buttons side="left" >
+        <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
         </ion-nav-buttons>
         <ion-nav-title>
@@ -13,31 +13,32 @@
     </ion-nav-bar>
 
     <ion-content class="trails-list">
-       <ion-item class="item-text-wrap trail-card nearby-card" ng-if="nearby" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in nearby | limitTo:25" ui-sref='trail.details({name: trail.href})'>
+        <ion-item class="item-text-wrap trail-card nearby-card" ng-if="nearby" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in nearby | limitTo:25" ui-sref='trail.details({name: trail.href})'>
             <div class="row">
-                {{::trail.name}} <div class="distance-from">{{::trail.distanceFromPos | number:0}}km</div>
+                {{::trail.name}}
+                <div class="distance-from">{{::trail.distanceFromPos | number:0}}km</div>
             </div>
-           <div class="row" ng-if="trail.location">
-               <span>Location</span>{{::trail.location}}
-           </div>
-           <div class="row" ng-if="trail.difficulty != null">
-               <span>Difficulty</span>{{::trail.difficulty| HumanizeDifficulty}}
-           </div>
-           <div class="row" ng-if="trail.time">
-               <span>Time</span>{{::trail.time}} hours
-           </div>
-           <div class="row" ng-if="trail.distance && trail.distanceCategory != null">
-               <span>{{::trail.distanceCategory| ConvertDistanceCategoryToString}}</span>{{::trail.distance}}km
-           </div>
-           <div class="row" ng-if="trail.elevation != null">
-               <span>Elevation Gain</span>{{::trail.elevation| ProcessElevationToString}}
-           </div>
-           <div class="row" ng-if="trail.season">
-               <span>Season</span>{{::trail.season| HumanizeSeason}}
-           </div>
-           <div class="row" ng-if="trail.transit != null">
-               <span>Transit Accessible</span>{{::trail.transit| BoolToString}}
-           </div>
+            <div class="row" ng-if="trail.cityName && trail.regionName">
+                <span>Location</span>{{::trail.cityName}} ({{::trail.regionName}})
+            </div>
+            <div class="row" ng-if="trail.difficulty != null">
+                <span>Difficulty</span>{{::trail.difficulty| HumanizeDifficulty}}
+            </div>
+            <div class="row" ng-if="trail.time">
+                <span>Time</span>{{::trail.time}} hours
+            </div>
+            <div class="row" ng-if="trail.distance && trail.distanceCategory != null">
+                <span>{{::trail.distanceCategory| ConvertDistanceCategoryToString}}</span>{{::trail.distance}}km
+            </div>
+            <div class="row" ng-if="trail.elevation != null">
+                <span>Elevation Gain</span>{{::trail.elevation| ProcessElevationToString}}
+            </div>
+            <div class="row" ng-if="trail.season">
+                <span>Season</span>{{::trail.season| HumanizeSeason}}
+            </div>
+            <div class="row" ng-if="trail.transit != null">
+                <span>Transit Accessible</span>{{::trail.transit| BoolToString}}
+            </div>
         </ion-item>
     </ion-content>
 </ion-view>

@@ -11,14 +11,15 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 		key: "filterLocation",
 		name: "Location",
 		items: [
-			{ name: "North Shore", value: ["north van", "west van"], isChecked: true},
-			{ name: "Fraser Valley", value: ["fraser valley"], isChecked: true},
-			{ name: "Howe Sound", value: ["howe sound"], isChecked: true},
-			{ name: "Ridge Meadows", value: ["ridge meadows"], isChecked: true},
-			{ name: "South of Fraser (Delta, Langley)", value: ["south of fraser"], isChecked: true},
-			{ name: "Tri-Cities", value: ["tri-cities"], isChecked: true},
-			{ name: "Vancouver", value: ["vancouver"], isChecked: true},
-			{ name: "Whistler", value: ["whistler"], isChecked: true}
+			{ id: 1, name: "Fraser Valley", isChecked: true},
+			{ id: 2, name: "Howe Sound", isChecked: true},
+			{ id: 3, name: "North Shore", isChecked: true},
+			{ id: 4, name: "Ridge Meadows", isChecked: true},
+			{ id: 5, name: "South of Fraser", isChecked: true},
+			{ id: 6, name: "Tri-Cities", isChecked: true},
+			{ id: 7, name: "Vancouver", isChecked: true},
+			{ id: 8, name: "Whistler", isChecked: true},
+			{ id: 9, name: "Sunshine Coast", isChecked: true}
 		]
 	};
 
@@ -91,12 +92,9 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 
 	self.getNumberOfFiltersApplied = function() {
 		var hasLocationsFilterApplied = function() {
-			for (var i = 0; i < data.filterLocation.length; i++) {
-				if (!data.filterLocation[i].isChecked) {
-					return true;
-				}
-			}
-			return false;
+			return data.filterLocation.some(function(location) {
+				return !location.isChecked;
+			});
 		};
 
 		var numberOfFiltersApplied = hasLocationsFilterApplied() +

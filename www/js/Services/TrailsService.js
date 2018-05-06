@@ -18,12 +18,6 @@ app.factory('TrailsService', ['Database', function (Database) {
             .then(function (result) {
                 var single = Database.single(result);
                 var output = single;
-
-                if (output.instructions !== null && output.instructions !== '')
-                    output.instructions = JSON.parse(output.instructions);
-                if (output.info !== null && output.info !== '')
-                    output.info = JSON.parse(output.info);
-
                 return output;
             });
     };
@@ -34,12 +28,6 @@ app.factory('TrailsService', ['Database', function (Database) {
             .then(function (result) {
                 var single = Database.single(result);
                 var output = single;
-
-                if (output.instructions !== null && output.instructions !== '')
-                    output.instructions = JSON.parse(output.instructions);
-                if (output.info !== null && output.info !== '')
-                    output.info = JSON.parse(output.info);
-
                 return output;
             });
     };
