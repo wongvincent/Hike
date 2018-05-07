@@ -16,10 +16,10 @@ app.factory('FilterTrailsService', ['$rootScope', function ($rootScope) {
 			{ id: 3, name: "North Shore", isChecked: true},
 			{ id: 4, name: "Ridge Meadows", isChecked: true},
 			{ id: 5, name: "South of Fraser", isChecked: true},
+			{ id: 9, name: "Sunshine Coast", isChecked: true},
 			{ id: 6, name: "Tri-Cities", isChecked: true},
 			{ id: 7, name: "Vancouver", isChecked: true},
-			{ id: 8, name: "Whistler", isChecked: true},
-			{ id: 9, name: "Sunshine Coast", isChecked: true}
+			{ id: 8, name: "Whistler", isChecked: true}
 		]
 	};
 
