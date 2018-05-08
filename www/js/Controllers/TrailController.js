@@ -1,6 +1,6 @@
 var app = angular.module('controllers');
 
-app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter', '$ionicLoading', 'TrailsService', 'FavouritesService', '$ionicSideMenuDelegate', 'GooglePlacesService', function ($scope, $state, $stateParams, $filter, $ionicLoading, TrailsService, FavouritesService, $ionicSideMenuDelegate, GooglePlacesService) {
+app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter', '$ionicLoading', '$ionicSideMenuDelegate', function ($scope, $state, $stateParams, $filter, $ionicLoading, $ionicSideMenuDelegate) {
     $scope.state = $state.current;
     $scope.params = $stateParams;
 
@@ -18,7 +18,6 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter'
             if (trail.href === hrefSelected) {
                 $scope.trail = trail;
                 $scope.favouriteStatus = trail.favourite;
-                $scope.$broadcast ('trailDataLoaded');
                 $ionicLoading.hide();
                 break;
             }

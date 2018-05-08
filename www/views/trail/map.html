@@ -4,7 +4,7 @@
     </div>
 </div>
 
-<div id="trail-map" class="map" ng-show="trail.lat && trail.long" data-tap-disabled="true">
+<div ng-init="initMap()" id="trail-map" class="map" ng-show="trail.lat && trail.long" data-tap-disabled="true">
 </div>
 
 <button id="bottomMapButton"
