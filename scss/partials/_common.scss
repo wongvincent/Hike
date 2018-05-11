@@ -44,7 +44,7 @@ ol {
 		margin-right: 9px;
 		button {
 			top: 7px;
-			padding-left: 10px !important;
+			padding: 0 12px;
 		}
 	}
 }
@@ -53,22 +53,16 @@ ol {
 	top: $header-bar-height;
 
 	&.has-tabs-top {
-		top: 89px;
+		top: 99px;
 	}
 }
 
 .tabs {
-	height: 37px !important;
+	height: 42px !important;
 
 	.tab-item {
-		font-size: 20px;
+		font-size: 24px;
 	}
-}
-
-.tabs-top .tab-nav.tabs a,
-.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.tab-item-active .tab-title,
-.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.activated .tab-title {
-	margin-top: -3px;
 }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {

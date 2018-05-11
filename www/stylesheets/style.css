@@ -32,22 +32,17 @@ ol {
     margin-right: 9px; }
     .platform-android .bar-header .buttons-right button {
       top: 7px;
-      padding-left: 10px !important; }
+      padding: 0 12px; }
 
 .has-header {
   top: 56px; }
   .has-header.has-tabs-top {
-    top: 89px; }
+    top: 99px; }
 
 .tabs {
-  height: 37px !important; }
+  height: 42px !important; }
   .tabs .tab-item {
-    font-size: 20px; }
-
-.tabs-top .tab-nav.tabs a,
-.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.tab-item-active .tab-title,
-.tabs-top.tabs-striped:not(.tabs-icon-left):not(.tabs-icon-top) .tab-item.activated .tab-title {
-  margin-top: -3px; }
+    font-size: 24px; }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
   background: green;
@@ -222,11 +217,11 @@ button#bottomMapButton {
     padding-top: 4px; }
   .search-bar .icon.back-button {
     font-size: 40px;
-    color: #444444;
+    color: #666666;
     padding: 0 16px; }
   .search-bar .icon.x-button {
     font-size: 32px;
-    color: #444444;
+    color: #666666;
     padding: 8px 16px 0; }
 
 /** Make Main Content black when side-menu is open **/
@@ -319,22 +314,23 @@ body.menu-open .menu-content {
   margin-top: 56px;
   height: 48px;
   border: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 5px 10px #bbb;
   padding: 0 0 0 16px; }
   .trails-subheader-bar .number-of-results {
     width: calc(100% - 100px);
     font-size: 24px;
     line-height: 56px; }
   .trails-subheader-bar .buttons-right {
-    width: 95px;
     text-align: right;
     display: -webkit-box; }
     .trails-subheader-bar .buttons-right button {
       display: flex; }
       .trails-subheader-bar .buttons-right button:nth-child(1) {
-        width: 40px; }
+        padding: 0 12px; }
       .trails-subheader-bar .buttons-right button:nth-child(2) {
-        width: 55px; }
+        padding: 0 12px; }
+        .trails-subheader-bar .buttons-right button:nth-child(2):not(.filters-applied) {
+          padding-right: 26px; }
     .trails-subheader-bar .buttons-right .filters-applied {
       color: #28A54C; }
       .trails-subheader-bar .buttons-right .filters-applied span {
@@ -344,7 +340,14 @@ body.menu-open .menu-content {
   visibility: hidden; }
 
 .trail-tabs .tab-nav {
-  top: 56px !important; }
+  top: 56px !important;
+  background-color: #28A54C;
+  box-shadow: 0px 5px 10px #bbb;
+  border-color: #28A54C; }
+  .trail-tabs .tab-nav .tab-item {
+    color: #FFF; }
+    .trail-tabs .tab-nav .tab-item.tab-item-active {
+      border-color: #FFF; }
 
 .trail-details-view #trail-details-content ol .item, .trail-details-view #trail-details-content ul .item {
   padding: 6px 10px 6px 35px !important; }

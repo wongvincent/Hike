@@ -8,7 +8,7 @@
 	margin-top: $header-bar-height;
 	height: 48px;
 	border: none;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+	box-shadow: $header-box-shadow;
 	padding: 0 0 0 16px;
 
 	.number-of-results {
@@ -18,20 +18,22 @@
 	}
 
 	.buttons-right {
-		width: 95px;
 		text-align: right;
 		display: -webkit-box;
 
 		button {
 			display: flex;
-
+			
 			// sort button
 			&:nth-child(1) {
-				width: 40px;
+				padding: 0 12px;
 			}
 			// filter button
 			&:nth-child(2) {
-				width: 55px;
+				padding: 0 12px;
+				&:not(.filters-applied) {
+					padding-right: 26px;
+				}
 			}
 		}
 
