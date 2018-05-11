@@ -23,11 +23,11 @@ app.run(function ($rootScope, $ionicPlatform, $ionicHistory, $ionicPopup) {
         } else {
             var exitAppPopup = $ionicPopup.confirm({
                 title: "Exit",
-                template: "Are you sure want to close Hiking Vancouver?",
+                template: "Are you sure you want to exit Hiking Vancouver?",
                 cancelText: "NO",
                 cancelType: "button-dark",
                 okText: "YES",
-                okType: "button-dark"
+                okType: "button-light"
             });
             exitAppPopup.then(function (res) {
                 if (res) {
