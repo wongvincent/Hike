@@ -142,7 +142,7 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
     return {
         init: function (arrayOfMarkers, elementId) {
             trails = arrayOfMarkers;
-            apiKey = "AIzaSyClUi3fHwITYAL8qhel240O3r3scblMG8g";
+            apiKey = $rootScope.credentials.googleApiKey || "";
             elemId = elementId;
 
             if (typeof google == "undefined" || typeof google.maps == "undefined") {

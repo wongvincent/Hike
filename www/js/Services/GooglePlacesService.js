@@ -1,8 +1,8 @@
 var app = angular.module('services');
 
-app.service('GooglePlacesService', ['$http', function($http) {
+app.service('GooglePlacesService', ['$rootScope', '$http', function($rootScope, $http) {
     var that = this;
-    var googlePlacesAPIKey = "AIzaSyB3ihw8Uzd6y6fxDtrJ0dqp96RQaODZ9tQ";
+    var googleApiKey = $rootScope.credentials.googleApiKey || "";
 
     that.getPhotos = function(trail) {
         if (!trail.placeId) return Promise.resolve(null);
@@ -21,7 +21,7 @@ app.service('GooglePlacesService', ['$http', function($http) {
         var locationString = latitude.toString() + "," + longitude.toString();
         return $http.get(absoluteURL, {
             params : {
-                key : googlePlacesAPIKey,
+                key : googleApiKey,
                 location : locationString,
                 radius : 5000,
                 keyword : trailName
@@ -45,7 +45,7 @@ app.service('GooglePlacesService', ['$http', function($http) {
 
         return $http.get(absoluteURL, {
             params : {
-                key : googlePlacesAPIKey,
+                key : googleApiKey,
                 placeid : placeId
             }
         }).then(function successCallback(response) {
@@ -57,7 +57,7 @@ app.service('GooglePlacesService', ['$http', function($http) {
 
     that.getPhotoURL = function(photoReference) {
         var absoluteURL = "https://maps.googleapis.com/maps/api/place/photo?";
-        absoluteURL += "key=" + googlePlacesAPIKey + "&";
+        absoluteURL += "key=" + googleApiKey + "&";
         absoluteURL += "maxwidth=480&";
         absoluteURL += "photoreference=" + photoReference;
         return absoluteURL;
