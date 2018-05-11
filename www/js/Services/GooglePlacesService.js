@@ -1,22 +1,20 @@
 var app = angular.module('services');
 
-app.service('GooglePlacesService', ['$http',  function($http){
+app.service('GooglePlacesService', ['$http', function($http) {
     var that = this;
     var googlePlacesAPIKey = "AIzaSyB3ihw8Uzd6y6fxDtrJ0dqp96RQaODZ9tQ";
 
     that.getPhotos = function(trail) {
-        return that.getPlaceId(trail.name, trail.lat, trail.long).then(function (placeId) {
-                return placeId;
-            }).then(function (placeId) {
-                return that.getPlaceDetails(placeId);
-            }).then(function (placeDetails) {
-                // will contain maximum 10 photos
-                return placeDetails && placeDetails.result && placeDetails.result.photos ? placeDetails.result.photos : [];
-            }).catch(function (error) {
-                console.log(error);
-            });
+        if (!trail.placeId) return Promise.resolve(null);
+        return that.getPlaceDetails(trail.placeId.trim()).then(function (placeDetails) {
+            // will contain maximum 10 photos
+            return placeDetails && placeDetails.result && placeDetails.result.photos ? placeDetails.result.photos : [];
+        }).catch(function (error) {
+            console.log(error);
+        });
     };
 
+    /*** Unused ***
     that.getPlaceId = function(trailName, latitude, longitude) {
         var absoluteURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
 
@@ -40,7 +38,7 @@ app.service('GooglePlacesService', ['$http',  function($http){
         }, function errorCallback(response) {
 
         });
-    };
+    }; */
 
     that.getPlaceDetails = function(placeId) {
         var absoluteURL = "https://maps.googleapis.com/maps/api/place/details/json";
