@@ -2,7 +2,7 @@
     <ion-content class="trails-list">
         <div class="card" ng-if="!favouriteTrails || favouriteTrails.length === 0">
             <div class="item item-text-wrap none-found">
-                No favourite trails found
+                No Favourite Trails Found
             </div>
         </div>
         <ion-item class="item-text-wrap trail-card" ng-if="favouriteTrails && favouriteTrails.length > 0" ng-repeat="trail in favouriteTrails" ui-sref='trail.details({name: trail.href})'>

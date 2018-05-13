@@ -78,7 +78,7 @@ ion-header-bar > div {
 
 /** More specific **/
 .none-found {
-  font-weight: bold;
+  font-size: 24px;
   text-align: center; }
 
 .no-connection-alert .popup-buttons .button {
