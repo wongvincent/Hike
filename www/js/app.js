@@ -89,7 +89,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             }
         })
 
-
         .state('favourites', {
             url: '/favourites',
             templateUrl: 'views/favourites.html',
@@ -120,11 +119,14 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 //For general app wide functionality
 app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'RegionsService', 'CitiesService', 'ParksService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', '$ionicHistory', '$http', '$cordovaGoogleAnalytics', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, RegionsService, CitiesService, ParksService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q, $ionicHistory, $http, $cordovaGoogleAnalytics) {
     $ionicPlatform.ready(function () {
-        $cordovaGoogleAnalytics.startTrackerWithId('UA-119127485-1');
+        
         $rootScope.credentials = {};
         $http.get('assets/credentials.json').then(function(response) {
             const data = response && response.data;
             $rootScope.credentials.googleApiKey = (data && data.googleApiKey) || "";
+            if (data && data.googleAnalytics) {
+                $cordovaGoogleAnalytics.startTrackerWithId(data.googleAnalytics);
+            }
          });
         
         if (window.cordova) {
