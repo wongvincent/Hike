@@ -121,7 +121,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'RegionsService', 'CitiesService', 'ParksService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', '$ionicHistory', '$http', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, RegionsService, CitiesService, ParksService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q, $ionicHistory, $http) {
     $ionicPlatform.ready(function () {
         $rootScope.credentials = {};
-        $http.get('credentials.json').then(function(response) {
+        $http.get('assets/credentials.json').then(function(response) {
             const data = response && response.data;
             $rootScope.credentials.googleApiKey = (data && data.googleApiKey) || "";
          });
