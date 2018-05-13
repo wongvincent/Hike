@@ -6,6 +6,9 @@
     </ion-nav-buttons>
 
     <ion-content ng-controller="TrailPhotosController">
+        <div ng-if="trail.photos && !trail.photos.length" class="item item-text-wrap none-found">
+            No Photos Found!
+        </div>
         <div ng-repeat="photo in trail.photos" class="list card trail-photo">
             <div class="item item-image">
                 <!-- a ng-href = opens up full size of image -->
@@ -17,7 +20,7 @@
                 </span>
             </div>
         </div>
-        <div class="powered-by-google" ng-if="trail.photos">
+        <div class="powered-by-google" ng-if="trail.photos && trail.photos.length">
             <img src="img/powered_by_google/powered_by_google_on_white.png">
         </div>
     </ion-content>

@@ -365,8 +365,7 @@ body.menu-open .menu-content {
 
 .trail-photos-view .powered-by-google {
   float: right;
-  margin-right: 16px;
-  margin-bottom: 8px; }
+  margin: 0 16px 16px; }
 
 /** See _trails.scss for trail-card inner css **/
 /** See _maps.scss for trail-map css **/

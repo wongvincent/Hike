@@ -15,11 +15,13 @@ app.controller('TrailPhotosController', ['$scope', 'GooglePlacesService', '$ioni
                 }
                 $scope.trail.photos = photos;
             } else {
+                $scope.trail.photos = [];
                 window.plugins.toast.showLongBottom(
                     "No Photos Found"
                 );
             }
         }).catch(function() {
+            $scope.trail.photos = [];
             window.plugins.toast.showLongBottom(
                 "Failed to retrieve photos"
             );
