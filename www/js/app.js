@@ -77,7 +77,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             views: {
                 'trail-details-tab': {
                     templateUrl: 'views/trail/details.html',
-                    controller: 'TrailListController'
+                    controller: 'TrailDetailsController'
                 }
             }
         })
