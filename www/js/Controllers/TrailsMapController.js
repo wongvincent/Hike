@@ -1,11 +1,11 @@
 var app = angular.module('controllers');
 
-app.controller('TrailsMapController', ['$rootScope', '$scope', 'GoogleMaps', '$ionicSideMenuDelegate', 'FilterTrailsService', '$cordovaGoogleAnalytics', function ($rootScope, $scope, GoogleMaps, $ionicSideMenuDelegate, FilterTrailsService, $cordovaGoogleAnalytics) {
+app.controller('TrailsMapController', ['$rootScope', '$scope', 'GoogleMaps', '$ionicSideMenuDelegate', 'FilterTrailsService', function ($rootScope, $scope, GoogleMaps, $ionicSideMenuDelegate, FilterTrailsService) {
 	var mapUpdatedTime;
 
     $scope.$on("$ionicView.enter", function () {
 		$rootScope.lastMainState = 'trails.map';
-		$cordovaGoogleAnalytics.trackView('Trails - Map');
+		if (analytics) analytics.trackView('Trails - Map');
         $ionicSideMenuDelegate.canDragContent(false);
 	    if (!mapUpdatedTime || mapUpdatedTime < FilterTrailsService.getLastFilteredTime()) {
 		    $scope.filteredTrails = FilterTrailsService.getFilteredTrails();

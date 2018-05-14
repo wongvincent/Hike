@@ -119,14 +119,15 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 });
 
 //For general app wide functionality
-app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'RegionsService', 'CitiesService', 'ParksService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', '$ionicHistory', '$http', '$cordovaGoogleAnalytics', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, RegionsService, CitiesService, ParksService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q, $ionicHistory, $http, $cordovaGoogleAnalytics) {
+app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'RegionsService', 'CitiesService', 'ParksService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', '$ionicHistory', '$http', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, RegionsService, CitiesService, ParksService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q, $ionicHistory, $http) {
     $ionicPlatform.ready(function () {
         $rootScope.credentials = {};
         $http.get('assets/credentials.json').then(function(response) {
             const data = response && response.data;
             $rootScope.credentials.googleApiKey = (data && data.googleApiKey) || "";
-            if (data && data.googleAnalytics) {
-                $cordovaGoogleAnalytics.startTrackerWithId(data.googleAnalytics);
+            if (data && data.googleAnalytics && typeof analytics !== 'undefined') {
+                analytics.startTrackerWithId(data.googleAnalytics);
+                analytics.trackView('Splash Screen');
             }
             $scope.goState('trails.list');
          });

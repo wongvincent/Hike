@@ -7,5 +7,8 @@
   },
   "resolutions": {
     "angular": "^1.5.3"
+  },
+  "dependencies": {
+    "ionic-native": "^2.0.3"
   }
 }

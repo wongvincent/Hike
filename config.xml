@@ -53,5 +53,4 @@
     <splash src="resources\ios\splash\Default~iphone.png" width="320" height="480"/>
   </platform>
   <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
-  <plugin name="cordova-plugin-google-analytics" spec="https://github.com/danwilson/google-analytics-plugin.git"/>
 </widget>

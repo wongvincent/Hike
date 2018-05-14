@@ -1,8 +1,8 @@
 var app = angular.module('controllers');
 
-app.controller('TrailPhotosController', ['$scope', 'GooglePlacesService', '$ionicLoading', 'ConnectivityMonitor', '$cordovaGoogleAnalytics', function ($scope, GooglePlacesService, $ionicLoading, ConnectivityMonitor, $cordovaGoogleAnalytics) {
+app.controller('TrailPhotosController', ['$scope', 'GooglePlacesService', '$ionicLoading', 'ConnectivityMonitor', function ($scope, GooglePlacesService, $ionicLoading, ConnectivityMonitor) {
     $scope.$on('$ionicView.enter', function () {
-		$cordovaGoogleAnalytics.trackView('Trail - Photos');
+		if (analytics) analytics.trackView('Trail - Photos');
     });
     
     if (ConnectivityMonitor.isOnline()) {
