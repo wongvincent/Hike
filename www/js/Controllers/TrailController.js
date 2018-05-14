@@ -1,9 +1,9 @@
 var app = angular.module('controllers');
 
 app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter', '$ionicLoading', '$ionicSideMenuDelegate', function ($scope, $state, $stateParams, $filter, $ionicLoading, $ionicSideMenuDelegate) {
-    $scope.state = $state.current;
+    $ionicSideMenuDelegate.canDragContent(true);
+    
     $scope.params = $stateParams;
-
     var hrefSelected = $scope.params.name;
 
     if (hrefSelected === undefined) {
@@ -11,22 +11,12 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter'
     } else {
         $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner><br/>'});
 
-        var trails = $scope.trails;
-        for (var i = 0; i < trails.length; i++) {
-            var trail = trails[i];
-            // Set trail and favouriteStatus (based on href param)
-            if (trail.href === hrefSelected) {
-                $scope.trail = trail;
-                $scope.favouriteStatus = trail.favourite;
-                $ionicLoading.hide();
-                break;
-            }
-        }
-    }
+        $scope.trail = $scope.trails.find(function(trail) {
+            return trail.href === hrefSelected;
+        });
 
-    $scope.$on('$ionicView.enter', function(){
-        $ionicSideMenuDelegate.canDragContent(true);
-    });
+        $ionicLoading.hide();
+    }
 
     $scope.shareTrail = function() {
         var trail = $scope.trail;

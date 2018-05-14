@@ -1,6 +1,10 @@
 var app = angular.module('controllers');
 
-app.controller('TrailPhotosController', ['$scope', 'GooglePlacesService', '$ionicLoading', 'ConnectivityMonitor', function ($scope, GooglePlacesService, $ionicLoading, ConnectivityMonitor) {
+app.controller('TrailPhotosController', ['$scope', 'GooglePlacesService', '$ionicLoading', 'ConnectivityMonitor', '$cordovaGoogleAnalytics', function ($scope, GooglePlacesService, $ionicLoading, ConnectivityMonitor, $cordovaGoogleAnalytics) {
+    $scope.$on('$ionicView.enter', function () {
+		$cordovaGoogleAnalytics.trackView('Trail - Photos');
+    });
+    
     if (ConnectivityMonitor.isOnline()) {
         $ionicLoading.show();
 
@@ -29,6 +33,7 @@ app.controller('TrailPhotosController', ['$scope', 'GooglePlacesService', '$ioni
             $ionicLoading.hide();
         });
     } else {
+        $scope.trail.photos = [];
         $scope.noConnectionAlert("An internet connection is required to load trail photos.");
     }
 }]);

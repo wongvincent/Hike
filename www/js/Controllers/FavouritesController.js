@@ -1,8 +1,9 @@
 var app = angular.module('controllers');
 
-app.controller('FavouritesController', ['$rootScope', '$scope', function($rootScope, $scope) {
+app.controller('FavouritesController', ['$rootScope', '$scope', '$cordovaGoogleAnalytics', function($rootScope, $scope, $cordovaGoogleAnalytics) {
     $scope.$on('$ionicView.enter', function(){
         $rootScope.lastMainState = 'favourites';
+        $cordovaGoogleAnalytics.trackView('Favourites');
         $scope.favouriteTrails = getFavouriteTrails();
     });
 

@@ -1,11 +1,11 @@
 var app = angular.module('controllers');
 
-app.controller('TrailsListController', ['$rootScope', '$scope', 'FilterTrailsService', function ($rootScope, $scope, FilterTrailsService) {
+app.controller('TrailsListController', ['$rootScope', '$scope', 'FilterTrailsService', '$cordovaGoogleAnalytics', function ($rootScope, $scope, FilterTrailsService, $cordovaGoogleAnalytics) {
 	var listLastUpdated;
 
     $scope.$on('$ionicView.enter', function () {
-        $rootScope.lastMainState = 'trails.list';
-
+		$rootScope.lastMainState = 'trails.list';
+		$cordovaGoogleAnalytics.trackView('Trails - List');
 	    if (!listLastUpdated || listLastUpdated < FilterTrailsService.getLastFilteredTime()) {
 		    $scope.filteredTrails = FilterTrailsService.getFilteredTrails();
 		    $scope.numberOfFiltersApplied = FilterTrailsService.getNumberOfFiltersApplied();

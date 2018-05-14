@@ -1,8 +1,9 @@
 var app = angular.module('controllers');
 
-app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$ionicPopup', function($rootScope, $scope, $ionicLoading, $ionicPopup) {
+app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$ionicPopup', '$cordovaGoogleAnalytics', function($rootScope, $scope, $ionicLoading, $ionicPopup, $cordovaGoogleAnalytics) {
     $scope.$on('$ionicView.enter', function(){
         $rootScope.lastMainState = 'nearby';
+        $cordovaGoogleAnalytics.trackView('Nearby');
         $scope.refreshNearbyTrails();
     });
 

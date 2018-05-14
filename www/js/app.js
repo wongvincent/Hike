@@ -76,7 +76,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/list',
             views: {
                 'trail-details-tab': {
-                    templateUrl: 'views/trail/details.html'
+                    templateUrl: 'views/trail/details.html',
+                    controller: 'TrailListController'
                 }
             }
         })
@@ -84,7 +85,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             url: '/photos',
             views: {
                 'trail-photos-tab': {
-                    templateUrl: 'views/trail/photos.html'
+                    templateUrl: 'views/trail/photos.html',
+                    controller: 'TrailPhotosController'
                 }
             }
         })
@@ -101,7 +103,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
             controller: 'NearbyController'
         });
 
-    $urlRouterProvider.otherwise('/trails/list');
+    $urlRouterProvider.otherwise('/start');
 
 
     //Tab style
@@ -119,7 +121,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 //For general app wide functionality
 app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSideMenuDelegate', '$ionicScrollDelegate', '$ionicPopup', 'TrailsService', 'RegionsService', 'CitiesService', 'ParksService', 'FavouritesService', '$ionicPlatform', '$ionicLoading', '$cordovaSQLite', '$cordovaSplashscreen', '$q', '$ionicHistory', '$http', '$cordovaGoogleAnalytics', function ($rootScope, $scope, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, $ionicPopup, TrailsService, RegionsService, CitiesService, ParksService, FavouritesService, $ionicPlatform, $ionicLoading, $cordovaSQLite, $cordovaSplashscreen, $q, $ionicHistory, $http, $cordovaGoogleAnalytics) {
     $ionicPlatform.ready(function () {
-        
         $rootScope.credentials = {};
         $http.get('assets/credentials.json').then(function(response) {
             const data = response && response.data;
@@ -127,6 +128,7 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
             if (data && data.googleAnalytics) {
                 $cordovaGoogleAnalytics.startTrackerWithId(data.googleAnalytics);
             }
+            $scope.goState('trails.list');
          });
         
         if (window.cordova) {
