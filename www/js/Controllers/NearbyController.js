@@ -1,13 +1,16 @@
 var app = angular.module('controllers');
 
-app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$ionicPopup', '$cordovaGoogleAnalytics', function($rootScope, $scope, $ionicLoading, $ionicPopup, $cordovaGoogleAnalytics) {
+app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$ionicPopup', function($rootScope, $scope, $ionicLoading, $ionicPopup) {
     $scope.$on('$ionicView.enter', function(){
         $rootScope.lastMainState = 'nearby';
-        $cordovaGoogleAnalytics.trackView('Nearby');
+        if (analytics) analytics.trackView('Nearby');
         $scope.refreshNearbyTrails();
     });
 
     $scope.refreshNearbyTrails = function(manualRefresh) {
+        if (manualRefresh && analytics) {
+            analytics.trackEvent('Nearby', 'Manual Refresh');
+        }
         isLocationAuthorized().then(function (isEnabled) {
             if (isEnabled) {
                 checkIfLocationIsOn(manualRefresh);

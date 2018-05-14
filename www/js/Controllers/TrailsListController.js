@@ -19,6 +19,7 @@ app.controller('TrailsListController', ['$rootScope', '$scope', 'FilterTrailsSer
 	});
 
 	$scope.showSearchBar = function() {
+		if (analytics) analytics.trackEvent('Search Bar', 'Open');
 		$rootScope.searchBarActive = true;
 		setTimeout(function() {
 			document.getElementById('input-search').focus(); //TODO: use directive
@@ -32,5 +33,6 @@ app.controller('TrailsListController', ['$rootScope', '$scope', 'FilterTrailsSer
 
 	$scope.clearSearchBar = function() {
 		$scope.data.searchText = '';
+		if (analytics) analytics.trackEvent('Search Bar', 'Reset');
 	};
 }]);

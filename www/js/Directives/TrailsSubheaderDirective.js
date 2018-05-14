@@ -14,6 +14,7 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
             ];
 
             $scope.sortby = function () {
+                if (analytics) analytics.trackEvent('Sort', 'Open');
                 var sortByPopup = $ionicPopup.show({
                     title: 'Sort by',
                     cssClass: 'sort-trails-popup',
@@ -24,6 +25,7 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
                             text: '', //Sort button
                             type: 'button-clear button-small disabled',
                             onTap: function (e) {
+                                if (analytics) analytics.trackEvent('Sort', 'Select', $scope.data.sortSelected);
                                 $scope.scrollToTop();
                             }
                         },
@@ -122,7 +124,8 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
                 window.plugins.toast.showShortBottom(
                     "Filters Reset"
                 );
-	            $rootScope.$broadcast('new-filters-applied', {});
+                $rootScope.$broadcast('new-filters-applied', {});
+                if (analytics) analytics.trackEvent('Filters', 'Reset');
             };
 
             $scope.applyFilters = function() {
@@ -131,7 +134,8 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
                 $scope.evaluateFilters();
 	            $scope.numberOfFiltersApplied = FilterTrailsService.getNumberOfFiltersApplied();
                 $scope.closeFilterModal();
-	            $rootScope.$broadcast('new-filters-applied', {});
+                $rootScope.$broadcast('new-filters-applied', {});
+                if (analytics) analytics.trackEvent('Filters', 'Apply');
             };
 
             $scope.filterTimeSlider = {
@@ -179,6 +183,7 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
                 $scope.tempData = FilterTrailsService.getData();
                 $scope.tempFilteredTrails = FilterTrailsService.getFilteredTrails();
                 $scope.filterModal.show();
+                if (analytics) analytics.trackEvent('Filters', 'Open');
             };
 
             $scope.closeFilterModal = function () {

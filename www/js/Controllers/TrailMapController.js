@@ -8,6 +8,7 @@ app.controller('TrailMapController', ['$scope', 'GoogleMaps', function ($scope, 
     }
 
     $scope.openInMapsApp = function(lat, long) {
+        if (analytics) analytics.trackEvent('Trail', 'Open in Google Maps', $scope.trail.id);
         if(ionic.Platform.isIOS()){
             window.open("http://maps.apple.com/?q="+lat+","+long, '_system');
         } else {
