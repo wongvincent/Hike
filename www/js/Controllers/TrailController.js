@@ -47,5 +47,6 @@ app.controller('TrailController', ['$scope', '$state', '$stateParams', '$filter'
                 );
             }
         );
+        analytics.trackEvent('Trail', 'Share', trail.id);
     };
 }]);
