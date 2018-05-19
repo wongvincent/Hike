@@ -1,10 +1,14 @@
 var app = angular.module('controllers');
 
-app.controller('TrailMapController', ['$scope', 'GoogleMaps', function ($scope, GoogleMaps) {
-    $scope.initMap = function() {
-        var mapElement = angular.element(document.querySelector("#trail-map"));
+app.controller('TrailMapController', ['$rootScope', '$scope', 'GoogleMaps', '$sce', function ($rootScope, $scope, GoogleMaps, $sce) {
+    $scope.embedMapSrc = $rootScope.credentials.googleApiKey && $scope.trail.placeId ?
+        $sce.trustAsResourceUrl('https://www.google.com/maps/embed/v1/place?key=' + $rootScope.credentials.googleApiKey + '&q=place_id:' + $scope.trail.placeId)
+            : '';
+    
+    $scope.initJsMap = function() {
+        var mapElement = angular.element(document.querySelector("#trail-map-js"));
         mapElement.empty();
-        GoogleMaps.init([$scope.trail], "trail-map");
+        GoogleMaps.init([$scope.trail], "trail-map-js");
     }
 
     $scope.openInMapsApp = function(lat, long) {

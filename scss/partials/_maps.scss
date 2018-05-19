@@ -10,9 +10,15 @@
 }
 
 /* Only used by Trail Map */
-#trail-map {
-	width: 100%;
-	height: 300px;
+.trail-map {
+	height: 330px;
+
+	#trail-map-js, #trail-map-embed {
+		width: 100%;
+		height: 100%;
+		border-top-left-radius: $card-border-radius;
+		border-top-right-radius: $card-border-radius;
+	}
 }
 
 button#bottomMapButton {

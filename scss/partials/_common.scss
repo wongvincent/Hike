@@ -111,6 +111,11 @@ ion-header-bar > div {
 	}
 }
 
+.card {
+	border-radius: $card-border-radius;
+	padding: 0;
+}
+
 /** More specific **/
 
 .none-found {

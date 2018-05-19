@@ -4,7 +4,12 @@
     </div>
 </div>
 
-<div ng-init="initMap()" id="trail-map" class="map" ng-show="trail.lat && trail.long" data-tap-disabled="true">
+<div class="trail-map" ng-if="trail.placeId">
+    <iframe id="trail-map-embed" ng-src="{{::embedMapSrc}}">
+    </iframe>
+</div>
+<div class="trail-map" ng-if="!trail.placeId && trail.lat && trail.long">
+    <div ng-init="initJsMap()" id="trail-map-js" data-tap-disabled="true"></div>
 </div>
 
 <button id="bottomMapButton"
