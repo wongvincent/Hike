@@ -6,6 +6,10 @@ app.controller('AboutController', ['$rootScope', '$scope', function($rootScope, 
     if (analytics) analytics.trackView('About');
   });
 
+  $scope.openGithub = function() {
+    analytics.trackEvent('About', 'Github Link');
+    window.open('https://github.com/wongvincent/Hike');
+  };
 
   document.getElementById('emailForm').addEventListener('submit', function(event) {
     event.preventDefault();
