@@ -1,10 +1,36 @@
 .about-view {
   .content {
     font-size: 18px;
-    margin: 16px;
+    padding: 16px;
 
     div:not(:first-child) {
       padding: 18px 0;
+    }
+
+    #emailForm {
+      span, input, textarea {
+        font-size: 18px;
+      }
+
+      textarea {
+        height: 140px;
+        padding-left: 30px;
+        &::placeholder {
+          padding-top: 62px;
+        }
+      }
+    }
+
+    #github-link {
+      position: fixed;
+      bottom: 0;
+      right: 10px;
+      font-size: 14px;
+      img {
+        width: 14px;
+        vertical-align: middle;
+        margin-right: 3px;
+      }
     }
   }
 }

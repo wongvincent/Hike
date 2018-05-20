@@ -36,6 +36,7 @@
         "analytics": false,
         "angular": false,
         "cordova": false,
+        "emailjs": false,
         "google": false,
         "ionic": false,
         "OverlappingMarkerSpiderfier": false,

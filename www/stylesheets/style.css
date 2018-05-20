@@ -1,8 +1,24 @@
 .about-view .content {
   font-size: 18px;
-  margin: 16px; }
+  padding: 16px; }
   .about-view .content div:not(:first-child) {
     padding: 18px 0; }
+  .about-view .content #emailForm span, .about-view .content #emailForm input, .about-view .content #emailForm textarea {
+    font-size: 18px; }
+  .about-view .content #emailForm textarea {
+    height: 140px;
+    padding-left: 30px; }
+    .about-view .content #emailForm textarea::placeholder {
+      padding-top: 62px; }
+  .about-view .content #github-link {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+    font-size: 14px; }
+    .about-view .content #github-link img {
+      width: 14px;
+      vertical-align: middle;
+      margin-right: 3px; }
 
 /*GENERAL app css changes */
 * {

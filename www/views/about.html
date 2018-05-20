@@ -9,7 +9,31 @@
         <div>
           We are not associated with any websites linked to by this app. We have no control over the content of external sites and use of these sites is done at your own risk.
         </div>
-        <div>Please send any questions and comments to: </div>
+        <div><b>Please use the form below to send any corrections, questions, or comments!</b></div>
+        <form id="emailForm">
+          <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Name</span>
+              <input type="text" name="user_name" placeholder="Name" required>
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Email</span>
+              <input type="email" name="user_email" placeholder="Email" required>
+            </label>
+            <label class="item item-input">
+              <span class="input-label">Message</span>
+              <textarea name="message_html" placeholder="Message" required></textarea>
+            </label>
+          </div>
+          <button type="submit" id="submitEmailButton" class="button button-balanced">
+            Send
+          </button>
+        </form>
+        <div id="github-link">
+          <a href="#" onclick="window.open('https://github.com/wongvincent/Hike');">
+            <img src="img/GitHub-Mark-32px.png">Hiking Vancouver
+          </a>
+        </div>
       </div>
   </ion-content>
 </ion-view>

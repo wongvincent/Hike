@@ -5,4 +5,23 @@ app.controller('AboutController', ['$rootScope', '$scope', function($rootScope, 
     $rootScope.lastMainState = 'about';
     if (analytics) analytics.trackView('About');
   });
+
+
+  document.getElementById('emailForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var submitEmailButton = document.getElementById('submitEmailButton');
+
+    submitEmailButton.disabled = true;
+    submitEmailButton.innerText = 'Sending...';
+    emailjs.sendForm('default_service', $rootScope.credentials.emailJsTemplateId, this, $rootScope.credentials.emailJsUser).then(function() {
+      window.plugins.toast.showLongBottom('Email sent!');
+      submitEmailButton.innerText = 'Send';
+      submitEmailButton.disabled = false;
+    }, function() {
+      window.plugins.toast.showLongBottom('Failed to send Email');
+      submitEmailButton.innerText = 'Send';
+      submitEmailButton.disabled = false;
+    });
+  });
 }]);
