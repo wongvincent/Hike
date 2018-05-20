@@ -1,20 +1,20 @@
 var app = angular.module('services');
 
 app.service('GooglePlacesService', ['$rootScope', '$http', function($rootScope, $http) {
-    var that = this;
-    var googleApiKey = $rootScope.credentials.googleApiKey || "";
+  var that = this;
+  var googleApiKey = $rootScope.credentials.googleApiKey || '';
 
-    that.getPhotos = function(trail) {
-        if (!trail.placeId) return Promise.resolve(null);
-        return that.getPlaceDetails(trail.placeId.trim()).then(function (placeDetails) {
-            // will contain maximum 10 photos
-            return placeDetails && placeDetails.result && placeDetails.result.photos ? placeDetails.result.photos : [];
-        }).catch(function (error) {
-            console.log(error);
-        });
-    };
+  that.getPhotos = function(trail) {
+    if (!trail.placeId) return Promise.resolve(null);
+    return that.getPlaceDetails(trail.placeId.trim()).then(function(placeDetails) {
+      // will contain maximum 10 photos
+      return placeDetails && placeDetails.result && placeDetails.result.photos ? placeDetails.result.photos : [];
+    }).catch(function(error) {
+      console.log(error); // eslint-disable-line no-console
+    });
+  };
 
-    /*** Unused ***
+  /*** Unused ***
     that.getPlaceId = function(trailName, latitude, longitude) {
         var absoluteURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json";
 
@@ -40,28 +40,27 @@ app.service('GooglePlacesService', ['$rootScope', '$http', function($rootScope, 
         });
     }; */
 
-    that.getPlaceDetails = function(placeId) {
-        var absoluteURL = "https://maps.googleapis.com/maps/api/place/details/json";
+  that.getPlaceDetails = function(placeId) {
+    var absoluteURL = 'https://maps.googleapis.com/maps/api/place/details/json';
 
-        return $http.get(absoluteURL, {
-            params : {
-                key : googleApiKey,
-                placeid : placeId
-            }
-        }).then(function successCallback(response) {
-            return response.data;
-        }, function errorCallback(response) {
+    return $http.get(absoluteURL, {
+      params: {
+        key: googleApiKey,
+        placeid: placeId,
+      },
+    }).then(function successCallback(response) {
+      return response.data;
+    }, function errorCallback() {
+    });
+  };
 
-        });
-    };
+  that.getPhotoURL = function(photoReference) {
+    var absoluteURL = 'https://maps.googleapis.com/maps/api/place/photo?';
+    absoluteURL += 'key=' + googleApiKey + '&';
+    absoluteURL += 'maxwidth=480&';
+    absoluteURL += 'photoreference=' + photoReference;
+    return absoluteURL;
+  };
 
-    that.getPhotoURL = function(photoReference) {
-        var absoluteURL = "https://maps.googleapis.com/maps/api/place/photo?";
-        absoluteURL += "key=" + googleApiKey + "&";
-        absoluteURL += "maxwidth=480&";
-        absoluteURL += "photoreference=" + photoReference;
-        return absoluteURL;
-    };
-
-    return that;
+  return that;
 }]);

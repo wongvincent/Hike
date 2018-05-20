@@ -1,0 +1,44 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+        "space-before-function-paren": ["error", "never"],
+        "no-trailing-spaces": "error",
+        "indent": [
+            "error",
+            2
+        ],
+        "comma-dangle": ["warn", {
+                "arrays": "always-multiline",
+                "objects": "always-multiline",
+                "imports": "always-multiline",
+                "exports": "always-multiline",
+                "functions": "always-multiline"
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
+    },
+    "globals": {
+        "analytics": false,
+        "angular": false,
+        "cordova": false,
+        "google": false,
+        "ionic": false,
+        "OverlappingMarkerSpiderfier": false,
+        "StatusBar": false
+    }
+}

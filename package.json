@@ -8,13 +8,15 @@
     "url": "git://github.com/wongvincent/Hike.git"
   },
   "scripts": {
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "lint": "eslint ./www/js/Controllers/*.js ./www/js/Directives/*.js ./www/js/Services/*.js ./www/js/app.js"
   },
   "engines": {
     "node": ">=4.2.0 <5"
   },
   "dependencies": {
-    "@ionic-native/google-analytics": "^4.7.0"
+    "@ionic-native/google-analytics": "^4.7.0",
+    "@angular/core": "^5.0.0"
   },
   "devDependencies": {
     "bower": "^1.3.3",
@@ -30,6 +32,9 @@
     "karma": "^1.5.0",
     "karma-jasmine": "^1.1.0",
     "shelljs": "^0.5.3"
+  },
+  "resolutions": {
+    "angular": "^5.0.0"
   },
   "cordovaPlugins": [
     "com.ionic.keyboard",
