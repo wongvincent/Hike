@@ -9,13 +9,13 @@
 
 				&.activated {
 					input:checked + .radio-content .item-content, .item-content {
-						background-color: #EEEEEE;
+						background-color: $activated-bg-color
 					}
 				}
 
 				input:checked + .radio-content {
 					.item-content {
-						background-color: white;
+						background-color: #FFFFFF;
 						span {
 							/* Text of selected element */
 							color: $green;

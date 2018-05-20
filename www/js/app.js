@@ -101,6 +101,12 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
       url: '/nearby',
       templateUrl: 'views/nearby.html',
       controller: 'NearbyController',
+    })
+
+    .state('about', {
+      url: '/about',
+      templateUrl: 'views/about.html',
+      controller: 'AboutController',
     });
 
   $urlRouterProvider.otherwise('/start');

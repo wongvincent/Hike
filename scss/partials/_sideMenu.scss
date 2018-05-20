@@ -8,13 +8,13 @@ body.menu-open {
 		}
 	}
 	.menu-content {
-		transform: translate3d(75%, 0px, 0px) !important;
+		transform: translate3d($side-menu-width, 0px, 0px) !important;
 	}
 }
 
 /** width of side-menu **/
 .menu.menu-left {
-	width: 75% !important;
+	width: $side-menu-width !important;
 }
 
 /** Side Menu **/
@@ -48,6 +48,12 @@ body.menu-open {
 			padding: 16px 16px 16px 24px;
 			background-color: #FFF;
 			color: #555;
+			&.activated {
+				background-color: $activated-bg-color;
+				.name {
+					color: $green;
+				}
+			}
 		}
 
 		.icon-container {
@@ -59,10 +65,10 @@ body.menu-open {
 			font-size: 34px;
 		}
 
-		.selected {
-			background-color: grey;
-			color: $green;
-			font-weight: bold;
+		&.about-menu-item {
+			position: fixed;
+			bottom: 8px;
+			width: $side-menu-width;
 		}
 	}
 }

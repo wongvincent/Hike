@@ -1,3 +1,9 @@
+.about-view .content {
+  font-size: 18px;
+  margin: 16px; }
+  .about-view .content div:not(:first-child) {
+    padding: 18px 0; }
+
 /*GENERAL app css changes */
 * {
   font-family: sans-serif; }
@@ -268,15 +274,19 @@ body.menu-open .menu-content {
       padding: 16px 16px 16px 24px;
       background-color: #FFF;
       color: #555; }
+      .side-menu-content .left-menu-item a.item-content.activated {
+        background-color: #EEEEEE; }
+        .side-menu-content .left-menu-item a.item-content.activated .name {
+          color: #28A54C; }
     .side-menu-content .left-menu-item .icon-container {
       font-size: 34px;
       margin-right: 14px; }
     .side-menu-content .left-menu-item .name {
       font-size: 34px; }
-    .side-menu-content .left-menu-item .selected {
-      background-color: grey;
-      color: #28A54C;
-      font-weight: bold; }
+    .side-menu-content .left-menu-item.about-menu-item {
+      position: fixed;
+      bottom: 8px;
+      width: 75%; }
 
 /* SORT BY popup */
 .sort-trails-popup .popup-body {
@@ -286,7 +296,7 @@ body.menu-open .menu-content {
     .sort-trails-popup .popup-body .list .item.activated input:checked + .radio-content .item-content, .sort-trails-popup .popup-body .list .item.activated .item-content {
       background-color: #EEEEEE; }
     .sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content {
-      background-color: white; }
+      background-color: #FFFFFF; }
       .sort-trails-popup .popup-body .list .item input:checked + .radio-content .item-content span {
         /* Text of selected element */
         color: #28A54C; }

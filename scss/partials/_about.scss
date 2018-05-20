@@ -1,0 +1,10 @@
+.about-view {
+  .content {
+    font-size: 18px;
+    margin: 16px;
+
+    div:not(:first-child) {
+      padding: 18px 0;
+    }
+  }
+}
