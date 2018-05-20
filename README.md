@@ -7,20 +7,11 @@ Download Android app: [http://hike.vincentwong.me/](http://hike.vincentwong.me/)
 
 
 
-
 ## Features ##
 * View the locations and photos from over 100 trails.
 * **Filter** trails based on Location, Time, Distance, Difficulty, and more!
 * Find **nearby** trails using your device's location.
 * Save trails as **Favourites** and easily **Share** them.
-
-#### Under development ####
-
-
-
-#### Future ####
-* Create accounts so your favourite trails can be accessed on multiple devices
-
 
 
 ## Misc. ##
