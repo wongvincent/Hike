@@ -3,8 +3,7 @@
                ng-repeat="sortOption in sortOptions"
                ng-click="$buttonTapped(buttons[0], $event)"
                ng-value="sortOption.sortby"
-               icon="ion-ios-circle-filled">
-        <i class="ion-ios-circle-outline"></i>
+               icon="ion-checkmark">
         {{::sortOption.text}}
     </ion-radio>
 </div>

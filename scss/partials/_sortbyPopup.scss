@@ -6,47 +6,34 @@
 		.list {
 			.item {
 				border: 0;
-				height: 60px;
 
 				&.activated {
-					background-color: #FFF;
+					input:checked + .radio-content .item-content, .item-content {
+						background-color: #EEEEEE;
+					}
 				}
 
 				input:checked + .radio-content {
 					.item-content {
 						background-color: white;
-						i {
-							/* Outline icon of selected element */
-							display: none;
-						}
-
 						span {
 							/* Text of selected element */
-							margin-left: 33px;
+							color: $green;
 						}
 					}
 					i.radio-icon {
-						/* Filled icon of selected element */
+						/* Check icon of selected element */
 						color: $green;
-						font-size: 22px;
-						left: 4px;
-						top: 4px;
+						font-size: 24px;
 					}
 				}
 
 				.radio-content {
-					padding: 3px;
-
 					.item-content {
-						i {
-							/* Outline icon */
-							font-size: 20px;
-							padding-right: 16px;
-						}
+						padding: 16px 0 16px 3px;
 						span {
 							/* Text of any element */
 							font-size: 18px;
-							vertical-align: top;
 						}
 					}
 				}
