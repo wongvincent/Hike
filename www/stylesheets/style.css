@@ -221,7 +221,7 @@ ion-header-bar > div {
 
 /* Only used by Trail Map */
 .trail-map {
-  height: 330px; }
+  height: 300px; }
   .trail-map #trail-map-js, .trail-map #trail-map-embed {
     width: 100%;
     height: 100%;
@@ -374,6 +374,11 @@ body.menu-open .menu-content {
 
 .trail-details-view #trail-details-content ol .item, .trail-details-view #trail-details-content ul .item {
   padding: 6px 10px 6px 35px !important; }
+
+.trail-details-view #trail-resources {
+  padding: 10px; }
+  .trail-details-view #trail-resources a {
+    padding: 10px; }
 
 .trail-photos-view .trail-photo .photoAttribution {
   position: absolute;
