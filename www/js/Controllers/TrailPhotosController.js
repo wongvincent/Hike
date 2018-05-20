@@ -12,7 +12,7 @@ app.controller('TrailPhotosController', ['$scope', 'GooglePlacesService', '$ioni
     getPhotosPromise.then(function(photos) {
       if (photos && photos.length) {
         // Limit to x photos
-        var limit = 5;
+        var limit = 3;
         photos = photos.slice(0, limit);
         for (var i = 0; i < Math.min(photos.length, limit); i++) {
           photos[i].src = GooglePlacesService.getPhotoURL(photos[i].photo_reference);
