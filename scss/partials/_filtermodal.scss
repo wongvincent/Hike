@@ -16,6 +16,7 @@
 		.title {
 			text-align: center;
 			font-weight: bold;
+			margin-right: 0;
 
 			#filter-title {
 				height: 18px;
@@ -54,7 +55,6 @@
 			#filter-difficulty-title {
 				display: inline-block;
 				margin-top: $filter-item-padding;
-				margin-bottom: $filter-item-padding;
 			}
 			#filter-difficulty-check {
 				float: right;

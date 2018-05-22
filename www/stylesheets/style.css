@@ -1,18 +1,18 @@
 .about-view .content {
-  font-size: 18px;
+  font-size: 12px;
   padding: 16px; }
   .about-view .content div:not(:first-child) {
-    padding: 18px 0; }
+    padding: 12px 0; }
   .about-view .content #emailForm span, .about-view .content #emailForm input, .about-view .content #emailForm textarea {
     font-size: 18px; }
   .about-view .content #emailForm textarea {
     height: 140px;
-    padding-left: 30px; }
+    padding-left: 1rem; }
     .about-view .content #emailForm textarea::placeholder {
       padding-top: 62px; }
   .about-view .content #github-link {
     position: absolute;
-    bottom: 0;
+    bottom: 1rem;
     right: 10px;
     font-size: 14px; }
     .about-view .content #github-link img {
@@ -44,7 +44,7 @@ ol {
     font-size: 28px;
     font-weight: bold;
     margin-left: 23px;
-    margin-top: 10px;
+    top: calc((56px - 3rem) / 2);
     left: 48px; }
   .platform-android .bar-header .buttons-left button {
     top: 7px;
@@ -135,7 +135,8 @@ ion-header-bar > div {
     font-weight: bold; }
     .filter-by-modal .bar-header .title {
       text-align: center;
-      font-weight: bold; }
+      font-weight: bold;
+      margin-right: 0; }
       .filter-by-modal .bar-header .title #filter-title {
         height: 18px;
         font-size: 25px;
@@ -162,8 +163,7 @@ ion-header-bar > div {
     padding-bottom: 0; }
     .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-title {
       display: inline-block;
-      margin-top: 18px;
-      margin-bottom: 18px; }
+      margin-top: 18px; }
     .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check {
       float: right; }
       .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check .item-checkbox {
@@ -215,6 +215,9 @@ ion-header-bar > div {
   position: absolute;
   right: 16px;
   top: 10px; }
+
+.nearby-card .trail-name {
+  max-width: calc(100% - 3.5rem); }
 
 /* Shared by both trail and trails map */
 .scroll {
@@ -347,7 +350,7 @@ body.menu-open .menu-content {
   .trails-subheader-bar .number-of-results {
     width: calc(100% - 100px);
     font-size: 24px;
-    line-height: 56px; }
+    margin-top: 1rem; }
   .trails-subheader-bar .buttons-right {
     text-align: right;
     display: -webkit-box; }
