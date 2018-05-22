@@ -34,6 +34,10 @@ a, a:link, a:visited, a:active, a:hover {
     .google-play img {
         width: 153px;
     }
+
+    .github {
+        display: block;
+    }
 }
 
 .jumbotron {
