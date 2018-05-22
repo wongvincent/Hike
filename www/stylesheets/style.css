@@ -11,7 +11,7 @@
     .about-view .content #emailForm textarea::placeholder {
       padding-top: 62px; }
   .about-view .content #github-link {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     right: 10px;
     font-size: 14px; }
