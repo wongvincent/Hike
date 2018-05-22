@@ -19,9 +19,10 @@ app.controller('AboutController', ['$rootScope', '$scope', function($rootScope, 
     submitEmailButton.disabled = true;
     submitEmailButton.innerText = 'Sending...';
     emailjs.sendForm('default_service', $rootScope.credentials.emailJsTemplateId, this, $rootScope.credentials.emailJsUser).then(function() {
-      window.plugins.toast.showLongBottom('Email sent!');
+      document.getElementById('emailForm').reset();
       submitEmailButton.innerText = 'Send';
       submitEmailButton.disabled = false;
+      window.plugins.toast.showLongBottom('Email sent!');
     }, function() {
       window.plugins.toast.showLongBottom('Failed to send Email');
       submitEmailButton.innerText = 'Send';
