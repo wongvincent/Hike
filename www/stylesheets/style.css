@@ -155,14 +155,21 @@ ion-header-bar > div {
         font-size: 24px;
         padding-right: 10px;
         padding-top: 5px; }
-  .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-title {
-    display: inline-block; }
-  .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check {
-    float: right; }
-    .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check .item-checkbox {
+  .filter-by-modal .filters-list .item {
+    padding: 18px; }
+  .filter-by-modal .filters-list .filter-difficulty {
+    padding-top: 0;
+    padding-bottom: 0; }
+    .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-title {
       display: inline-block;
-      padding: 0 5px 0 44px;
-      border: none; }
+      margin-top: 18px;
+      margin-bottom: 18px; }
+    .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check {
+      float: right; }
+      .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check .item-checkbox {
+        display: inline-block;
+        padding: 18px 16px 18px 44px;
+        border: none; }
   .filter-by-modal .filters-list .group-header-item {
     background-color: white; }
     .filter-by-modal .filters-list .group-header-item .filtergroup-collapsible-icon-toggle {
@@ -186,11 +193,9 @@ ion-header-bar > div {
     background-color: #28A54C; }
     .filter-by-modal .filters-list .rzslider .rz-pointer.rz-active:after {
       background-color: #FFF; }
-  .filter-by-modal .filters-list .item-checkbox-right {
-    padding: 15px; }
-    .filter-by-modal .filters-list .item-checkbox-right .checkbox input,
-    .filter-by-modal .filters-list .item-checkbox-right .checkbox-icon {
-      float: right; }
+  .filter-by-modal .filters-list .item-checkbox-right .checkbox input,
+  .filter-by-modal .filters-list .item-checkbox-right .checkbox-icon {
+    float: right; }
   .filter-by-modal .small-icon:before {
     font-size: 20px !important;
     margin-top: 2px; }

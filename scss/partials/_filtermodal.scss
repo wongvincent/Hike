@@ -45,16 +45,23 @@
 	}
 
 	.filters-list {
+		.item {
+			padding: $filter-item-padding;
+		}
 		.filter-difficulty {
+			padding-top: 0;
+			padding-bottom: 0;
 			#filter-difficulty-title {
 				display: inline-block;
+				margin-top: $filter-item-padding;
+				margin-bottom: $filter-item-padding;
 			}
 			#filter-difficulty-check {
 				float: right;
 
 				.item-checkbox {
 					display: inline-block;
-					padding: 0 5px 0 44px;
+					padding: $filter-item-padding 16px $filter-item-padding 44px;
 					border: none;
 				}
 			}
@@ -103,8 +110,6 @@
 		}
 
 		.item-checkbox-right {
-			padding: 15px;
-
 			.checkbox input,
 			.checkbox-icon {
 				float: right;

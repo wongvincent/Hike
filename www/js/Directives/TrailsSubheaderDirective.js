@@ -139,7 +139,7 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
       $scope.filterTimeSlider = {
         options: {
           ceil: 12,
-          step: 2,
+          step: 1,
           translate: function(value) {
             return value + ' hours';
           },
@@ -182,6 +182,13 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
         $scope.tempFilteredTrails = FilterTrailsService.getFilteredTrails();
         $scope.filterModal.show();
         if (analytics) analytics.trackEvent('Filters', 'Open');
+
+        // Remove click-block, otherwise when filter closes,
+        // Trails list items and sort and filter button click events are blocked
+        const clickBlockElements = angular.element(document.getElementsByClassName('click-block'));
+        if (clickBlockElements.length > 0) {
+          clickBlockElements[0].parentNode.removeChild(clickBlockElements[0]);
+        }
       };
 
       $scope.closeFilterModal = function() {
