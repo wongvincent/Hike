@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Hiking Vancouver Android App</title>
-    <meta name="description" content="Download this Android app to find hiking trails near Vancouver, BC. View trail photos and locations and filter trails by location, length, difficulty, and more!">
+    <title>Hiking Vancouver App for Android</title>
+    <meta name="description" content="Download this Android app to find hiking trails near Vancouver, BC, including Whistler and the Fraser Valley. View trail photos and locations and filter trails by location, length, difficulty, and more!">
     <meta name="author" content="Vincent Wong">
     
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
@@ -61,42 +61,21 @@
                 Find hiking trails around <span class="location">Vancouver, Canada</span>
             </div>
             <ul>
-                <li>View the locations and photos from over 100 trails.</li>
+                <li>View the locations and photos of trails in the Vancouver area, including Whistler and the Fraser Valley!</li>
                 <li>Filter trails based on Location, Time, Distance, Difficulty, and more!</li>
                 <li>Find nearby trails using your device's location.</li>
                 <li>Save trails as Favourites and easily Share them.</li>
             </ul>
         </div>
         <div class="container-fluid download-container">
-            <a id="download-link" href=""
-               class="button download-button" onclick="sendTrackingEvent('Download APK')">
-                <span class="glyphicon glyphicon-download-alt"></span>Download APK (latest)
-            </a>
+            <a class="google-play" href='https://play.google.com/store/apps/details?id=com.vincentw.hikingvancouver&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get Hiking Vancouver on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+            <a class="github" href="https://github.com/wongvincent/Hike/" target="_blank" onclick="sendTrackingEvent('Github')"><img src="img/GitHub-Mark-32px.png" itemprop="thumbnail" /><span>Hiking Vancouver</span></a>
         </div>
         <div class="container-fluid release-info">
             <div class="row">
-                <div class="col-xs-5">Updated</div>
+                <div class="col-xs-3">Last Updated</div>
                 <div class="col-xs-6" id="updated-field"></div>
             </div>
-            <div class="row">
-                <div class="col-xs-5">Version</div>
-                <div class="col-xs-6" id="version-field"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-5">File Format</div>
-                <div class="col-xs-6">APK (Android)</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-5">File Size</div>
-                <div class="col-xs-6" id="size-field"></div>
-            </div>
-        </div>
-
-        <div class="container-fluid">
-            Release history:
-            <a href="https://github.com/wongvincent/Hike/releases" target="_blank" onclick="sendTrackingEvent('Release History')">
-                https://github.com/wongvincent/Hike/releases
-            </a>
         </div>
 
         <div class="container-fluid">
@@ -108,8 +87,8 @@
                 </figure>
 
                 <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                    <a href="img/trailslist_full.png" itemprop="contentUrl" data-size="504x867">
-                        <img src="img/trailslist_thumbnail.png" itemprop="thumbnail" />
+                    <a href="img/trail_full.png" itemprop="contentUrl" data-size="504x867">
+                        <img src="img/trail_thumbnail.png" itemprop="thumbnail" />
                     </a>
                 </figure>
 
@@ -120,8 +99,8 @@
                 </figure>
 
                 <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                    <a href="img/trail_full.png" itemprop="contentUrl" data-size="504x867">
-                        <img src="img/trail_thumbnail.png" itemprop="thumbnail" />
+                    <a href="img/trailslist_full.png" itemprop="contentUrl" data-size="504x867">
+                        <img src="img/trailslist_thumbnail.png" itemprop="thumbnail" />
                     </a>
                 </figure>
 
@@ -132,32 +111,11 @@
                 </figure>
 
                 <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                    <a href="img/sidemenu_full.png" itemprop="contentUrl" data-size="504x867">
-                        <img src="img/sidemenu_thumbnail.png" itemprop="thumbnail" />
-                    </a>
-                </figure>
-
-                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                     <a href="img/nearby_full.png" itemprop="contentUrl" data-size="504x867">
                         <img src="img/nearby_thumbnail.png" itemprop="thumbnail" />
                     </a>
                 </figure>
 
-            </div>
-        </div>
-
-        <hr>
-        <div class="container-fluid faq">
-            <div>FAQs</div>
-            <div class="qa">
-                <div>
-                    I see this message: "For security, your phone is set to block installation of apps obtained from
-                    unknown sources."
-                </div>
-                <div>
-                    On your device, go to settings, then security, then flip the toggle next to "Unknown sources". This
-                    will enable you to install apps from sources other than the Play Store.
-                </div>
             </div>
         </div>
     </div>
@@ -228,17 +186,13 @@
     };
 
     var latest = {
-        updated : "July 16, 2017",
-        version : "1.4.0",
-        size : "6 MB",
-        downloadLink : "https://github.com/wongvincent/Hike/releases/download/1.4.0/Hiking.Vancouver.1.4.0.apk"
+        updated : "May 22, 2018",
+        downloadLink : "https://play.google.com/store/apps/details?id=com.vincentw.hikingvancouver"
     };
 
     window.onload = function() {
         $('#download-link').attr('href', latest.downloadLink);
         $('#updated-field').text(latest.updated);
-        $('#version-field').text(latest.version);
-        $('#size-field').text(latest.size);
     }
 </script>
 </body>

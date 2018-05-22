@@ -30,6 +30,10 @@ a, a:link, a:visited, a:active, a:hover {
     .download-container {
         text-align: center;
     }
+
+    .google-play img {
+        width: 153px;
+    }
 }
 
 .jumbotron {
@@ -54,34 +58,25 @@ div.container-fluid {
     margin-bottom: 20px;
 }
 
-.download-button, .download-button:link, .download-button:visited, .download-button:active {
-    background-color: green;
-    color: white;
-    font-weight: bold;
-    padding: 10px 15px;
+a.github {
+    padding: 24px;
 }
 
-.download-button:hover {
-    color: white;
-    background-color: darkgreen;
+.github:hover {
+    text-decoration: underline;
 }
 
-.download-button > span.glyphicon{
-    margin-right: 10px;
+.github img {
+    width: 21px;
+    margin-right: 6px;
+}
+
+.google-play img {
+    width: 220px;
 }
 
 .release-info .row > div:first-of-type {
     color: #aaaaaa;
-}
-
-.faq > div:first-child {
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.faq > .qa > div:first-child {
-    font-weight: bold;
 }
 
 .about-me, .about-me:link, .about-me:visited, .about-me:active, .about-me:hover {
