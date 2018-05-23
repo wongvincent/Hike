@@ -8,7 +8,7 @@
 ## Features ##
 * View the locations and photos of trails in the Vancouver area (including Whistler!)
 * **Filter** trails based on Difficulty, Location, Time, Distance, and more!
-* Find **nearby** trails using your device's location
+* Find **nearby** trails using your phone's GPS
 * Save trails as **Favourites** and easily **Share** with friends
 
 
