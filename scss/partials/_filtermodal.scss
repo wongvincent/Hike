@@ -13,33 +13,22 @@
 	.bar-header {
 		font-weight: bold;
 
-		.title {
-			text-align: center;
-			font-weight: bold;
-			margin-right: 0;
-
-			#filter-title {
-				height: 18px;
-				font-size: 25px;
-				line-height: 25px;
-				margin: 0 0 4px;
-			}
-			#number-of-results {
-				color: #AAAAAA;
-				line-height: 20px;
-				font-weight: normal;
-			}
-		}
 		.buttons {
-			top: 0;
-			bottom: 0;
-
 			button {
-				color: $green;
+				color: #FFFFFF;
 				font-weight: bold;
 				line-height: $header-bar-height;
 				font-size: 20px;
-				padding-right: 10px;
+				padding: 0 10px;
+
+				&#reset-button {
+					position: absolute;
+					left: 5px;
+				}
+				&#save-button {
+					position: absolute;
+					right: 5px;
+				}
 			}
 		}
 	}
@@ -119,21 +108,5 @@
 	.small-icon:before {
 		font-size: 20px !important;
 		margin-top: 2px;
-	}
-
-	.has-footer {
-		bottom: 77px;
-	}
-
-	// FOOTER
-	.footer-bar {
-		height: 65px;
-		#apply-button {
-			font-weight: bold;
-			font-size: 20px;
-			width: 100%;
-			height: $header-bar-height;
-			background-color: $green;
-		}
 	}
 }

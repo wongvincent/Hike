@@ -1,16 +1,11 @@
 <div class="modal filter-by-modal">
-    <ion-header-bar class="bar-stable">
+    <ion-header-bar class="bar-dark">
         <div class="buttons">
-            <button id="reset-button" class="button button-clear" ng-click="resetFilters()">Reset</button>
+            <button id="reset-button" class="button button-clear" ng-click="resetFilters()">RESET</button>
         </div>
 
-        <h1 class="title">
-            <div id="filter-title">Filter</div>
-            <div id="number-of-results">{{tempFilteredTrails.length}} results</div>
-        </h1>
-
         <div class="buttons">
-            <button id="cancel-button" class="button button-clear" ng-click="closeFilterModal()">Cancel</button>
+            <button id="save-button" class="button button-clear" ng-click="applyFilters()">SAVE</button>
         </div>
     </ion-header-bar>
 
@@ -45,8 +40,7 @@
             <ion-checkbox class="item-accordion item-stable item-checkbox-right"
                           ng-repeat="item in tempData.filterLocation"
                           ng-show="isGroupShown('filterLocation')"
-                          ng-model="item.isChecked"
-                          ng-change="evaluateTemporaryFilters()">
+                          ng-model="item.isChecked">
                 {{::item.name}}
             </ion-checkbox>
 
@@ -76,8 +70,4 @@
 
         </div>
     </ion-content>
-
-    <ion-footer-bar class="bar-clear footer-bar">
-        <button id="apply-button" class="button" ng-click="applyFilters()">Save Filters</button>
-    </ion-footer-bar>
 </div>

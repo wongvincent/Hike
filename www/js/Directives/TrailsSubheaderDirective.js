@@ -73,12 +73,6 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
         FilterTrailsService.setFilteredTrails($scope.filteredTrails);
       };
 
-      $scope.evaluateTemporaryFilters = function() {
-        $scope.filtersEvaluate = angular.copy($scope.tempData);
-        $scope.filtersEvaluate.filterLocation = getSelectedFilterLocations();
-        $scope.tempFilteredTrails = $scope.$eval('trails | trailsFilter:filtersEvaluate | filter:{ name: filtersEvaluate.searchText } | orderBy:filtersEvaluate.sortSelected');
-      };
-
       $scope.evaluateSortFilter = function() {
         $scope.filteredTrailsWithoutNameFilter = $scope.$eval('filteredTrailsWithoutNameFilter | orderBy:data.sortSelected');
         $scope.filteredTrails = $scope.$eval('filteredTrails | orderBy:data.sortSelected');
@@ -104,13 +98,6 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
         $scope.evaluateNameFilter();
       });
 
-      $scope.$watchGroup(['tempData.filterTimeMin', 'tempData.filterTimeMax',
-        'tempData.filterDistanceMin', 'tempData.filterDistanceMax', 'tempData.filterDifficultyEasy',
-        'tempData.filterDifficultyModerate', 'tempData.filterDifficultyHard',
-        'tempData.filterTransit', 'tempData.filterInSeason'], function() {
-        $scope.evaluateTemporaryFilters();
-      });
-
 
       $scope.resetFilters = function() {
         var copyDefaultFilters = FilterTrailsService.getDefaultFilters();
@@ -120,7 +107,6 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
         $scope.tempData = angular.copy(copyDefaultFilters);
         $scope.evaluateFilters();
         $scope.numberOfFiltersApplied = FilterTrailsService.getNumberOfFiltersApplied();
-        $scope.tempFilteredTrails = FilterTrailsService.getFilteredTrails();
         window.plugins.toast.showShortBottom('Filters Reset');
         $rootScope.$broadcast('new-filters-applied', {});
         if (analytics) analytics.trackEvent('Filters', 'Reset');
@@ -179,7 +165,6 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
 
       $scope.openFilterModal = function() {
         $scope.tempData = FilterTrailsService.getData();
-        $scope.tempFilteredTrails = FilterTrailsService.getFilteredTrails();
         $scope.filterModal.show();
         if (analytics) analytics.trackEvent('Filters', 'Open');
 

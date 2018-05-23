@@ -141,28 +141,18 @@ ion-header-bar > div {
   height: calc(100% - 0px); }
   .filter-by-modal .bar-header {
     font-weight: bold; }
-    .filter-by-modal .bar-header .title {
-      text-align: center;
+    .filter-by-modal .bar-header .buttons button {
+      color: #FFFFFF;
       font-weight: bold;
-      margin-right: 0; }
-      .filter-by-modal .bar-header .title #filter-title {
-        height: 18px;
-        font-size: 25px;
-        line-height: 25px;
-        margin: 0 0 4px; }
-      .filter-by-modal .bar-header .title #number-of-results {
-        color: #AAAAAA;
-        line-height: 20px;
-        font-weight: normal; }
-    .filter-by-modal .bar-header .buttons {
-      top: 0;
-      bottom: 0; }
-      .filter-by-modal .bar-header .buttons button {
-        color: #28A54C;
-        font-weight: bold;
-        line-height: 48px;
-        font-size: 20px;
-        padding-right: 10px; }
+      line-height: 48px;
+      font-size: 20px;
+      padding: 0 10px; }
+      .filter-by-modal .bar-header .buttons button#reset-button {
+        position: absolute;
+        left: 5px; }
+      .filter-by-modal .bar-header .buttons button#save-button {
+        position: absolute;
+        right: 5px; }
   .filter-by-modal .filters-list .item {
     padding: 14px; }
   .filter-by-modal .filters-list .filter-difficulty {
@@ -206,16 +196,6 @@ ion-header-bar > div {
   .filter-by-modal .small-icon:before {
     font-size: 20px !important;
     margin-top: 2px; }
-  .filter-by-modal .has-footer {
-    bottom: 77px; }
-  .filter-by-modal .footer-bar {
-    height: 65px; }
-    .filter-by-modal .footer-bar #apply-button {
-      font-weight: bold;
-      font-size: 20px;
-      width: 100%;
-      height: 48px;
-      background-color: #28A54C; }
 
 .nearby-card .row .distance-from {
   font-weight: 300;
