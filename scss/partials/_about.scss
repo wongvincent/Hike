@@ -7,9 +7,14 @@
       padding: 12px 0;
     }
 
+    .email-form-intro {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
     #emailForm {
       span, input, textarea {
-        font-size: 18px;
+        font-size: 14px;
       }
 
       textarea {

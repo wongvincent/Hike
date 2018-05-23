@@ -8,7 +8,7 @@
 	bottom: 0;
 	top: initial;
 	min-height: initial;
-	height: calc(100% - #{$header-bar-height});
+	height: calc(100% - 0px);
 
 	.bar-header {
 		font-weight: bold;
@@ -38,9 +38,8 @@
 				color: $green;
 				font-weight: bold;
 				line-height: $header-bar-height;
-				font-size: 24px;
+				font-size: 20px;
 				padding-right: 10px;
-				padding-top: 5px;
 			}
 		}
 	}
@@ -131,7 +130,7 @@
 		height: 65px;
 		#apply-button {
 			font-weight: bold;
-			font-size: 24px;
+			font-size: 20px;
 			width: 100%;
 			height: $header-bar-height;
 			background-color: $green;

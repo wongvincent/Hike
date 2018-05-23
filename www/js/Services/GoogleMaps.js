@@ -87,7 +87,7 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
         position: markerPos,
       });
 
-      var description = '<a href=\'#/trail/' + trail.href + '/list\'><h4>' + trail.name + '</h4></a>';
+      var description = '<a href=\'#/trail/' + trail.href + '/list\'>' + trail.name + '</a>';
 
       if(trail.favourite){
         var yellowPin = new google.maps.MarkerImage('img/pin-yellow-dot.png', null, null, null, new google.maps.Size(48,40));

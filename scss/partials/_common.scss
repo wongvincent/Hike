@@ -26,24 +26,28 @@ ol {
 	}
 
 	.title {
-		font-size: 28px;
+		line-height: 24px;
+		font-size: 24px;
 		font-weight: bold;
-		margin-left: 23px;
-		top: calc((56px - 3rem) / 2);
+		margin-left: 12px;
 		left: 48px;
+		height: 48px;
+		margin-top: 12px;
 	}
 
 	.buttons-left {
+		padding-top: 5px;
+		padding-bottom: 5px;
 		button {
-			top: 7px;
 			height: 100%;
 		}
 	}
 	.buttons-right {
 		top: 0;
-		margin-right: 9px;
+		bottom: 0;
+		padding-top: 5px;
+		padding-bottom: 5px;
 		button {
-			top: 7px;
 			padding: 0 12px;
 		}
 	}
@@ -53,7 +57,7 @@ ol {
 	top: $header-bar-height;
 
 	&.has-tabs-top {
-		top: 99px;
+		top: 91px;
 	}
 }
 
@@ -61,7 +65,7 @@ ol {
 	height: 42px !important;
 
 	.tab-item {
-		font-size: 24px;
+		font-size: 20px;
 	}
 }
 
@@ -102,7 +106,7 @@ ion-header-bar > div {
 
 		button {
 			font-weight: 600;
-			font-size: 24px;
+			font-size: 20px;
 		}
 		button.activated {
 			border-color: white;
@@ -119,7 +123,7 @@ ion-header-bar > div {
 /** More specific **/
 
 .none-found {
-	font-size: 24px;
+	font-size: 20px;
 	text-align: center;
 }
 

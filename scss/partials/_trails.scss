@@ -2,12 +2,12 @@
 
 .trail-card {
 	a.item-content {
-		padding: 10px 16px;
+		padding: 4px 16px;
 	}
 
 	.row span:nth-child(1), #trail-details #trail-info .item .row span:nth-child(1) {
 		font-weight: bold;
-		padding-right: 16px;
+		padding-right: 12px;
 		color: #666;
 	}
 }
@@ -17,10 +17,10 @@
 		.row:nth-child(1) {
 			/* Trail card title */
 			font-weight: 500;
-			font-size: 24px;
-			line-height: 24px;
+			font-size: 20px;
+			line-height: 20px;
 			padding-bottom: 8px;
-			padding-top: 0;
+			padding-top: 4px;
 		}
 		&.favourite-trail {
 			border-right: 10px solid $yellow-star;

@@ -29,7 +29,7 @@ body.menu-open {
 		border: 0;
 
 		.title-name {
-			font-size: 32px;
+			font-size: 26px;
 			padding: 10px 0 5px;
 		}
 
@@ -57,12 +57,12 @@ body.menu-open {
 		}
 
 		.icon-container {
-			font-size: 34px;
+			font-size: $side-menu-font-size;
 			margin-right: 14px;
 		}
 
 		.name {
-			font-size: 34px;
+			font-size: $side-menu-font-size;
 		}
 
 		&.about-menu-item {

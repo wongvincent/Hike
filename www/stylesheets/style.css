@@ -3,8 +3,11 @@
   padding: 16px; }
   .about-view .content div:not(:first-child) {
     padding: 12px 0; }
+  .about-view .content .email-form-intro {
+    font-size: 14px;
+    font-weight: 600; }
   .about-view .content #emailForm span, .about-view .content #emailForm input, .about-view .content #emailForm textarea {
-    font-size: 18px; }
+    font-size: 14px; }
   .about-view .content #emailForm textarea {
     height: 140px;
     padding-left: 1rem; }
@@ -34,44 +37,49 @@ ol {
   list-style-type: decimal !important; }
 
 .platform-android .bar-header {
-  height: 56px;
+  height: 48px;
   padding: 0 16px; }
   .platform-android .bar-header.bar-balanced {
     border-color: #196730;
     background-color: #28A54C;
     color: #fff; }
   .platform-android .bar-header .title {
-    font-size: 28px;
+    line-height: 24px;
+    font-size: 24px;
     font-weight: bold;
-    margin-left: 23px;
-    top: calc((56px - 3rem) / 2);
-    left: 48px; }
-  .platform-android .bar-header .buttons-left button {
-    top: 7px;
-    height: 100%; }
+    margin-left: 12px;
+    left: 48px;
+    height: 48px;
+    margin-top: 12px; }
+  .platform-android .bar-header .buttons-left {
+    padding-top: 5px;
+    padding-bottom: 5px; }
+    .platform-android .bar-header .buttons-left button {
+      height: 100%; }
   .platform-android .bar-header .buttons-right {
     top: 0;
-    margin-right: 9px; }
+    bottom: 0;
+    padding-top: 5px;
+    padding-bottom: 5px; }
     .platform-android .bar-header .buttons-right button {
-      top: 7px;
       padding: 0 12px; }
 
 .has-header {
-  top: 56px; }
+  top: 48px; }
   .has-header.has-tabs-top {
-    top: 99px; }
+    top: 91px; }
 
 .tabs {
   height: 42px !important; }
   .tabs .tab-item {
-    font-size: 24px; }
+    font-size: 20px; }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
   background: green;
   border-color: green; }
 
 ion-header-bar > div {
-  height: 56px; }
+  height: 48px; }
 
 .popup {
   background-color: white !important;
@@ -93,7 +101,7 @@ ion-header-bar > div {
     padding: 10px 0; }
     .popup .popup-buttons button {
       font-weight: 600;
-      font-size: 24px; }
+      font-size: 20px; }
     .popup .popup-buttons button.activated {
       border-color: white;
       background-color: white; }
@@ -104,7 +112,7 @@ ion-header-bar > div {
 
 /** More specific **/
 .none-found {
-  font-size: 24px;
+  font-size: 20px;
   text-align: center; }
 
 .no-connection-alert .popup-buttons .button {
@@ -114,7 +122,7 @@ ion-header-bar > div {
   right: 23px; }
 
 .favourite-star {
-  font-size: 50px;
+  font-size: 42px;
   position: absolute;
   right: 0;
   top: 10px; }
@@ -130,7 +138,7 @@ ion-header-bar > div {
   bottom: 0;
   top: initial;
   min-height: initial;
-  height: calc(100% - 56px); }
+  height: calc(100% - 0px); }
   .filter-by-modal .bar-header {
     font-weight: bold; }
     .filter-by-modal .bar-header .title {
@@ -152,23 +160,22 @@ ion-header-bar > div {
       .filter-by-modal .bar-header .buttons button {
         color: #28A54C;
         font-weight: bold;
-        line-height: 56px;
-        font-size: 24px;
-        padding-right: 10px;
-        padding-top: 5px; }
+        line-height: 48px;
+        font-size: 20px;
+        padding-right: 10px; }
   .filter-by-modal .filters-list .item {
-    padding: 18px; }
+    padding: 14px; }
   .filter-by-modal .filters-list .filter-difficulty {
     padding-top: 0;
     padding-bottom: 0; }
     .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-title {
       display: inline-block;
-      margin-top: 18px; }
+      margin-top: 14px; }
     .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check {
       float: right; }
       .filter-by-modal .filters-list .filter-difficulty #filter-difficulty-check .item-checkbox {
         display: inline-block;
-        padding: 18px 16px 18px 44px;
+        padding: 14px 16px 14px 44px;
         border: none; }
   .filter-by-modal .filters-list .group-header-item {
     background-color: white; }
@@ -205,9 +212,9 @@ ion-header-bar > div {
     height: 65px; }
     .filter-by-modal .footer-bar #apply-button {
       font-weight: bold;
-      font-size: 24px;
+      font-size: 20px;
       width: 100%;
-      height: 56px;
+      height: 48px;
       background-color: #28A54C; }
 
 .nearby-card .row .distance-from {
@@ -247,20 +254,20 @@ button#bottomMapButton {
   height: 100%; }
 
 .search-bar {
-  height: 56px; }
+  height: 48px; }
   .search-bar .input-search {
     width: 100%;
-    font-size: 32px;
+    font-size: 20px;
     border-width: 0 0 1px;
     padding-top: 4px; }
   .search-bar .icon.back-button {
-    font-size: 40px;
+    font-size: 28px;
     color: #666666;
     padding: 0 16px; }
   .search-bar .icon.x-button {
-    font-size: 32px;
-    color: #666666;
-    padding: 8px 16px 0; }
+    font-size: 28px;
+    color: #AAAAAA;
+    padding: 0 18px 0 12px; }
 
 /** Make Main Content black when side-menu is open **/
 body.menu-open .view-container {
@@ -285,7 +292,7 @@ body.menu-open .menu-content {
     color: white;
     border: 0; }
     .side-menu-content .left-side-menu-header-bar .title-name {
-      font-size: 32px;
+      font-size: 26px;
       padding: 10px 0 5px; }
     .side-menu-content .left-side-menu-header-bar .title-icon {
       width: 100%;
@@ -303,10 +310,10 @@ body.menu-open .menu-content {
         .side-menu-content .left-menu-item a.item-content.activated .name {
           color: #28A54C; }
     .side-menu-content .left-menu-item .icon-container {
-      font-size: 34px;
+      font-size: 28px;
       margin-right: 14px; }
     .side-menu-content .left-menu-item .name {
-      font-size: 34px; }
+      font-size: 28px; }
     .side-menu-content .left-menu-item.about-menu-item {
       position: fixed;
       bottom: 8px;
@@ -327,30 +334,30 @@ body.menu-open .menu-content {
     .sort-trails-popup .popup-body .list .item input:checked + .radio-content i.radio-icon {
       /* Check icon of selected element */
       color: #28A54C;
-      font-size: 24px; }
+      font-size: 20px; }
     .sort-trails-popup .popup-body .list .item .radio-content .item-content {
       padding: 16px 0 16px 3px; }
       .sort-trails-popup .popup-body .list .item .radio-content .item-content span {
         /* Text of any element */
-        font-size: 18px; }
+        font-size: 16px; }
 
 .sort-trails-popup .popup-buttons {
   display: none; }
 
 /* SUBHEADER BAR */
 .trails-nav-view ion-content {
-  top: 105px !important; }
+  top: 90px !important; }
 
 .trails-subheader-bar {
-  margin-top: 56px;
-  height: 48px;
+  margin-top: 48px;
+  height: 42px;
   border: none;
   box-shadow: 0px 5px 10px #bbb;
   padding: 0 0 0 16px; }
   .trails-subheader-bar .number-of-results {
     width: calc(100% - 100px);
-    font-size: 24px;
-    margin-top: 1rem; }
+    font-size: 20px;
+    line-height: 44px; }
   .trails-subheader-bar .buttons-right {
     text-align: right;
     display: -webkit-box; }
@@ -360,8 +367,10 @@ body.menu-open .menu-content {
         padding: 0 12px; }
       .trails-subheader-bar .buttons-right button:nth-child(2) {
         padding: 0 12px; }
+        .trails-subheader-bar .buttons-right button:nth-child(2).filters-applied {
+          padding-right: 0; }
         .trails-subheader-bar .buttons-right button:nth-child(2):not(.filters-applied) {
-          padding-right: 26px; }
+          padding-right: 16px; }
     .trails-subheader-bar .buttons-right .filters-applied {
       color: #28A54C; }
       .trails-subheader-bar .buttons-right .filters-applied span {
@@ -371,7 +380,7 @@ body.menu-open .menu-content {
   visibility: hidden; }
 
 .trail-tabs .tab-nav {
-  top: 56px !important;
+  top: 48px !important;
   background-color: #28A54C;
   box-shadow: 0px 5px 10px #bbb;
   border-color: #28A54C; }
@@ -382,6 +391,9 @@ body.menu-open .menu-content {
 
 .trail-details-view #trail-details-content ol .item, .trail-details-view #trail-details-content ul .item {
   padding: 6px 10px 6px 35px !important; }
+
+.trail-details-view #trail-details-content .trail-card .row:first-child {
+  padding-right: 28px; }
 
 .trail-details-view #trail-resources {
   padding: 10px; }
@@ -407,20 +419,20 @@ body.menu-open .menu-content {
 /** See _maps.scss for trail-map css **/
 /* TRAIL CARDS */
 .trail-card a.item-content {
-  padding: 10px 16px; }
+  padding: 4px 16px; }
 
 .trail-card .row span:nth-child(1), .trail-card #trail-details #trail-info .item .row span:nth-child(1) {
   font-weight: bold;
-  padding-right: 16px;
+  padding-right: 12px;
   color: #666; }
 
 .trails-list .trail-card .row:nth-child(1) {
   /* Trail card title */
   font-weight: 500;
-  font-size: 24px;
-  line-height: 24px;
+  font-size: 20px;
+  line-height: 20px;
   padding-bottom: 8px;
-  padding-top: 0; }
+  padding-top: 4px; }
 
 .trails-list .trail-card.favourite-trail {
   border-right: 10px solid #FFDB4B; }
