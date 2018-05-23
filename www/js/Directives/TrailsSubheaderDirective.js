@@ -106,6 +106,7 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
         FilterTrailsService.setData($scope.data);
         $scope.tempData = angular.copy(copyDefaultFilters);
         $scope.evaluateFilters();
+        $rootScope.searchBarActive = false;
         $scope.numberOfFiltersApplied = FilterTrailsService.getNumberOfFiltersApplied();
         window.plugins.toast.showShortBottom('Filters Reset');
         $rootScope.$broadcast('new-filters-applied', {});
