@@ -16,7 +16,6 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
       $scope.sortby = function() {
         if (analytics) analytics.trackEvent('Sort', 'Open');
         var sortByPopup = $ionicPopup.show({
-          title: 'Sort by',
           cssClass: 'sort-trails-popup',
           templateUrl: 'views/trails/sortby.html',
           scope: $scope,

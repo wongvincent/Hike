@@ -70,8 +70,8 @@ ol {
 }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
-	background: green;
-	border-color: green;
+	background: $green;
+	border-color: $green;
 }
 
 ion-header-bar > div {
@@ -79,38 +79,41 @@ ion-header-bar > div {
 }
 
 .popup {
-	background-color: white !important;
-	border-radius: 3px;
+	background-color: #FFFFFF !important;
+	border-radius: 2px !important;
 	min-width: 75%;
 	max-width: 90%;
 	padding: 10px 23px;
 
 	.popup-head {
-		border: 0;
-		padding: 10px 0;
-
-		.popup-title {
-			font-weight: bold;
-			font-size: 22px;
-			text-align: left;
-		}
+		display: none;
 	}
 
 	.popup-body {
-		padding: 10px 0;
-		font-size: 22px;
+		padding: 14px 0 0 0;
+		font-size: 18px;
 	}
 
 	.popup-buttons {
-		padding: 10px 0;
-
+		padding: 10px 0 0px 0;
+		justify-content: flex-end;
 		button {
 			font-weight: 600;
-			font-size: 20px;
+			font-size: 18px;
+			color: $green;
+			flex: 0;
+			margin: 10px 3px;
+			min-width: fit-content;
+			height: fit-content;
 		}
 		button.activated {
-			border-color: white;
-			background-color: white;
+			border-radius: 3px;
+			border-color: #FFFFFF;
+			background-color: $activated-bg-color;
+			color: $green;
+		}
+		button:hover {
+			color: $green;
 		}
 	}
 }
@@ -128,7 +131,7 @@ ion-header-bar > div {
 }
 
 .no-connection-alert .popup-buttons .button {
-	color: green;
+	color: $green;
 	max-width: 60px;
 	position: absolute;
 	right: 23px;

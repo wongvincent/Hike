@@ -3,6 +3,12 @@
 .sort-trails-popup {
 	.popup-body {
 		padding-top: 0;
+		padding-bottom: 0;
+		.sort-title {
+			padding: 10px 0;
+			font-weight: bold;
+			font-size: 20px;
+		}
 		.list {
 			.item {
 				border: 0;

@@ -22,11 +22,10 @@ app.run(function($rootScope, $ionicPlatform, $ionicHistory, $ionicPopup) {
       $rootScope.$broadcast('hide-search-bar-request', {});
     } else {
       var exitAppPopup = $ionicPopup.confirm({
-        title: 'Exit',
-        template: 'Are you sure you want to exit Hiking Vancouver?',
-        cancelText: 'NO',
-        cancelType: 'button-dark',
-        okText: 'YES',
+        template: 'Exit Hiking Vancouver?',
+        cancelText: 'CANCEL',
+        cancelType: 'button-light',
+        okText: 'EXIT',
         okType: 'button-light',
       });
       exitAppPopup.then(function(res) {
@@ -263,7 +262,7 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
     var errorMessage = message ? message : 'An unexpected error occurred';
     var goToState = redirectTo ? redirectTo : 'trails.list';
     var failedPopup = $ionicPopup.alert({
-      title: errorMessage,
+      template: errorMessage,
       //template:
     });
     failedPopup.then(function() {
@@ -277,7 +276,7 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
 
   $scope.failedPopupReload = function(message) {
     var failedPopup = $ionicPopup.alert({
-      title: message,
+      template: message,
       //template:
     });
     failedPopup.then(function() {
@@ -288,7 +287,6 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
   $scope.noConnectionAlert = function(message, successCallback) {
     message = message ? message : '';
     var noConnectionAlert = $ionicPopup.alert({
-      title: 'No Connection',
       template: message + ' Check your connection and try again.',
       okType: 'button-light',
       cssClass: 'no-connection-alert',

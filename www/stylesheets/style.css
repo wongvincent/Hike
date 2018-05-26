@@ -75,36 +75,41 @@ ol {
     font-size: 20px; }
 
 .checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
-  background: green;
-  border-color: green; }
+  background: #28A54C;
+  border-color: #28A54C; }
 
 ion-header-bar > div {
   height: 48px; }
 
 .popup {
-  background-color: white !important;
-  border-radius: 3px;
+  background-color: #FFFFFF !important;
+  border-radius: 2px !important;
   min-width: 75%;
   max-width: 90%;
   padding: 10px 23px; }
   .popup .popup-head {
-    border: 0;
-    padding: 10px 0; }
-    .popup .popup-head .popup-title {
-      font-weight: bold;
-      font-size: 22px;
-      text-align: left; }
+    display: none; }
   .popup .popup-body {
-    padding: 10px 0;
-    font-size: 22px; }
+    padding: 14px 0 0 0;
+    font-size: 18px; }
   .popup .popup-buttons {
-    padding: 10px 0; }
+    padding: 10px 0 0px 0;
+    justify-content: flex-end; }
     .popup .popup-buttons button {
       font-weight: 600;
-      font-size: 20px; }
+      font-size: 18px;
+      color: #28A54C;
+      flex: 0;
+      margin: 10px 3px;
+      min-width: fit-content;
+      height: fit-content; }
     .popup .popup-buttons button.activated {
-      border-color: white;
-      background-color: white; }
+      border-radius: 3px;
+      border-color: #FFFFFF;
+      background-color: #EEEEEE;
+      color: #28A54C; }
+    .popup .popup-buttons button:hover {
+      color: #28A54C; }
 
 .card {
   border-radius: 4px;
@@ -116,7 +121,7 @@ ion-header-bar > div {
   text-align: center; }
 
 .no-connection-alert .popup-buttons .button {
-  color: green;
+  color: #28A54C;
   max-width: 60px;
   position: absolute;
   right: 23px; }
@@ -301,7 +306,12 @@ body.menu-open .menu-content {
 
 /* SORT BY popup */
 .sort-trails-popup .popup-body {
-  padding-top: 0; }
+  padding-top: 0;
+  padding-bottom: 0; }
+  .sort-trails-popup .popup-body .sort-title {
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 20px; }
   .sort-trails-popup .popup-body .list .item {
     border: 0; }
     .sort-trails-popup .popup-body .list .item.activated input:checked + .radio-content .item-content, .sort-trails-popup .popup-body .list .item.activated .item-content {
