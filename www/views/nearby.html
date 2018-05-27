@@ -13,6 +13,14 @@
     </ion-nav-bar>
 
     <ion-content class="trails-list">
+        <div class="card" ng-if="locationFailed">
+            <div class="item item-text-wrap none-found">
+                Failed to acquire location
+                <button class="button button-block button-balanced none-found" ng-click="refreshNearbyTrails()">
+                    REFRESH LOCATION
+                </button>
+            </div>
+        </div>
         <ion-item class="item-text-wrap trail-card nearby-card" ng-if="nearby" ng-class="{'favourite-trail': trail.favourite}" ng-repeat="trail in nearby | limitTo:25" ui-sref='trail.details({name: trail.href})'>
             <div class="row">
                 <div class="trail-name">{{::trail.name}}</div>

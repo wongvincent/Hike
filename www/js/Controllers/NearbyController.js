@@ -3,6 +3,7 @@ var app = angular.module('controllers');
 app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$ionicPopup', function($rootScope, $scope, $ionicLoading, $ionicPopup) {
   $scope.$on('$ionicView.enter', function() {
     $rootScope.lastMainState = 'nearby';
+    $scope.locationFailed = false;
     if (analytics) analytics.trackView('Nearby');
     $scope.refreshNearbyTrails();
   });
@@ -11,15 +12,40 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
     if (manualRefresh && analytics) {
       analytics.trackEvent('Nearby', 'Manual Refresh');
     }
-    isLocationAuthorized().then(function(isEnabled) {
-      if (isEnabled) {
-        checkIfLocationIsOn(manualRefresh);
+    isLocationAuthorized().then(function(isAppLocationPermissionEnabled) {
+      if (isAppLocationPermissionEnabled) {
+        handleDeviceLocationCheck(manualRefresh);
       } else {
         requestLocationAuthorization().then(function(permissionsGranted) {
-          if (permissionsGranted) {
-            checkIfLocationIsOn(manualRefresh);
+          if (permissionsGranted !== 'DENIED' && permissionsGranted !== 'DENIED_ALWAYS') {
+            handleDeviceLocationCheck(manualRefresh);
           } else {
-            window.plugins.toast.showLongBottom('Location permissions required');
+            $scope.$apply(function() {
+              $scope.locationFailed = true;
+            });
+            window.plugins.toast.showLongBottom('FAILED! App location permissions required');
+          }
+        });
+      }
+    });
+  };
+
+  var handleDeviceLocationCheck = function(manualRefresh) {
+    checkIfLocationIsOn().then(function(isDeviceLocationEnabled) {
+      if (isDeviceLocationEnabled) {
+        acquireLocation(manualRefresh);
+      } else {
+        showTurnOnLocationPopup().then(function(tryTurningOn) {
+          if (tryTurningOn) {
+            cordova.plugins.diagnostic.switchToLocationSettings();
+            setTimeout(function() {
+              refreshLocationPopup(manualRefresh);
+            }, 1500);
+          } else {
+            $scope.$apply(function() {
+              $scope.locationFailed = true;
+            });
+            window.plugins.toast.showLongBottom('FAILED! Device location settings are off');
           }
         });
       }
@@ -42,65 +68,68 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
     });
   };
 
-  var showTurnOnLocationPopup = function() {
-    var turnLocationOnPopup = $ionicPopup.confirm({
-      title: 'Your GPS is off - would you like to turn it ON?',
-      cancelText: 'NO',
-      cancelType: 'button-dark',
-      okText: 'YES',
-      okType: 'button-balanced',
-    });
-    turnLocationOnPopup.then(function(res) {
-      if (res) {
-        var tryAgainPopup = $ionicPopup.alert({
-          okText: 'Refresh location',
-          okType: 'button-balanced',
-        });
-        tryAgainPopup.then(function() {
-          checkIfLocationIsOn();
-        });
-        cordova.plugins.diagnostic.switchToLocationSettings();
-      }
+  var checkIfLocationIsOn = function() {
+    return new Promise(function(resolve) {
+      cordova.plugins.diagnostic.isLocationEnabled(function(enabled) {
+        resolve(enabled);
+      });
     });
   };
 
-  var checkIfLocationIsOn = function(manualRefresh) {
-    cordova.plugins.diagnostic.isLocationEnabled(function(enabled) {
-      if (enabled) {
-        $ionicLoading.show({
-          template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!',
-        });
-        var maximumAge = manualRefresh ? 0 : 300000;
-        var geolocationOptions = {
-          maximumAge: maximumAge, //milliseconds
-          timeout: 10000,
-          enableHighAccuracy: true,
-        };
-        navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, geolocationOptions);
-      } else {
-        showTurnOnLocationPopup();
-      }
-    }, function() {
-      geolocationError();
+  var showTurnOnLocationPopup = function() {
+    var turnLocationOnPopup = $ionicPopup.confirm({
+      template: 'GPS is required - would you like to turn it ON?',
+      cancelText: 'LEAVE OFF',
+      cancelType: 'button-light',
+      okText: 'TURN ON',
+      okType: 'button-light',
     });
+    return new Promise(function(resolve) {
+      turnLocationOnPopup.then(function(res) {
+        resolve(res);
+      });
+    });
+  };
+
+  var refreshLocationPopup = function(manualRefresh) {
+    var refreshPopup = $ionicPopup.alert({
+      template: 'Detect location...',
+      okText: 'REFRESH LOCATION',
+      okType: 'button-light',
+    });
+    refreshPopup.then(function() {
+      checkIfLocationIsOn().then(function(deviceLocationIsOn) {
+        if (deviceLocationIsOn) {
+          acquireLocation(manualRefresh);
+        } else {
+          $scope.$apply(function() {
+            $scope.locationFailed = true;
+          });
+          window.plugins.toast.showLongBottom('FAILED! App location permissions required');
+        }
+      });
+    });
+  };
+
+  var acquireLocation = function(manualRefresh) {
+    $ionicLoading.show({
+      template: '<ion-spinner icon="bubbles"></ion-spinner><br/>Acquiring location!',
+    });
+    var maximumAge = manualRefresh ? 0 : 300000;
+    var geolocationOptions = {
+      maximumAge: maximumAge, //milliseconds
+      timeout: 5000,
+      enableHighAccuracy: true,
+    };
+    navigator.geolocation.getCurrentPosition(geolocationSuccess, geolocationError, geolocationOptions);
   };
 
   var geolocationError = function() {
+    $scope.$apply(function() {
+      $scope.locationFailed = true;
+    });
     $ionicLoading.hide();
-    var geolocationErrorPopup = $ionicPopup.confirm({
-      title: 'Failed to acquire location',
-      cancelText: 'Cancel',
-      cancelType: 'button-dark',
-      okText: 'Retry',
-      okType: 'button-balanced',
-    });
-    geolocationErrorPopup.then(function(res) {
-      if (res) {
-        checkIfLocationIsOn();
-      } else {
-        $scope.goState('trails.list');
-      }
-    });
+    window.plugins.toast.showLongBottom('FAILED! Could not detect location');
   };
 
   var geolocationSuccess = function(position) {
@@ -131,12 +160,14 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
     angular.forEach($scope.trails, function(value) {
       value.distanceFromPos = distanceFromPos(value, lat, long);
       $scope.nearby.push(value);
-
     });
     $scope.nearby.sort(function(a, b) {
       return a.distanceFromPos - b.distanceFromPos;
     });
 
+    $scope.$apply(function() {
+      $scope.locationFailed = false;
+    });
     $ionicLoading.hide();
   };
 }]);
