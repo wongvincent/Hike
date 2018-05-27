@@ -115,6 +115,9 @@ ion-header-bar > div {
   border-radius: 4px;
   padding: 0; }
 
+button.button-balanced {
+  background-color: #28A54C !important; }
+
 /** More specific **/
 .none-found {
   font-size: 20px;
