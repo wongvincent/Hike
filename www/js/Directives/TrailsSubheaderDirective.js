@@ -11,6 +11,8 @@ app.directive('trailsSubheader', ['$rootScope', '$ionicPopup', '$ionicModal', 'C
         {text: 'Time (High - Low)', sortby: '-time'},
         {text: 'Distance (Low - High)', sortby: 'distance'},
         {text: 'Distance (High - Low)', sortby: '-distance'},
+        {text: 'Elevation (Low - High)', sortby: 'elevation'},
+        {text: 'Elevation (High - Low)', sortby: '-elevation'},
       ];
 
       $scope.sortby = function() {
