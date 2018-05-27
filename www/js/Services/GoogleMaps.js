@@ -1,6 +1,6 @@
 var app = angular.module('services');
 
-app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope', '$cordovaNetwork', 'ConnectivityMonitor', function($cordovaGeolocation, $ionicLoading, $rootScope, $cordovaNetwork, ConnectivityMonitor) {
+app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope', '$cordovaNetwork', 'ConnectivityMonitor', '$filter', function($cordovaGeolocation, $ionicLoading, $rootScope, $cordovaNetwork, ConnectivityMonitor, $filter) {
 
   var apiKey = false;
   var map = null;
@@ -77,6 +77,10 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
       iw.close();
     });
 
+    var humanizeDifficultyFilter = $filter('HumanizeDifficulty');
+    var convertDistanceCategoryToStringFilter = $filter('ConvertDistanceCategoryToString');
+    var processElevationToStringFilter = $filter('ProcessElevationToString');
+
     for (var i = 0; i < trails.length; i++) {
       var trail = trails[i];
       var markerPos = new google.maps.LatLng(trail.lat, trail.long);
@@ -87,9 +91,13 @@ app.factory('GoogleMaps', ['$cordovaGeolocation', '$ionicLoading', '$rootScope',
         position: markerPos,
       });
 
-      var description = '<a href=\'#/trail/' + trail.href + '/list\'>' + trail.name + '</a>';
+      var description = '<a class="trail-link" href=\'#/trail/' + trail.href + '/list\'>' + trail.name + '</a>' + '<br />';
+      description += 'Difficulty: ' + humanizeDifficultyFilter(trail.difficulty) + '<br />';
+      description += 'Time: ' + trail.time + ' hours' + '<br />';
+      description += convertDistanceCategoryToStringFilter(trail.distanceCategory) + ': ' + trail.distance + 'km' + '<br />';
+      description += 'Elevation Gain: ' + processElevationToStringFilter(trail.elevation);
 
-      if(trail.favourite){
+      if (trail.favourite) {
         var yellowPin = new google.maps.MarkerImage('img/pin-yellow-dot.png', null, null, null, new google.maps.Size(48,40));
         description = '<div class=\'pin-info-description\'>' + description + '</div>';
         marker.setIcon(yellowPin);
