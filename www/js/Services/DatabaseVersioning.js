@@ -18,9 +18,15 @@ app.factory('DatabaseVersioning', ['Database', function(Database) {
 
       if (major <= 2) {
         if (minor < 3) {
+          await Database.query('INSERT OR REPLACE INTO config (name, value) VALUES ("appOpenedCount", "0")');
           await Database.query('UPDATE config SET value = (?) WHERE name = "dbVersion"', ['2.3.0']);
         }
       }
+
+      //Increment appOpenedCount
+      result = await Database.query('SELECT value FROM config WHERE name = "appOpenedCount"');
+      const newOpenedCount = parseInt(result.rows.item(0).value) + 1;
+      await Database.query('UPDATE config SET value = (?) WHERE name = "appOpenedCount"', [newOpenedCount]);
 
       // Set dbVersion to current app version
       const appVersion = await cordova.getAppVersion.getVersionNumber();
