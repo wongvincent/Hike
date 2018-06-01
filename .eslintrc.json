@@ -43,6 +43,7 @@
         "google": false,
         "ionic": false,
         "OverlappingMarkerSpiderfier": false,
-        "StatusBar": false
+        "StatusBar": false,
+        "xmlToJson": false
     }
 }

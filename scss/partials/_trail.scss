@@ -30,16 +30,24 @@
 }
 
 .trail-photos-view {
-	.trail-photo .photoAttribution {
-		position: absolute;
-		bottom: 1px;
-		right: 0;
-		z-index: 10;
-		background-color: #222222;
-		opacity: 0.8;
-		display: inline-block;
-		padding: 1px 6px;
-		font-size: 11px;
+	.trail-photo {
+		.item-image img:first-child {
+			width: initial;
+			max-height: 70vh;
+			max-width: 100%;
+		}
+		.photoAttribution {
+			position: absolute;
+			bottom: 1px;
+			right: 0;
+			z-index: 10;
+			background-color: #222222;
+			opacity: 0.8;
+			display: inline-block;
+			padding: 1px 6px;
+			font-size: 11px;
+			color: #FFFFFF;
+		}
 	}
 	.powered-by-google {
 		float: right;

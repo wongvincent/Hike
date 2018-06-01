@@ -395,6 +395,11 @@ body.menu-open .menu-content {
   .trail-details-view #trail-resources a {
     padding: 10px; }
 
+.trail-photos-view .trail-photo .item-image img:first-child {
+  width: initial;
+  max-height: 70vh;
+  max-width: 100%; }
+
 .trail-photos-view .trail-photo .photoAttribution {
   position: absolute;
   bottom: 1px;
@@ -404,7 +409,8 @@ body.menu-open .menu-content {
   opacity: 0.8;
   display: inline-block;
   padding: 1px 6px;
-  font-size: 11px; }
+  font-size: 11px;
+  color: #FFFFFF; }
 
 .trail-photos-view .powered-by-google {
   float: right;

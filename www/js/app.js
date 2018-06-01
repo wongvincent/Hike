@@ -215,6 +215,7 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
       const emailJsTemplateId = data.emailJsTemplateId || '';
       const googleApiKey = data.googleApiKey || '';
       const googleAnalytics = data.googleAnalytics || '';
+      const amazonS3Base = data.amazonS3Base || '';
 
       if (typeof emailjs !== 'undefined' && emailJsUser && emailJsTemplateId) {
         $rootScope.credentials.emailJsUser = emailJsUser;
@@ -227,6 +228,8 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
         analytics.startTrackerWithId(googleAnalytics);
         analytics.trackView('Splash Screen');
       }
+
+      $rootScope.credentials.amazonS3Base = amazonS3Base;
 
       $scope.goState('trails.list');
     });
