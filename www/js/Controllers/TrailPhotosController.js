@@ -19,7 +19,6 @@ app.controller('TrailPhotosController', ['$rootScope', '$scope', 'GooglePlacesSe
   async function getAmazonS3Photos() {
     const amazonS3Base = $rootScope.credentials.amazonS3Base;
     const fetchResponse = await fetchWrapper(`${amazonS3Base}/?list-type=2&prefix=${$scope.trail.href}/`, null, 1500);
-    let photos = [];
 
     if (fetchResponse.ok) {
       const body = await fetchResponse.text();
@@ -28,18 +27,23 @@ app.controller('TrailPhotosController', ['$rootScope', '$scope', 'GooglePlacesSe
       const json = xmlToJson(xml);
       const keyCount = (((json || {}).ListBucketResult || {}).KeyCount || {})['#text'] || 0;
       if (keyCount > 1) {
+        let photos = [];
         for (let i = 1; i < keyCount; i++) {
           const photo = {};
           photo.src = `${amazonS3Base}/${$scope.trail.href}/${i}.jpg`;
           photo.html_attributions = ['HIKINGVANCOUVER'];
           photos.push(photo);
         }
+        return new Promise(function(resolve) {
+          resolve(photos);
+        });
       }
     }
 
-    return new Promise(function(resolve) {
-      resolve(photos);
+    return new Promise(function(resolve, reject) {
+      reject();
     });
+
   }
 
   async function getGooglePlacesPhotos() {
@@ -69,15 +73,10 @@ app.controller('TrailPhotosController', ['$rootScope', '$scope', 'GooglePlacesSe
     $scope.photosFromGooglePlaces = false;
 
     getAmazonS3Photos().then(photos => {
-      if (photos.length > 0) {
-        $scope.trail.photos = photos;
-      } else {
-        getGooglePlacesPhotos();
-      }
-    }).catch(function() {
-      $scope.trail.photos = [];
-    }).finally(function() {
+      $scope.trail.photos = photos;
       $ionicLoading.hide();
+    }).catch(function() {
+      getGooglePlacesPhotos();
     });
   } else {
     $scope.trail.photos = [];
