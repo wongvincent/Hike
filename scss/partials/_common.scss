@@ -17,6 +17,7 @@ ol {
 
 .platform-android .bar-header {
 	height: $header-bar-height;
+	box-shadow: $header-box-shadow;
 	padding: 0 16px;
 
 	&.bar-balanced {

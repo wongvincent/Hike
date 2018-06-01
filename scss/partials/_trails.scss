@@ -14,6 +14,10 @@
 
 .trails-list {
 	.trail-card {
+		&:first-of-type {
+			padding-top: 5px;
+		}
+
 		.row:nth-child(1) {
 			/* Trail card title */
 			font-weight: 500;

@@ -38,6 +38,7 @@ ol {
 
 .platform-android .bar-header {
   height: 48px;
+  box-shadow: 0px 2px 12px #ccc;
   padding: 0 16px; }
   .platform-android .bar-header.bar-balanced {
     border-color: #196730;
@@ -347,7 +348,7 @@ body.menu-open .menu-content {
   margin-top: 48px;
   height: 42px;
   border: none;
-  box-shadow: 0px 5px 10px #bbb;
+  box-shadow: 0px 2px 12px #ccc;
   padding: 0 0 0 16px; }
   .trails-subheader-bar .number-of-results {
     width: calc(100% - 100px);
@@ -377,8 +378,9 @@ body.menu-open .menu-content {
 .trail-tabs .tab-nav {
   top: 48px !important;
   background-color: #28A54C;
-  box-shadow: 0px 5px 10px #bbb;
-  border-color: #28A54C; }
+  box-shadow: 0px 5px 4px #eee;
+  border-color: #28A54C;
+  z-index: 10; }
   .trail-tabs .tab-nav .tab-item {
     color: #FFF; }
     .trail-tabs .tab-nav .tab-item.tab-item-active {
@@ -426,6 +428,9 @@ body.menu-open .menu-content {
   font-weight: bold;
   padding-right: 12px;
   color: #666; }
+
+.trails-list .trail-card:first-of-type {
+  padding-top: 5px; }
 
 .trails-list .trail-card .row:nth-child(1) {
   /* Trail card title */
