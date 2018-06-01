@@ -175,7 +175,11 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
       $scope.parks = parks;
       $scope.favouriteIds = favouriteIds;
 
-      $cordovaSplashscreen.hide();
+      $scope.goState('trails.list');
+
+      setTimeout(function() {
+        $cordovaSplashscreen.hide();
+      }, 300);
     }, () => {
       $scope.failedPopupReload();
     });
@@ -231,12 +235,10 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
 
       $rootScope.credentials.amazonS3Base = amazonS3Base;
 
-      $scope.goState('trails.list');
+      if (window.cordova) {
+        window.plugins.sqlDB.copy('trails.db', 0, openDatabase, openDatabase);
+      }
     });
-
-    if (window.cordova) {
-      window.plugins.sqlDB.copy('trails.db', 0, openDatabase, openDatabase);
-    }
   });
 
   $scope.$on('$ionicView.beforeEnter', function() {
