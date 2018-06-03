@@ -8,48 +8,44 @@ app.controller('NearbyController', ['$rootScope', '$scope', '$ionicLoading', '$i
     $scope.refreshNearbyTrails();
   });
 
-  $scope.refreshNearbyTrails = function(manualRefresh) {
+  $scope.refreshNearbyTrails = async function(manualRefresh) {
     if (manualRefresh && analytics) {
       analytics.trackEvent('Nearby', 'Manual Refresh');
     }
-    isLocationAuthorized().then(function(isAppLocationPermissionEnabled) {
-      if (isAppLocationPermissionEnabled) {
+    const hasAppLocationPermissions = await isLocationAuthorized();
+    if (hasAppLocationPermissions) {
+      handleDeviceLocationCheck(manualRefresh);
+    } else {
+      const permissionsGranted = await requestLocationAuthorization();
+      if (permissionsGranted !== 'DENIED' && permissionsGranted !== 'DENIED_ALWAYS') {
         handleDeviceLocationCheck(manualRefresh);
       } else {
-        requestLocationAuthorization().then(function(permissionsGranted) {
-          if (permissionsGranted !== 'DENIED' && permissionsGranted !== 'DENIED_ALWAYS') {
-            handleDeviceLocationCheck(manualRefresh);
-          } else {
-            $scope.$apply(function() {
-              $scope.locationFailed = true;
-            });
-            window.plugins.toast.showLongBottom('FAILED! App location permissions required');
-          }
+        $scope.$apply(function() {
+          $scope.locationFailed = true;
         });
+        window.plugins.toast.showLongBottom('FAILED! App location permissions required');
       }
-    });
+    }
   };
 
-  var handleDeviceLocationCheck = function(manualRefresh) {
-    checkIfLocationIsOn().then(function(isDeviceLocationEnabled) {
-      if (isDeviceLocationEnabled) {
-        acquireLocation(manualRefresh);
+  var handleDeviceLocationCheck = async function(manualRefresh) {
+    const isDeviceLocationEnabled = await checkIfLocationIsOn();
+    if (isDeviceLocationEnabled) {
+      acquireLocation(manualRefresh);
+    } else {
+      const openDeviceLocationSettings = await showTurnOnLocationPopup();
+      if (openDeviceLocationSettings) {
+        cordova.plugins.diagnostic.switchToLocationSettings();
+        setTimeout(function() {
+          refreshLocationPopup(manualRefresh);
+        }, 1500);
       } else {
-        showTurnOnLocationPopup().then(function(tryTurningOn) {
-          if (tryTurningOn) {
-            cordova.plugins.diagnostic.switchToLocationSettings();
-            setTimeout(function() {
-              refreshLocationPopup(manualRefresh);
-            }, 1500);
-          } else {
-            $scope.$apply(function() {
-              $scope.locationFailed = true;
-            });
-            window.plugins.toast.showLongBottom('FAILED! Device location settings are off');
-          }
+        $scope.$apply(function() {
+          $scope.locationFailed = true;
         });
+        window.plugins.toast.showLongBottom('FAILED! Device location settings are off');
       }
-    });
+    }
   };
 
   var isLocationAuthorized = function() {
