@@ -20,7 +20,7 @@ app.controller('TrailPhotosController', ['$rootScope', '$scope', 'GooglePlacesSe
 
   async function getAmazonS3Photos() {
     const amazonS3Base = $rootScope.credentials.amazonS3Base;
-    const fetchResponse = await fetchWrapper(`${amazonS3Base}/?list-type=2&prefix=${$scope.trail.href}/`, null, 1500);
+    const fetchResponse = await fetchWrapper(`${amazonS3Base}/?list-type=2&prefix=${$scope.trail.href}/`, null, 2500);
 
     if (fetchResponse.ok) {
       const body = await fetchResponse.text();
