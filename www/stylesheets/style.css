@@ -27,7 +27,12 @@
 * {
   font-family: sans-serif; }
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
   display: none !important; }
 
 ul {
@@ -45,16 +50,18 @@ ol {
     background-color: #28A54C;
     color: #fff; }
   .platform-android .bar-header .title {
-    line-height: 24px;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     margin-left: 12px;
     left: 48px;
     height: 48px;
-    margin-top: 12px; }
+    display: flex;
+    justify-content: center;
+    flex-direction: column; }
   .platform-android .bar-header .buttons-left {
-    padding-top: 5px;
-    padding-bottom: 5px; }
+    display: flex;
+    justify-content: center;
+    flex-direction: column; }
     .platform-android .bar-header .buttons-left button {
       height: 100%; }
   .platform-android .bar-header .buttons-right {
@@ -75,7 +82,8 @@ ol {
   .tabs .tab-item {
     font-size: 20px; }
 
-.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+.checkbox input:checked:before,
+.checkbox input:checked + .checkbox-icon:before {
   background: #28A54C;
   border-color: #28A54C; }
 
@@ -150,18 +158,21 @@ button.button-balanced {
   height: calc(100% - 0px); }
   .filter-by-modal .bar-header {
     font-weight: bold; }
-    .filter-by-modal .bar-header .buttons button {
-      color: #FFFFFF;
-      font-weight: bold;
-      line-height: 48px;
-      font-size: 20px;
-      padding: 0 10px; }
-      .filter-by-modal .bar-header .buttons button#reset-button {
-        position: absolute;
-        left: 5px; }
-      .filter-by-modal .bar-header .buttons button#save-button {
-        position: absolute;
-        right: 5px; }
+    .filter-by-modal .bar-header .buttons {
+      display: flex;
+      justify-content: center;
+      flex-direction: column; }
+      .filter-by-modal .bar-header .buttons button {
+        color: #FFFFFF;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 0 10px; }
+        .filter-by-modal .bar-header .buttons button#reset-button {
+          position: absolute;
+          left: 5px; }
+        .filter-by-modal .bar-header .buttons button#save-button {
+          position: absolute;
+          right: 5px; }
   .filter-by-modal .filters-list .item {
     padding: 14px; }
   .filter-by-modal .filters-list .filter-difficulty {
@@ -250,15 +261,24 @@ button#bottomMapButton {
     width: 100%;
     font-size: 20px;
     border-width: 0 0 1px;
-    padding-top: 4px; }
+    margin-bottom: 4px;
+    border-bottom-color: #bbb; }
   .search-bar .icon.back-button {
     font-size: 28px;
     color: #666666;
-    padding: 0 16px; }
+    padding: 0 12px;
+    margin: 0 10px 0 4px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column; }
   .search-bar .icon.x-button {
     font-size: 28px;
     color: #AAAAAA;
-    padding: 0 18px 0 12px; }
+    padding: 12px;
+    margin-left: 12px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column; }
 
 /** Make Main Content black when side-menu is open **/
 body.menu-open .view-container {
@@ -346,14 +366,15 @@ body.menu-open .menu-content {
 
 .trails-subheader-bar {
   margin-top: 48px;
-  height: 42px;
   border: none;
   box-shadow: 0px 2px 12px #ccc;
   padding: 0 0 0 16px; }
   .trails-subheader-bar .number-of-results {
-    width: calc(100% - 100px);
+    flex: 1;
     font-size: 20px;
-    line-height: 44px; }
+    display: flex;
+    justify-content: center;
+    flex-direction: column; }
   .trails-subheader-bar .buttons-right {
     text-align: right;
     display: -webkit-box; }

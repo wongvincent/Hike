@@ -4,16 +4,25 @@
 		width: 100%;
 		font-size: 20px;
 		border-width: 0 0 1px;
-		padding-top: 4px;
+		margin-bottom: 4px;
+		border-bottom-color: #bbb;
 	}
 	.icon.back-button {
 		font-size: 28px;
 		color: #666666;
-		padding: 0 16px;
+		padding: 0 12px;
+		margin: 0 10px 0 4px;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 	}
 	.icon.x-button {
 		font-size: 28px;
 		color: #AAAAAA;
-		padding: 0 18px 0 12px;
+		padding: 12px;
+		margin-left: 12px;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 	}
 }

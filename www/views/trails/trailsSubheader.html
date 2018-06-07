@@ -1,6 +1,7 @@
 <div class="bar bar-light trails-subheader-bar">
-    <div class="number-of-results">{{filteredTrails.length}}
+    <div class="number-of-results">
         <span ng-show="filteredTrails">
+            {{filteredTrails.length}}
             <ng-pluralize count="filteredTrails.length"
                       when="{'one': 'result',
                        'other': 'results'}">

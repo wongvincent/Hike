@@ -1,9 +1,15 @@
 /*GENERAL app css changes */
+
 * {
 	font-family: sans-serif;
 }
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
 	display: none !important;
 }
 
@@ -19,26 +25,25 @@ ol {
 	height: $header-bar-height;
 	box-shadow: $header-box-shadow;
 	padding: 0 16px;
-
 	&.bar-balanced {
 		border-color: #196730;
 		background-color: $green;
 		color: #fff;
 	}
-
 	.title {
-		line-height: 24px;
-		font-size: 24px;
+		font-size: 26px;
 		font-weight: bold;
 		margin-left: 12px;
 		left: 48px;
 		height: 48px;
-		margin-top: 12px;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 	}
-
 	.buttons-left {
-		padding-top: 5px;
-		padding-bottom: 5px;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 		button {
 			height: 100%;
 		}
@@ -56,7 +61,6 @@ ol {
 
 .has-header {
 	top: $header-bar-height;
-
 	&.has-tabs-top {
 		top: 91px;
 	}
@@ -64,13 +68,13 @@ ol {
 
 .tabs {
 	height: 42px !important;
-
 	.tab-item {
 		font-size: 20px;
 	}
 }
 
-.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+.checkbox input:checked:before,
+.checkbox input:checked+.checkbox-icon:before {
 	background: $green;
 	border-color: $green;
 }
@@ -85,16 +89,13 @@ ion-header-bar > div {
 	min-width: 75%;
 	max-width: 90%;
 	padding: 10px 23px;
-
 	.popup-head {
 		display: none;
 	}
-
 	.popup-body {
 		padding: 14px 0 0 0;
 		font-size: 18px;
 	}
-
 	.popup-buttons {
 		padding: 10px 0 0px 0;
 		justify-content: flex-end;

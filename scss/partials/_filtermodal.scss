@@ -14,10 +14,12 @@
 		font-weight: bold;
 
 		.buttons {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
 			button {
 				color: #FFFFFF;
 				font-weight: bold;
-				line-height: $header-bar-height;
 				font-size: 20px;
 				padding: 0 10px;
 

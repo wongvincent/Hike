@@ -6,21 +6,19 @@
 
 .trails-subheader-bar {
 	margin-top: $header-bar-height;
-	height: 42px;
 	border: none;
 	box-shadow: $header-box-shadow;
 	padding: 0 0 0 16px;
-
 	.number-of-results {
-		width: calc(100% - 100px);
+		flex: 1;
 		font-size: 20px;
-		line-height: 44px;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 	}
-
 	.buttons-right {
 		text-align: right;
 		display: -webkit-box;
-
 		button {
 			display: flex;
 			
@@ -28,6 +26,7 @@
 			&:nth-child(1) {
 				padding: 0 12px;
 			}
+			
 			// filter button
 			&:nth-child(2) {
 				padding: 0 12px;
@@ -39,11 +38,8 @@
 				}
 			}
 		}
-
-
 		.filters-applied {
 			color: $green;
-
 			span {
 				margin-left: 0;
 			}
