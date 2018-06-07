@@ -12,7 +12,7 @@
         <div ng-repeat="photo in trail.photos" class="list card trail-photo">
             <div class="item item-image">
                 <!-- a ng-href = opens up full size of image -->
-                <img ng-src="{{::photo.src}}">
+                <img ng-src="{{::photo.src}}" ng-click="openPhotosModal($index)">
             </div>
             <div class="photoAttribution">
                 <span ng-repeat="attribution in photo.html_attributions">
