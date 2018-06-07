@@ -118,7 +118,7 @@ app.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   $ionicConfigProvider.tabs.position('top');
 
   //Use native scrolling
-  if (!ionic.Platform.isIOS()) {
+  if (ionic.Platform.isAndroid()) {
     $ionicConfigProvider.scrolling.jsScrolling(false);
   }
 });
