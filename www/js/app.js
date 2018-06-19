@@ -179,6 +179,7 @@ app.controller('StartController', ['$rootScope', '$scope', '$state', '$ionicSide
 
       setTimeout(function() {
         $cordovaSplashscreen.hide();
+        DatabaseVersioning.deferredUpdate();
       }, 300);
     }, () => {
       $scope.failedPopupReload();
