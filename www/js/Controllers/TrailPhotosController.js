@@ -108,7 +108,7 @@ app.controller('TrailPhotosController', ['$rootScope', '$scope', 'GooglePlacesSe
 
   $scope.updateSlideStatus = function(slide) {
     var zoomFactor = $ionicScrollDelegate.$getByHandle('scrollHandle' + slide).getScrollPosition().zoom;
-    if (zoomFactor == $scope.zoomMin) {
+    if ((Math.floor(zoomFactor*20)/20).toFixed(2) == $scope.zoomMin) {
       $ionicSlideBoxDelegate.enableSlide(true);
     } else {
       $ionicSlideBoxDelegate.enableSlide(false);
