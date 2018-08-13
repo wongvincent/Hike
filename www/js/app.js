@@ -8,7 +8,7 @@ app.run(function($rootScope, $ionicPlatform, $ionicHistory, $ionicPopup) {
     }
     if (window.cordova && StatusBar) {
       if (ionic.Platform.isAndroid()) {
-        StatusBar.backgroundColorByHexString('#33CD5F');
+        StatusBar.backgroundColorByHexString('#28A54C');
       } else {
         StatusBar.styleBlackTranslucent();
       }
