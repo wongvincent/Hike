@@ -31,7 +31,7 @@ app.factory('DatabaseVersioning', ['Database', function(Database) {
           }
           if (minor <= 5) {
             parksToAdd.push([44, 'Coquihalla Canyon Provincial Park', 'http://www.env.gov.bc.ca/bcparks/explore/parkpgs/coquihalla_cyn/']);
-            trailsToAdd.push([129, 'Othello Tunnels', 'othellotunnels', 25, 44, 0, 1, 3.0, '5-10', 49.377843, -121.369529, 1, 0, 0, null, 'ChIJ7zyWu2L0g1QR_I2WLgTUc7Q']);
+            trailsToAdd.push([131, 'Othello Tunnels', 'othellotunnels', 25, 44, 0, 1, 3.0, '5-10', 49.377843, -121.369529, 1, 0, 0, null, 'ChIJ7zyWu2L0g1QR_I2WLgTUc7Q']);
             trailsToAdd.push([132, 'Golden Ears Canyon Loop', 'goldenearscanyon', 10, 38, 0, 4, 12.0, '4-10', 49.334551, -122.456722, 1, 100, 0, null, 'ChIJpaV9ukwohFQRjVpAjI2b5e4']);
           }
         }
