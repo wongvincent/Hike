@@ -13,6 +13,7 @@ plugins/
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
+npm-debug.log
 
 *.keystore
 
